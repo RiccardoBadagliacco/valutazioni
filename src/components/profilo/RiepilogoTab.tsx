@@ -56,7 +56,7 @@ function MemeSection({ dipendenteId }: { dipendenteId: string }) {
     <div className="bg-white rounded-2xl border border-[#EFEFEF] overflow-hidden">
       <div className="px-6 py-5 border-b border-[#F5F5F5]">
         <p className="font-semibold text-[#1A1A1A] text-sm">Giudizio complessivo</p>
-        <p className="text-xs text-[#999] mt-0.5">Seleziona il meme che meglio rappresenta la tua valutazione dell'anno</p>
+        <p className="text-xs text-[#999] mt-0.5">Seleziona il meme che meglio rappresenta la tua valutazione dell&apos;anno</p>
       </div>
 
       <div className="px-6 py-6">

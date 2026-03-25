@@ -101,9 +101,7 @@ export default function SommarioTab({ dipendenteId }: Props) {
     ? Math.max(...presenze.map((p) => p.giorniUfficio + p.giorniSmartWorking))
     : 1;
 
-  const totGiorniUfficio = presenze.reduce((s, p) => s + p.giorniUfficio, 0);
-  const totSW            = presenze.reduce((s, p) => s + p.giorniSmartWorking, 0);
-  const totEquivalenti   = presenze.reduce((s, p) => s + p.giorniEquivalenti, 0);
+  const totEquivalenti = presenze.reduce((s, p) => s + p.giorniEquivalenti, 0);
 
   return (
     <div className="space-y-4">
