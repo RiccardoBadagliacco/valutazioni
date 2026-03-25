@@ -1,0 +1,251 @@
+[
+  {
+    "dipendenteId": "emp-001",
+    "economicsAttuale": {
+      "tipoContratto": "Tempo indeterminato",
+      "livello": 8,
+      "dataInizio": "2026-02-01",
+      "ral": 22661.0,
+      "indennita": 0,
+      "dataPrimoStaffing": "2025-01-01",
+      "bonusErogato": 872.44
+    },
+    "propostaAumento": {
+      "profilo": "Technology",
+      "sede": "Messina",
+      "jobProfile": "Consultant 2",
+      "nuovaRal": 24500,
+      "ralMin": 23000,
+      "ralMax": 26000,
+      "nuovaIndennita": 0,
+      "parametroIndennita": 0,
+      "bonusImporto": 1133,
+      "bonusTipo": "VARIABILE",
+      "bonusPercentuale": 5,
+      "note": null
+    },
+    "bonus": {
+      "obiettivi": [
+        { "descrizione": "Fatturato aziendale",               "percentualeMassima": 60,  "pesoObiettivo": 25, "quotaBonusMassima": 166.41 },
+        { "descrizione": "Partecipazione alla vita aziendale","percentualeMassima": 100, "pesoObiettivo": 25, "quotaBonusMassima": 277.34 },
+        { "descrizione": "Performance progettuali",           "percentualeMassima": 100, "pesoObiettivo": 50, "quotaBonusMassima": 554.69 }
+      ],
+      "bonusMassimale": 998.43,
+      "bonusErogato": 998.43,
+      "bonusErogatoPercentuale": 90.0,
+      "note": null
+    }
+  },
+  {
+    "dipendenteId": "emp-002",
+    "economicsAttuale": {
+      "tipoContratto": "Tempo indeterminato",
+      "livello": 6,
+      "dataInizio": "2025-10-01",
+      "ral": 27171.2,
+      "indennita": 7,
+      "dataPrimoStaffing": "2025-01-01",
+      "bonusErogato": 1204
+    },
+    "propostaAumento": {
+      "profilo": "Technology",
+      "sede": "Palermo",
+      "jobProfile": "Senior Consultant 1",
+      "nuovaRal": 27171,
+      "ralMin": 26000,
+      "ralMax": 29000,
+      "nuovaIndennita": 7,
+      "parametroIndennita": 7,
+      "bonusImporto": 1902,
+      "bonusTipo": "VARIABILE",
+      "bonusPercentuale": 7,
+      "note": null
+    },
+    "bonus": {
+      "obiettivi": [
+        { "descrizione": "Fatturato aziendale",               "percentualeMassima": 60,  "pesoObiettivo": 25, "quotaBonusMassima": 280.3 },
+        { "descrizione": "Performance progettuali",           "percentualeMassima": 100, "pesoObiettivo": 25, "quotaBonusMassima": 467.16 },
+        { "descrizione": "Partecipazione alla vita aziendale","percentualeMassima": 100, "pesoObiettivo": 50, "quotaBonusMassima": 934.32 }
+      ],
+      "bonusMassimale": 1681.78,
+      "bonusErogato": 1000,
+      "bonusErogatoPercentuale": 53.5,
+      "note": null
+    }
+  },
+  {
+    "dipendenteId": "emp-003",
+    "economicsAttuale": {
+      "tipoContratto": "Tempo indeterminato",
+      "livello": 7,
+      "dataInizio": "2025-04-01",
+      "ral": 24000,
+      "indennita": 7,
+      "dataPrimoStaffing": "2025-01-01",
+      "bonusErogato": 1000.2
+    },
+    "propostaAumento": {
+      "profilo": "Technology",
+      "sede": "Messina",
+      "jobProfile": "Senior Consultant 1",
+      "nuovaRal": 26000,
+      "ralMin": 26000,
+      "ralMax": 29000,
+      "nuovaIndennita": 7,
+      "parametroIndennita": 7,
+      "bonusImporto": 1680,
+      "bonusTipo": "VARIABILE",
+      "bonusPercentuale": 7,
+      "note": null
+    },
+    "bonus": {
+      "obiettivi": [
+        { "descrizione": "Fatturato aziendale",              "percentualeMassima": 60,  "pesoObiettivo": 25, "quotaBonusMassima": 229.69 },
+        { "descrizione": "Performance progettuali",          "percentualeMassima": 100, "pesoObiettivo": 25, "quotaBonusMassima": 382.82 },
+        { "descrizione": "Partecipazione alla vita aziendale","percentualeMassima": 100, "pesoObiettivo": 50, "quotaBonusMassima": 765.65 }
+      ],
+      "bonusMassimale": 1378.16,
+      "bonusErogato": 1378.16,
+      "bonusErogatoPercentuale": 90.0,
+      "note": null
+    }
+  },
+  {
+    "dipendenteId": "emp-004",
+    "economicsAttuale": {
+      "tipoContratto": "Tempo indeterminato",
+      "livello": 8,
+      "dataInizio": "2025-04-01",
+      "ral": 22583.2,
+      "indennita": 0,
+      "dataPrimoStaffing": "2025-01-01",
+      "bonusErogato": 873.87
+    },
+    "propostaAumento": {
+      "profilo": "Technology",
+      "sede": "Palermo",
+      "jobProfile": "Consultant 2",
+      "nuovaRal": 25000,
+      "ralMin": 23000,
+      "ralMax": 26000,
+      "nuovaIndennita": 0,
+      "parametroIndennita": 0,
+      "bonusImporto": 1129,
+      "bonusTipo": "VARIABILE",
+      "bonusPercentuale": 5,
+      "note": null
+    },
+    "bonus": {
+      "obiettivi": [
+        { "descrizione": "Fatturato aziendale",               "percentualeMassima": 60,  "pesoObiettivo": 25, "quotaBonusMassima": 166.86 },
+        { "descrizione": "Partecipazione alla vita aziendale","percentualeMassima": 100, "pesoObiettivo": 25, "quotaBonusMassima": 278.09 },
+        { "descrizione": "Performance progettuali",           "percentualeMassima": 100, "pesoObiettivo": 50, "quotaBonusMassima": 556.19 }
+      ],
+      "bonusMassimale": 1001.13,
+      "bonusErogato": 2000,
+      "bonusErogatoPercentuale": 179.8,
+      "note": null
+    }
+  },
+  {
+    "dipendenteId": "emp-005",
+    "economicsAttuale": {
+      "tipoContratto": "Tempo indeterminato",
+      "livello": 9,
+      "dataInizio": "2025-11-01",
+      "ral": 22154.3,
+      "indennita": 0,
+      "dataPrimoStaffing": "2025-01-01",
+      "bonusErogato": 864.42
+    },
+    "propostaAumento": {
+      "profilo": "Technology",
+      "sede": "Messina",
+      "jobProfile": "Consultant 1",
+      "nuovaRal": 23000,
+      "ralMin": 20500,
+      "ralMax": 23000,
+      "nuovaIndennita": 0,
+      "parametroIndennita": 0,
+      "bonusImporto": 1108,
+      "bonusTipo": "VARIABILE",
+      "bonusPercentuale": 5,
+      "note": null
+    },
+    "bonus": {
+      "obiettivi": [
+        { "descrizione": "Fatturato aziendale",               "percentualeMassima": 60,  "pesoObiettivo": 25, "quotaBonusMassima": 163.32 },
+        { "descrizione": "Partecipazione alla vita aziendale","percentualeMassima": 100, "pesoObiettivo": 25, "quotaBonusMassima": 272.2 },
+        { "descrizione": "Performance progettuali",           "percentualeMassima": 100, "pesoObiettivo": 50, "quotaBonusMassima": 544.41 }
+      ],
+      "bonusMassimale": 979.93,
+      "bonusErogato": 724,
+      "bonusErogatoPercentuale": 66.5,
+      "note": null
+    }
+  },
+  {
+    "dipendenteId": "emp-006",
+    "economicsAttuale": {
+      "tipoContratto": "Tempo indeterminato",
+      "livello": 7,
+      "dataInizio": "2025-05-01",
+      "ral": 24417.8,
+      "indennita": 10,
+      "dataPrimoStaffing": "2025-01-01",
+      "bonusErogato": 1300.21
+    },
+    "propostaAumento": {
+      "profilo": "Technology",
+      "sede": "Milano",
+      "jobProfile": "Consultant 2",
+      "nuovaRal": 25000,
+      "ralMin": 25000,
+      "ralMax": 28000,
+      "nuovaIndennita": 10,
+      "parametroIndennita": 7,
+      "bonusImporto": 1709,
+      "bonusTipo": "VARIABILE",
+      "bonusPercentuale": 7,
+      "note": null
+    },
+    "bonus": {
+      "obiettivi": [
+        { "descrizione": "Fatturato aziendale",               "percentualeMassima": 60,  "pesoObiettivo": 25, "quotaBonusMassima": 251.87 },
+        { "descrizione": "Partecipazione alla vita aziendale","percentualeMassima": 100, "pesoObiettivo": 25, "quotaBonusMassima": 419.78 },
+        { "descrizione": "Performance progettuali",           "percentualeMassima": 100, "pesoObiettivo": 50, "quotaBonusMassima": 839.56 }
+      ],
+      "bonusMassimale": 1511.2,
+      "bonusErogato": 1000,
+      "bonusErogatoPercentuale": 59.6,
+      "note": null
+    }
+  },
+  {
+    "dipendenteId": "emp-007",
+    "economicsAttuale": {
+      "tipoContratto": "Tempo indeterminato",
+      "livello": 5,
+      "dataInizio": "2023-09-01",
+      "ral": 32000,
+      "indennita": 10,
+      "dataPrimoStaffing": "2023-09-01",
+      "bonusErogato": 1500
+    },
+    "propostaAumento": {
+      "profilo": "Technology",
+      "sede": "Milano",
+      "jobProfile": "Senior Consultant 2",
+      "nuovaRal": 38000,
+      "ralMin": 36000,
+      "ralMax": 42000,
+      "nuovaIndennita": 12,
+      "parametroIndennita": 12,
+      "bonusImporto": 2800,
+      "bonusTipo": "VARIABILE",
+      "bonusPercentuale": 8,
+      "note": null
+    },
+    "bonus": null
+  }
+]
