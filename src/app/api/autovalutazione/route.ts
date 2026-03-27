@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import supabase from "@/lib/supabase";
 import { Autovalutazione } from "@/types/autovalutazione";
+import type { Database } from "@/types/database";
+
+type AutovalInsert = Database["public"]["Tables"]["autovalutazioni"]["Insert"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapAutovalutazione(row: any): Autovalutazione {
@@ -51,7 +54,7 @@ export async function POST(req: NextRequest) {
       attivita_lipari:        body.attivitaLipari,
       equilibrio:             body.equilibrio,
       sviluppo_professionale: body.sviluppoProfessionale,
-    }, { onConflict: "dipendente_id" })
+    } as unknown as AutovalInsert, { onConflict: "dipendente_id" })
     .select()
     .single();
 

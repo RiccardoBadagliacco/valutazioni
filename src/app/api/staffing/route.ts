@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import supabase from "@/lib/supabase";
 import { Staffing } from "@/types/staffing";
+import type { Database } from "@/types/database";
+
+type StaffingInsert = Database["public"]["Tables"]["staffing"]["Insert"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapStaffing(row: any): Staffing {
@@ -38,7 +41,7 @@ export async function POST(req: NextRequest) {
   const { data, error } = await supabase
     .from("staffing")
     .upsert(
-      { dipendente_id: body.dipendenteId, periodi: body.periodi, presenze: body.presenze },
+      { dipendente_id: body.dipendenteId, periodi: body.periodi, presenze: body.presenze } as unknown as StaffingInsert,
       { onConflict: "dipendente_id" }
     )
     .select()

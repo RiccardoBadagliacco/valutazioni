@@ -225,7 +225,7 @@ function CreateAutovalutazioneForm({
   onSaved: (data: Autovalutazione) => void;
   onCancel?: () => void;
 }) {
-  const [form, setForm] = useState<Omit<Autovalutazione, "dipendenteId">>(initialData ? (({ dipendenteId: _id, ...rest }) => rest)(initialData) : {
+  const [form, setForm] = useState<Omit<Autovalutazione, "dipendenteId">>(initialData ? (({ dipendenteId: _unused, ...rest }) => rest)(initialData) : {
     dataCompilazione: new Date().toISOString().slice(0, 10),
     overview: {
       stimolante: 3,

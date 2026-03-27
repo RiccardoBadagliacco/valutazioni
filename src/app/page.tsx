@@ -334,7 +334,6 @@ export default function Page() {
   // ── Handlers ───────────────────────────────────────────────────────────────
   const handleSubmit = async (data: DipendenteFormData) => {
     setLoading(true);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { valutatoreId: newValutatoreId, ...dipendenteData } = data;
     try {
       let dipendenteId: string;

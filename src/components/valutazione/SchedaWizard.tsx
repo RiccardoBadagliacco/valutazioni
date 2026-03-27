@@ -636,7 +636,7 @@ function StepScheda({ hardSkill, setHardSkill, softSkill, setSoftSkill, crescita
 
 // ── Step: Riepilogo ───────────────────────────────────────────────────────────
 
-function StepRiepilogo({ periodi, presenze, autoval, valCliente, hardSkill, softSkill, crescita }: {
+function StepRiepilogo({ periodi, presenze, autoval: _autoval, valCliente, hardSkill, softSkill, crescita }: {
   periodi: PeriodoInput[]; presenze: PresenzaMap;
   autoval: AutovalState; valCliente: ValClienteState;
   hardSkill: DriverValutazione[]; softSkill: DriverValutazione[]; crescita: string;

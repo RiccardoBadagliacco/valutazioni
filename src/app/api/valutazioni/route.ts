@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import supabase from "@/lib/supabase";
 import { Valutazione } from "@/types/valutazione";
+import type { Database } from "@/types/database";
+
+type ValutazioneInsert = Database["public"]["Tables"]["valutazioni"]["Insert"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapValutazione(row: any): Valutazione {
@@ -46,7 +49,7 @@ export async function POST(req: NextRequest) {
       valutatore:    body.valutatore,
       societa:       body.societa,
       risposte:      body.risposte,
-    })
+    } as unknown as ValutazioneInsert)
     .select()
     .single();
 

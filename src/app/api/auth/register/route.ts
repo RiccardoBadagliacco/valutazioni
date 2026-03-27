@@ -2,17 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import bcrypt from "bcryptjs";
 import supabase from "@/lib/supabase";
+import type { Database } from "@/types/database";
 
-type ValutatoreRow = {
-  id: string;
-  nome: string;
-  cognome: string;
-  email: string | null;
-  dipendenti_ids: string[] | null;
-  dipendente_id: string | null;
-  password_hash: string | null;
-  special_features: boolean | null;
-};
+type ValutatoreRow = Database["public"]["Tables"]["valutatori"]["Row"];
 
 function safeRow(row: ValutatoreRow) {
   return {
@@ -41,13 +33,11 @@ export async function POST(req: NextRequest) {
   // Check if email already exists
   const { data: byEmail, error: byEmailError } = await supabase
     .from("valutatori")
-    .select<"*", ValutatoreRow>("*")
+    .select("*")
     .ilike("email", emailNorm)
-    .single();
+    .maybeSingle();
 
-  if (byEmailError && byEmailError.code !== "PGRST116") {
-    return NextResponse.json({ error: byEmailError.message }, { status: 500 });
-  }
+  if (byEmailError) return NextResponse.json({ error: byEmailError.message }, { status: 500 });
 
   if (byEmail) {
     if (byEmail.password_hash) {
@@ -58,7 +48,7 @@ export async function POST(req: NextRequest) {
       .from("valutatori")
       .update({ nome: nome.trim(), cognome: cognome.trim(), email: emailNorm, password_hash: hash })
       .eq("id", byEmail.id)
-      .select<"*", ValutatoreRow>("*")
+      .select("*")
       .single();
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     return NextResponse.json(safeRow(updated), { status: 200 });
@@ -67,23 +57,21 @@ export async function POST(req: NextRequest) {
   // Check legacy account by nome+cognome (no email, no password)
   const { data: byName, error: byNameError } = await supabase
     .from("valutatori")
-    .select<"*", ValutatoreRow>("*")
+    .select("*")
     .is("email", null)
     .is("password_hash", null)
     .ilike("nome", nome.trim())
     .ilike("cognome", cognome.trim())
-    .single();
+    .maybeSingle();
 
-  if (byNameError && byNameError.code !== "PGRST116") {
-    return NextResponse.json({ error: byNameError.message }, { status: 500 });
-  }
+  if (byNameError) return NextResponse.json({ error: byNameError.message }, { status: 500 });
 
   if (byName) {
     const { data: updated, error } = await supabase
       .from("valutatori")
       .update({ email: emailNorm, password_hash: hash })
       .eq("id", byName.id)
-      .select<"*", ValutatoreRow>("*")
+      .select("*")
       .single();
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     return NextResponse.json(safeRow(updated), { status: 200 });
@@ -93,7 +81,7 @@ export async function POST(req: NextRequest) {
   const { data: inserted, error } = await supabase
     .from("valutatori")
     .insert({ id: randomUUID(), nome: nome.trim(), cognome: cognome.trim(), email: emailNorm, dipendenti_ids: [], password_hash: hash })
-    .select<"*", ValutatoreRow>("*")
+    .select("*")
     .single();
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });

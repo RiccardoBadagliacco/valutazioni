@@ -13,14 +13,6 @@ interface Props {
 
 // ─── Formatters ───────────────────────────────────────────────────────────────
 
-function formatDate(d: string) {
-  return new Date(d).toLocaleDateString("it-IT", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-}
-
 function formatEur(n: number, decimals = 0) {
   return n.toLocaleString("it-IT", {
     style: "currency",
@@ -35,18 +27,6 @@ function pctChange(from: number, to: number) {
   return ((to - from) / from) * 100;
 }
 
-// ─── Read-only row ─────────────────────────────────────────────────────────────
-
-function Row({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
-  return (
-    <div className="flex items-center justify-between py-3 border-b border-[#F5F5F5] last:border-0">
-      <span className="text-sm text-[#666]">{label}</span>
-      <span className={`text-sm font-semibold ${highlight ? "text-[#111]" : "text-[#1A1A1A]"}`}>
-        {value}
-      </span>
-    </div>
-  );
-}
 
 // ─── Comparison card ──────────────────────────────────────────────────────────
 

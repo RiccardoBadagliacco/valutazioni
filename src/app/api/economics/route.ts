@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import supabase from "@/lib/supabase";
 import { Economics } from "@/types/economics";
+import type { Database } from "@/types/database";
+
+type EconomicsInsert = Database["public"]["Tables"]["economics"]["Insert"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapEconomics(row: any): Economics {
@@ -56,7 +59,7 @@ export async function PUT(req: NextRequest) {
 
   const { data, error } = await supabase
     .from("economics")
-    .upsert(merged, { onConflict: "dipendente_id" })
+    .upsert(merged as unknown as EconomicsInsert, { onConflict: "dipendente_id" })
     .select()
     .single();
 

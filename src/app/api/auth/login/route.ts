@@ -13,16 +13,12 @@ export async function POST(req: NextRequest) {
 
   const { data: user, error } = await supabase
     .from("valutatori")
-    .select<"*", { id: string; nome: string; cognome: string; email: string | null; dipendenti_ids: string[] | null; dipendente_id: string | null; password_hash: string | null; special_features: boolean | null }>("*")
+    .select("*")
     .ilike("email", emailNorm)
-    .single();
+    .maybeSingle();
 
-  if (error && error.code !== "PGRST116") {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-  if (!user) {
-    return NextResponse.json({ error: "Account non trovato. Registrati prima." }, { status: 404 });
-  }
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (!user) return NextResponse.json({ error: "Account non trovato. Registrati prima." }, { status: 404 });
 
   if (!user.password_hash) {
     return NextResponse.json(

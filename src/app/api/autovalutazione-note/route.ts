@@ -38,7 +38,7 @@ export async function PUT(req: NextRequest) {
     .eq("dipendente_id", dipendenteId)
     .single();
 
-  const note: Record<string, string> = current?.note ?? {};
+  const note: Record<string, string> = (current?.note as Record<string, string> | null) ?? {};
   if (value) note[key] = value;
   else delete note[key];
 

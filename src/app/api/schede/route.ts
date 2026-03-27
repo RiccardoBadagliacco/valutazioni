@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import supabase from "@/lib/supabase";
 import { SchedaRiassuntiva } from "@/types/scheda";
+import type { Database } from "@/types/database";
+
+type SchedeInsert = Database["public"]["Tables"]["schede_riassuntive"]["Insert"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapScheda(row: any): SchedaRiassuntiva {
@@ -47,7 +50,7 @@ export async function POST(req: NextRequest) {
       soft_skill:         body.softSkill,
       crescita_knowledge: body.crescitaKnowledge ?? null,
       performance:        body.performance ?? null,
-    }, { onConflict: "dipendente_id" })
+    } as unknown as SchedeInsert, { onConflict: "dipendente_id" })
     .select()
     .single();
 
