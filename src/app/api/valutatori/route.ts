@@ -1,22 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync, writeFileSync } from "fs";
 import { randomUUID } from "crypto";
-import path from "path";
-import { Valutatore } from "@/types/valutatore";
+import pool from "@/lib/db";
 
-const DATA_PATH = path.join(process.cwd(), "src/data/valutatori.json");
+const SELECT_SAFE = `
+  SELECT id, nome, cognome, email,
+         dipendenti_ids   AS "dipendentiIds",
+         dipendente_id    AS "dipendenteId",
+         special_features AS "specialFeatures"
+  FROM valutatori
+  ORDER BY cognome, nome
+`;
 
 export async function GET() {
-  const data: Valutatore[] = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
-  // Never expose password hashes to the client
-  return NextResponse.json(data.map(({ passwordHash: _, ...rest }) => rest));
+  const result = await pool.query(SELECT_SAFE);
+  return NextResponse.json(result.rows);
 }
 
 export async function POST(req: NextRequest) {
   const { nome, cognome }: { nome: string; cognome: string } = await req.json();
-  const data: Valutatore[] = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
-  const nuovo: Valutatore = { id: randomUUID(), nome, cognome, dipendentiIds: [] };
-  data.push(nuovo);
-  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
-  return NextResponse.json(nuovo, { status: 201 });
+  const id = randomUUID();
+
+  await pool.query(
+    "INSERT INTO valutatori (id, nome, cognome, dipendenti_ids) VALUES ($1, $2, $3, '{}')",
+    [id, nome, cognome]
+  );
+
+  return NextResponse.json(
+    { id, nome, cognome, dipendentiIds: [], dipendenteId: null, specialFeatures: false },
+    { status: 201 }
+  );
 }

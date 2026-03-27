@@ -1,16 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync } from "fs";
 import bcrypt from "bcryptjs";
-import path from "path";
-import { Valutatore } from "@/types/valutatore";
-
-const DATA_PATH = path.join(process.cwd(), "src/data/valutatori.json");
-
-function strip(v: Valutatore): Omit<Valutatore, "passwordHash"> {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { passwordHash: _, ...rest } = v;
-  return rest;
-}
+import pool from "@/lib/db";
 
 export async function POST(req: NextRequest) {
   const { email, password }: { email: string; password: string } = await req.json();
@@ -20,25 +10,37 @@ export async function POST(req: NextRequest) {
   }
 
   const emailNorm = email.trim().toLowerCase();
-  const data: Valutatore[] = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
 
-  const user = data.find((v) => v.email?.toLowerCase() === emailNorm);
+  const result = await pool.query(
+    "SELECT * FROM valutatori WHERE LOWER(email) = $1",
+    [emailNorm]
+  );
 
-  if (!user) {
+  if (result.rowCount === 0) {
     return NextResponse.json({ error: "Account non trovato. Registrati prima." }, { status: 404 });
   }
 
-  if (!user.passwordHash) {
+  const user = result.rows[0];
+
+  if (!user.password_hash) {
     return NextResponse.json(
       { error: "Account non configurato. Usa 'Registrati' per impostare la password." },
       { status: 401 }
     );
   }
 
-  const valid = await bcrypt.compare(password, user.passwordHash);
+  const valid = await bcrypt.compare(password, user.password_hash);
   if (!valid) {
     return NextResponse.json({ error: "Password errata." }, { status: 401 });
   }
 
-  return NextResponse.json(strip(user));
+  return NextResponse.json({
+    id:              user.id,
+    nome:            user.nome,
+    cognome:         user.cognome,
+    email:           user.email,
+    dipendentiIds:   user.dipendenti_ids,
+    dipendenteId:    user.dipendente_id,
+    specialFeatures: user.special_features,
+  });
 }

@@ -1,18 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync, writeFileSync } from "fs";
-import path from "path";
-import { Dipendente, DipendenteInput } from "@/types/dipendente";
-
-const DATA_PATH = path.join(process.cwd(), "src/data/dipendenti.json");
-
-function readData(): Dipendente[] {
-  const raw = readFileSync(DATA_PATH, "utf-8");
-  return JSON.parse(raw);
-}
-
-function writeData(data: Dipendente[]) {
-  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2), "utf-8");
-}
+import pool from "@/lib/db";
+import { DipendenteInput } from "@/types/dipendente";
 
 export async function PUT(
   req: NextRequest,
@@ -25,17 +13,16 @@ export async function PUT(
     return NextResponse.json({ error: "Tutti i campi sono obbligatori" }, { status: 400 });
   }
 
-  const data = readData();
-  const index = data.findIndex((d) => d.id === id);
+  const result = await pool.query(
+    "UPDATE dipendenti SET nome=$1, cognome=$2, jobprofile=$3, sede=$4 WHERE id=$5 RETURNING *",
+    [body.nome, body.cognome, body.jobprofile, body.sede, id]
+  );
 
-  if (index === -1) {
+  if (result.rowCount === 0) {
     return NextResponse.json({ error: "Dipendente non trovato" }, { status: 404 });
   }
 
-  data[index] = { id, ...body };
-  writeData(data);
-
-  return NextResponse.json(data[index]);
+  return NextResponse.json(result.rows[0]);
 }
 
 export async function DELETE(
@@ -43,15 +30,11 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const data = readData();
-  const index = data.findIndex((d) => d.id === id);
+  const result = await pool.query("DELETE FROM dipendenti WHERE id=$1", [id]);
 
-  if (index === -1) {
+  if (result.rowCount === 0) {
     return NextResponse.json({ error: "Dipendente non trovato" }, { status: 404 });
   }
-
-  data.splice(index, 1);
-  writeData(data);
 
   return NextResponse.json({ success: true });
 }

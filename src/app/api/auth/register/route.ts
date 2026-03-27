@@ -1,16 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync, writeFileSync } from "fs";
 import { randomUUID } from "crypto";
 import bcrypt from "bcryptjs";
-import path from "path";
-import { Valutatore } from "@/types/valutatore";
+import pool from "@/lib/db";
 
-const DATA_PATH = path.join(process.cwd(), "src/data/valutatori.json");
-
-function strip(v: Valutatore): Omit<Valutatore, "passwordHash"> {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { passwordHash: _, ...rest } = v;
-  return rest;
+function safeRow(row: Record<string, unknown>) {
+  return {
+    id:              row.id,
+    nome:            row.nome,
+    cognome:         row.cognome,
+    email:           row.email,
+    dipendentiIds:   row.dipendenti_ids,
+    dipendenteId:    row.dipendente_id,
+    specialFeatures: row.special_features,
+  };
 }
 
 export async function POST(req: NextRequest) {
@@ -23,48 +25,45 @@ export async function POST(req: NextRequest) {
   }
 
   const emailNorm = email.trim().toLowerCase();
+  const hash = await bcrypt.hash(password, 10);
 
-  const data: Valutatore[] = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
-
-  // Check email uniqueness
-  const byEmail = data.find((v) => v.email?.toLowerCase() === emailNorm);
-  if (byEmail) {
-    if (byEmail.passwordHash) {
+  // Check if email already exists
+  const byEmail = await pool.query("SELECT * FROM valutatori WHERE LOWER(email) = $1", [emailNorm]);
+  if ((byEmail.rowCount ?? 0) > 0) {
+    const existing = byEmail.rows[0];
+    if (existing.password_hash) {
       return NextResponse.json({ error: "Email già registrata. Accedi con la password." }, { status: 409 });
     }
-    // Legacy account without password — claim it by email
-    byEmail.nome       = nome.trim();
-    byEmail.cognome    = cognome.trim();
-    byEmail.email      = emailNorm;
-    byEmail.passwordHash = await bcrypt.hash(password, 10);
-    writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
-    return NextResponse.json(strip(byEmail), { status: 200 });
+    // Legacy account without password — claim it
+    const updated = await pool.query(
+      `UPDATE valutatori SET nome=$1, cognome=$2, email=$3, password_hash=$4 WHERE id=$5 RETURNING *`,
+      [nome.trim(), cognome.trim(), emailNorm, hash, existing.id]
+    );
+    return NextResponse.json(safeRow(updated.rows[0]), { status: 200 });
   }
 
-  // Also claim legacy account matched by nome+cognome (no email, no password)
-  const byName = data.find(
-    (v) =>
-      !v.email &&
-      !v.passwordHash &&
-      v.nome.toLowerCase() === nome.trim().toLowerCase() &&
-      v.cognome.toLowerCase() === cognome.trim().toLowerCase()
+  // Check legacy account by nome+cognome (no email, no password)
+  const byName = await pool.query(
+    `SELECT * FROM valutatori
+     WHERE email IS NULL AND password_hash IS NULL
+       AND LOWER(nome) = LOWER($1) AND LOWER(cognome) = LOWER($2)`,
+    [nome.trim(), cognome.trim()]
   );
-  if (byName) {
-    byName.email        = emailNorm;
-    byName.passwordHash = await bcrypt.hash(password, 10);
-    writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
-    return NextResponse.json(strip(byName), { status: 200 });
+  if ((byName.rowCount ?? 0) > 0) {
+    const updated = await pool.query(
+      `UPDATE valutatori SET email=$1, password_hash=$2 WHERE id=$3 RETURNING *`,
+      [emailNorm, hash, byName.rows[0].id]
+    );
+    return NextResponse.json(safeRow(updated.rows[0]), { status: 200 });
   }
 
-  const nuovo: Valutatore = {
-    id: randomUUID(),
-    nome: nome.trim(),
-    cognome: cognome.trim(),
-    email: emailNorm,
-    dipendentiIds: [],
-    passwordHash: await bcrypt.hash(password, 10),
-  };
-  data.push(nuovo);
-  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
-  return NextResponse.json(strip(nuovo), { status: 201 });
+  // Create new account
+  const id = randomUUID();
+  const inserted = await pool.query(
+    `INSERT INTO valutatori (id, nome, cognome, email, dipendenti_ids, password_hash)
+     VALUES ($1, $2, $3, $4, '{}', $5) RETURNING *`,
+    [id, nome.trim(), cognome.trim(), emailNorm, hash]
+  );
+
+  return NextResponse.json(safeRow(inserted.rows[0]), { status: 201 });
 }

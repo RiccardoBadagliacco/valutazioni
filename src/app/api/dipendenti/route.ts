@@ -1,23 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync, writeFileSync } from "fs";
-import path from "path";
-import { Dipendente, DipendenteInput } from "@/types/dipendente";
 import { randomUUID } from "crypto";
-
-const DATA_PATH = path.join(process.cwd(), "src/data/dipendenti.json");
-
-function readData(): Dipendente[] {
-  const raw = readFileSync(DATA_PATH, "utf-8");
-  return JSON.parse(raw);
-}
-
-function writeData(data: Dipendente[]) {
-  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2), "utf-8");
-}
+import pool from "@/lib/db";
+import { DipendenteInput } from "@/types/dipendente";
 
 export async function GET() {
-  const data = readData();
-  return NextResponse.json(data);
+  const result = await pool.query(
+    "SELECT id, nome, cognome, jobprofile, sede FROM dipendenti ORDER BY cognome, nome"
+  );
+  return NextResponse.json(result.rows);
 }
 
 export async function POST(req: NextRequest) {
@@ -27,10 +17,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Tutti i campi sono obbligatori" }, { status: 400 });
   }
 
-  const data = readData();
-  const nuovo: Dipendente = { id: randomUUID(), ...body };
-  data.push(nuovo);
-  writeData(data);
+  const id = randomUUID();
+  await pool.query(
+    "INSERT INTO dipendenti (id, nome, cognome, jobprofile, sede) VALUES ($1, $2, $3, $4, $5)",
+    [id, body.nome, body.cognome, body.jobprofile, body.sede]
+  );
 
-  return NextResponse.json(nuovo, { status: 201 });
+  return NextResponse.json({ id, ...body }, { status: 201 });
 }

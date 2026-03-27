@@ -1,29 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync, writeFileSync } from "fs";
 import { randomUUID } from "crypto";
-import path from "path";
+import pool from "@/lib/db";
 import { Valutazione } from "@/types/valutazione";
-
-const DATA_PATH = path.join(process.cwd(), "src/data/valutazioni.json");
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const dipendenteId = searchParams.get("dipendenteId");
 
-  const data: Valutazione[] = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
-
   const result = dipendenteId
-    ? data.filter((v) => v.dipendenteId === dipendenteId)
-    : data;
+    ? await pool.query(
+        `SELECT id, dipendente_id AS "dipendenteId", form_id AS "formId",
+                data, valutatore, societa, risposte
+         FROM valutazioni WHERE dipendente_id = $1 ORDER BY data DESC`,
+        [dipendenteId]
+      )
+    : await pool.query(
+        `SELECT id, dipendente_id AS "dipendenteId", form_id AS "formId",
+                data, valutatore, societa, risposte
+         FROM valutazioni ORDER BY data DESC`
+      );
 
-  return NextResponse.json(result);
+  return NextResponse.json(result.rows);
 }
 
 export async function POST(req: NextRequest) {
   const body: Omit<Valutazione, "id"> = await req.json();
-  const data: Valutazione[] = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
-  const nuova: Valutazione = { id: randomUUID(), ...body };
-  data.push(nuova);
-  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
-  return NextResponse.json(nuova, { status: 201 });
+  const id = randomUUID();
+
+  await pool.query(
+    `INSERT INTO valutazioni (id, dipendente_id, form_id, data, valutatore, societa, risposte)
+     VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+    [id, body.dipendenteId, body.formId, body.data, body.valutatore, body.societa, JSON.stringify(body.risposte)]
+  );
+
+  return NextResponse.json({ id, ...body }, { status: 201 });
 }
