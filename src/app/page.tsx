@@ -13,6 +13,7 @@ import DipendenteDialog from "@/components/dipendenti/DipendenteDialog";
 import ConfermaEliminazione from "@/components/dipendenti/ConfermaEliminazione";
 import DipendenteCard from "@/components/dipendenti/DipendenteCard";
 import SchedaWizard from "@/components/valutazione/SchedaWizard";
+import OnboardingWizard from "@/components/OnboardingWizard";
 
 function formatEur(n: number) {
   return n.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
@@ -209,6 +210,7 @@ export default function Page() {
   const [deleteOpen, setDeleteOpen]   = useState(false);
   const [selected, setSelected]       = useState<Dipendente | undefined>();
   const [wizardDip, setWizardDip]     = useState<Dipendente | null>(null);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   const fetchAll = useCallback(async (signal?: AbortSignal) => {
     const [rDip, rEco, rVal, rSchede] = await Promise.all([
@@ -238,13 +240,26 @@ export default function Page() {
     const saved = localStorage.getItem("valutatoreId");
     if (saved) {
       const found = valutatori.find((v) => v.id === saved);
-      if (found) setValutatore(found);
+      if (found) {
+        setValutatore(found);
+        if (!localStorage.getItem(`onboarding_done_${found.id}`)) {
+          setShowOnboarding(true);
+        }
+      }
     }
   }, [mounted, valutatori]);
 
-  function selectValutatore(v: Valutatore) {
+  function selectValutatore(v: Valutatore, isNew = false) {
     localStorage.setItem("valutatoreId", v.id);
     setValutatore(v);
+    if (isNew || !localStorage.getItem(`onboarding_done_${v.id}`)) {
+      setShowOnboarding(true);
+    }
+  }
+
+  function closeOnboarding(valutatoreId: string) {
+    localStorage.setItem(`onboarding_done_${valutatoreId}`, "1");
+    setShowOnboarding(false);
   }
 
   function changeValutatore() {
@@ -418,8 +433,9 @@ export default function Page() {
         <Toaster richColors position="top-right" />
         <LoginPage
           onLogin={(v) => {
+            const isNew = !valutatori.some((x) => x.id === v.id);
             setValutatori((prev) => prev.some((x) => x.id === v.id) ? prev : [...prev, v]);
-            selectValutatore(v);
+            selectValutatore(v, isNew);
           }}
         />
       </>
@@ -662,6 +678,10 @@ export default function Page() {
           onClose={() => setWizardDip(null)}
           onSaved={handleSaved}
         />
+      )}
+
+      {showOnboarding && valutatore && (
+        <OnboardingWizard onClose={() => closeOnboarding(valutatore.id)} />
       )}
     </div>
   );
