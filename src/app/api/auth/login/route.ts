@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
   const { data: user, error } = await supabase
     .from("valutatori")
-    .select()
+    .select<"*", { id: string; nome: string; cognome: string; email: string | null; dipendenti_ids: string[] | null; dipendente_id: string | null; password_hash: string | null; special_features: boolean | null }>("*")
     .ilike("email", emailNorm)
     .single();
 

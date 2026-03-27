@@ -5,7 +5,6 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!;
 
 // Singleton for server-side use (API routes)
 declare global {
-  // eslint-disable-next-line no-var
   var _supabase: ReturnType<typeof createClient> | undefined;
 }
 

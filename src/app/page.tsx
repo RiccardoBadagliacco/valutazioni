@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Plus, Search, Users, TrendingUp, Banknote, MapPin, LogOut, Eye, EyeOff } from "lucide-react";
+import { Plus, Search, Users, TrendingUp, Banknote, MapPin, LogOut, Eye, EyeOff, HelpCircle } from "lucide-react";
 import { Dipendente } from "@/types/dipendente";
 import { DipendenteFormData } from "@/components/dipendenti/DipendenteForm";
 import { Economics } from "@/types/economics";
@@ -490,11 +490,11 @@ export default function Page() {
           </div>
 
           <button
-            onClick={() => { setSelected(undefined); setFormOpen(true); }}
-            className="flex items-center gap-2 bg-[#111] hover:bg-[#333] text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+            onClick={() => setShowOnboarding(true)}
+            title="Rivedi il wizard di benvenuto"
+            className="w-8 h-8 rounded-xl hover:bg-[#F5F5F5] flex items-center justify-center text-[#BDBDBD] hover:text-[#111] transition-colors"
           >
-            <Plus className="w-4 h-4" />
-            Nuovo dipendente
+            <HelpCircle className="w-4 h-4" />
           </button>
         </div>
       </header>
@@ -630,12 +630,14 @@ export default function Page() {
 
         {/* ── Grid ── */}
         {filtrati.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-24 text-[#BDBDBD]">
-            <Users className="w-10 h-10 mb-4 opacity-40" />
-            <p className="font-medium text-[#999]">Nessun dipendente trovato</p>
-            <p className="text-sm text-[#BDBDBD] mt-1">
-              {ricerca ? "Prova con un altro termine di ricerca" : "Clicca \"Nuovo dipendente\" per iniziare"}
-            </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-10">
+            <button
+              onClick={() => { setSelected(undefined); setFormOpen(true); }}
+              className="flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[#DEDEDE] hover:border-[#BDBDBD] hover:bg-[#FAFAFA] transition-colors min-h-[140px] text-[#BDBDBD] hover:text-[#999]"
+            >
+              <Plus className="w-5 h-5" />
+              <span className="text-sm font-medium">Nuovo dipendente</span>
+            </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-10">
@@ -651,6 +653,15 @@ export default function Page() {
                 isValutatore={false}
               />
             ))}
+            {!ricerca && (
+              <button
+                onClick={() => { setSelected(undefined); setFormOpen(true); }}
+                className="flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[#DEDEDE] hover:border-[#BDBDBD] hover:bg-[#FAFAFA] transition-colors min-h-[140px] text-[#BDBDBD] hover:text-[#999]"
+              >
+                <Plus className="w-5 h-5" />
+                <span className="text-sm font-medium">Nuovo dipendente</span>
+              </button>
+            )}
           </div>
         )}
       </div>
