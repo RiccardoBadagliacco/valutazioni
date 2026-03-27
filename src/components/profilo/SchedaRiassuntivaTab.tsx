@@ -501,62 +501,66 @@ function CreateSchedaForm({
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-[#EFEFEF] overflow-hidden">
-        <div className="flex items-center gap-3 px-6 py-4 border-b border-[#F5F5F5]">
-          <div className="w-8 h-8 rounded-lg bg-[#F5F5F5] flex items-center justify-center text-[#666]">
-            <BookOpen className="w-4 h-4" />
+      {activeTemplate && (
+        <>
+          <div className="bg-white rounded-2xl border border-[#EFEFEF] overflow-hidden">
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-[#F5F5F5]">
+              <div className="w-8 h-8 rounded-lg bg-[#F5F5F5] flex items-center justify-center text-[#666]">
+                <BookOpen className="w-4 h-4" />
+              </div>
+              <p className="font-semibold text-[#1A1A1A] text-sm">Hard Skill</p>
+            </div>
+            <div className="p-5">
+              <DriverEditor drivers={hardSkill} onChange={setHardSkill} />
+            </div>
           </div>
-          <p className="font-semibold text-[#1A1A1A] text-sm">Hard Skill</p>
-        </div>
-        <div className="p-5">
-          <DriverEditor drivers={hardSkill} onChange={setHardSkill} />
-        </div>
-      </div>
 
-      <div className="bg-white rounded-2xl border border-[#EFEFEF] overflow-hidden">
-        <div className="flex items-center gap-3 px-6 py-4 border-b border-[#F5F5F5]">
-          <div className="w-8 h-8 rounded-lg bg-[#F5F5F5] flex items-center justify-center text-[#666]">
-            <Brain className="w-4 h-4" />
+          <div className="bg-white rounded-2xl border border-[#EFEFEF] overflow-hidden">
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-[#F5F5F5]">
+              <div className="w-8 h-8 rounded-lg bg-[#F5F5F5] flex items-center justify-center text-[#666]">
+                <Brain className="w-4 h-4" />
+              </div>
+              <p className="font-semibold text-[#1A1A1A] text-sm">Soft Skill</p>
+            </div>
+            <div className="p-5">
+              <DriverEditor drivers={softSkill} onChange={setSoftSkill} showCategoria />
+            </div>
           </div>
-          <p className="font-semibold text-[#1A1A1A] text-sm">Soft Skill</p>
-        </div>
-        <div className="p-5">
-          <DriverEditor drivers={softSkill} onChange={setSoftSkill} showCategoria />
-        </div>
-      </div>
 
-      <div className="bg-white rounded-2xl border border-[#EFEFEF] overflow-hidden">
-        <div className="flex items-center gap-3 px-6 py-4 border-b border-[#F5F5F5]">
-          <div className="w-8 h-8 rounded-lg bg-[#F5F5F5] flex items-center justify-center text-[#666]">
-            <TrendingUp className="w-4 h-4" />
+          <div className="bg-white rounded-2xl border border-[#EFEFEF] overflow-hidden">
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-[#F5F5F5]">
+              <div className="w-8 h-8 rounded-lg bg-[#F5F5F5] flex items-center justify-center text-[#666]">
+                <TrendingUp className="w-4 h-4" />
+              </div>
+              <p className="font-semibold text-[#1A1A1A] text-sm">Crescita Knowledge</p>
+            </div>
+            <div className="px-6 py-5">
+              <textarea
+                value={crescitaCommento}
+                onChange={(e) => setCrescitaCommento(e.target.value)}
+                placeholder="Commento sulla crescita knowledge (facoltativo)"
+                rows={3}
+                className="w-full text-sm text-[#1A1A1A] bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-3 py-2.5 resize-none placeholder:text-[#BDBDBD] focus:outline-none focus:border-[#111] transition-colors"
+              />
+            </div>
           </div>
-          <p className="font-semibold text-[#1A1A1A] text-sm">Crescita Knowledge</p>
-        </div>
-        <div className="px-6 py-5">
-          <textarea
-            value={crescitaCommento}
-            onChange={(e) => setCrescitaCommento(e.target.value)}
-            placeholder="Commento sulla crescita knowledge (facoltativo)"
-            rows={3}
-            className="w-full text-sm text-[#1A1A1A] bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-3 py-2.5 resize-none placeholder:text-[#BDBDBD] focus:outline-none focus:border-[#111] transition-colors"
-          />
-        </div>
-      </div>
 
-      <div className="bg-white rounded-2xl border border-[#EFEFEF] overflow-hidden">
-        <div className="flex items-center gap-3 px-6 py-4 border-b border-[#F5F5F5]">
-          <div className="w-8 h-8 rounded-lg bg-[#F5F5F5] flex items-center justify-center text-[#666]">
-            <BarChart2 className="w-4 h-4" />
+          <div className="bg-white rounded-2xl border border-[#EFEFEF] overflow-hidden">
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-[#F5F5F5]">
+              <div className="w-8 h-8 rounded-lg bg-[#F5F5F5] flex items-center justify-center text-[#666]">
+                <BarChart2 className="w-4 h-4" />
+              </div>
+              <div>
+                <p className="font-semibold text-[#1A1A1A] text-sm">Performance</p>
+                <p className="text-xs text-[#999] mt-0.5">Driver personali con % raggiungimento</p>
+              </div>
+            </div>
+            <div className="p-5">
+              <PerformanceEditor drivers={performance} onChange={setPerformance} />
+            </div>
           </div>
-          <div>
-            <p className="font-semibold text-[#1A1A1A] text-sm">Performance</p>
-            <p className="text-xs text-[#999] mt-0.5">Driver personali con % raggiungimento</p>
-          </div>
-        </div>
-        <div className="p-5">
-          <PerformanceEditor drivers={performance} onChange={setPerformance} />
-        </div>
-      </div>
+        </>
+      )}
 
       <div className="flex items-center gap-3 pt-4 mt-2 border-t border-[#F0F0F0]">
         <button
