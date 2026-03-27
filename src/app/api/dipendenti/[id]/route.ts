@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/lib/db";
+import supabase from "@/lib/supabase";
 import { DipendenteInput } from "@/types/dipendente";
 
 export async function PUT(
@@ -13,16 +13,15 @@ export async function PUT(
     return NextResponse.json({ error: "Tutti i campi sono obbligatori" }, { status: 400 });
   }
 
-  const result = await pool.query(
-    "UPDATE dipendenti SET nome=$1, cognome=$2, jobprofile=$3, sede=$4 WHERE id=$5 RETURNING *",
-    [body.nome, body.cognome, body.jobprofile, body.sede, id]
-  );
+  const { data, error } = await supabase
+    .from("dipendenti")
+    .update({ nome: body.nome, cognome: body.cognome, jobprofile: body.jobprofile, sede: body.sede })
+    .eq("id", id)
+    .select()
+    .single();
 
-  if (result.rowCount === 0) {
-    return NextResponse.json({ error: "Dipendente non trovato" }, { status: 404 });
-  }
-
-  return NextResponse.json(result.rows[0]);
+  if (error) return NextResponse.json({ error: error.message }, { status: error.code === "PGRST116" ? 404 : 500 });
+  return NextResponse.json(data);
 }
 
 export async function DELETE(
@@ -30,11 +29,8 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const result = await pool.query("DELETE FROM dipendenti WHERE id=$1", [id]);
 
-  if (result.rowCount === 0) {
-    return NextResponse.json({ error: "Dipendente non trovato" }, { status: 404 });
-  }
-
+  const { error } = await supabase.from("dipendenti").delete().eq("id", id);
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ success: true });
 }

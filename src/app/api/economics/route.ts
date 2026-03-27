@@ -1,27 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/lib/db";
+import supabase from "@/lib/supabase";
 import { Economics } from "@/types/economics";
 
-const SELECT_ROW = `
-  SELECT dipendente_id     AS "dipendenteId",
-         economics_attuale AS "economicsAttuale",
-         proposta_aumento  AS "propostaAumento",
-         bonus
-  FROM economics
-`;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapEconomics(row: any): Economics {
+  return {
+    dipendenteId:     row.dipendente_id,
+    economicsAttuale: row.economics_attuale ?? null,
+    propostaAumento:  row.proposta_aumento ?? null,
+    bonus:            row.bonus ?? null,
+  };
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const dipendenteId = searchParams.get("dipendenteId");
 
   if (dipendenteId) {
-    const result = await pool.query(`${SELECT_ROW} WHERE dipendente_id = $1`, [dipendenteId]);
-    if (result.rowCount === 0) return NextResponse.json(null, { status: 404 });
-    return NextResponse.json(result.rows[0]);
+    const { data, error } = await supabase
+      .from("economics")
+      .select()
+      .eq("dipendente_id", dipendenteId)
+      .single();
+
+    if (error?.code === "PGRST116") return NextResponse.json(null, { status: 404 });
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(mapEconomics(data));
   }
 
-  const result = await pool.query(SELECT_ROW);
-  return NextResponse.json(result.rows);
+  const { data, error } = await supabase.from("economics").select();
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json((data ?? []).map(mapEconomics));
 }
 
 export async function PUT(req: NextRequest) {
@@ -31,49 +40,27 @@ export async function PUT(req: NextRequest) {
 
   const body: Partial<Economics> = await req.json();
 
-  const current = await pool.query(
-    "SELECT economics_attuale, proposta_aumento, bonus FROM economics WHERE dipendente_id = $1",
-    [dipendenteId]
-  );
+  // Fetch existing to merge
+  const { data: existing } = await supabase
+    .from("economics")
+    .select()
+    .eq("dipendente_id", dipendenteId)
+    .single();
 
-  if (current.rowCount === 0) {
-    const nuovo: Economics = {
-      dipendenteId,
-      economicsAttuale: null,
-      propostaAumento: null,
-      bonus: null,
-      ...body,
-    };
-    await pool.query(
-      `INSERT INTO economics (dipendente_id, economics_attuale, proposta_aumento, bonus)
-       VALUES ($1, $2, $3, $4)`,
-      [
-        dipendenteId,
-        nuovo.economicsAttuale ? JSON.stringify(nuovo.economicsAttuale) : null,
-        nuovo.propostaAumento  ? JSON.stringify(nuovo.propostaAumento)  : null,
-        nuovo.bonus            ? JSON.stringify(nuovo.bonus)            : null,
-      ]
-    );
-    return NextResponse.json(nuovo, { status: 201 });
-  }
-
-  const ex = current.rows[0];
-  const merged: Economics = {
-    dipendenteId,
-    economicsAttuale: "economicsAttuale" in body ? (body.economicsAttuale ?? null) : ex.economics_attuale,
-    propostaAumento:  "propostaAumento"  in body ? (body.propostaAumento  ?? null) : ex.proposta_aumento,
-    bonus:            "bonus"            in body ? (body.bonus            ?? null) : ex.bonus,
+  const merged = {
+    dipendente_id:     dipendenteId,
+    economics_attuale: "economicsAttuale" in body ? (body.economicsAttuale ?? null) : (existing?.economics_attuale ?? null),
+    proposta_aumento:  "propostaAumento"  in body ? (body.propostaAumento  ?? null) : (existing?.proposta_aumento  ?? null),
+    bonus:             "bonus"            in body ? (body.bonus            ?? null) : (existing?.bonus            ?? null),
   };
 
-  await pool.query(
-    `UPDATE economics SET economics_attuale=$1, proposta_aumento=$2, bonus=$3 WHERE dipendente_id=$4`,
-    [
-      merged.economicsAttuale ? JSON.stringify(merged.economicsAttuale) : null,
-      merged.propostaAumento  ? JSON.stringify(merged.propostaAumento)  : null,
-      merged.bonus            ? JSON.stringify(merged.bonus)            : null,
-      dipendenteId,
-    ]
-  );
+  const { data, error } = await supabase
+    .from("economics")
+    .upsert(merged, { onConflict: "dipendente_id" })
+    .select()
+    .single();
 
-  return NextResponse.json(merged);
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  const status = existing ? 200 : 201;
+  return NextResponse.json(mapEconomics(data), { status });
 }

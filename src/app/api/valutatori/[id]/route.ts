@@ -1,5 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/lib/db";
+import supabase from "@/lib/supabase";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapValutatore(row: any) {
+  return {
+    id:              row.id,
+    nome:            row.nome,
+    cognome:         row.cognome,
+    email:           row.email ?? null,
+    dipendentiIds:   row.dipendenti_ids ?? [],
+    dipendenteId:    row.dipendente_id ?? null,
+    specialFeatures: row.special_features ?? false,
+  };
+}
+
+const SELECT_SAFE = "id, nome, cognome, email, dipendenti_ids, dipendente_id, special_features";
 
 export async function PATCH(
   req: NextRequest,
@@ -12,46 +27,47 @@ export async function PATCH(
     setDipendenteId?: string | null;
   } = await req.json();
 
-  const exists = await pool.query("SELECT id FROM valutatori WHERE id=$1", [id]);
-  if (exists.rowCount === 0) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  // Fetch current valutatore
+  const { data: current, error: fetchErr } = await supabase
+    .from("valutatori")
+    .select(SELECT_SAFE)
+    .eq("id", id)
+    .single();
 
-  if (body.addDipendenteId) {
-    await pool.query(
-      `UPDATE valutatori
-       SET dipendenti_ids = array_append(dipendenti_ids, $1)
-       WHERE id = $2 AND NOT ($1 = ANY(dipendenti_ids))`,
-      [body.addDipendenteId, id]
-    );
+  if (fetchErr || !current) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  let dipendentiIds: string[] = current.dipendenti_ids ?? [];
+
+  if (body.addDipendenteId && !dipendentiIds.includes(body.addDipendenteId)) {
+    dipendentiIds = [...dipendentiIds, body.addDipendenteId];
   }
 
   if (body.removeDipendenteId) {
-    await pool.query(
-      "UPDATE valutatori SET dipendenti_ids = array_remove(dipendenti_ids, $1) WHERE id = $2",
-      [body.removeDipendenteId, id]
-    );
+    dipendentiIds = dipendentiIds.filter((d) => d !== body.removeDipendenteId);
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const updates: Record<string, any> = { dipendenti_ids: dipendentiIds };
 
   if ("setDipendenteId" in body) {
     if (body.setDipendenteId) {
-      await pool.query(
-        "UPDATE valutatori SET dipendente_id = NULL WHERE dipendente_id = $1 AND id != $2",
-        [body.setDipendenteId, id]
-      );
+      // Clear same dipendenteId from other valutatori
+      await supabase
+        .from("valutatori")
+        .update({ dipendente_id: null })
+        .eq("dipendente_id", body.setDipendenteId)
+        .neq("id", id);
     }
-    await pool.query(
-      "UPDATE valutatori SET dipendente_id = $1 WHERE id = $2",
-      [body.setDipendenteId ?? null, id]
-    );
+    updates.dipendente_id = body.setDipendenteId ?? null;
   }
 
-  const result = await pool.query(
-    `SELECT id, nome, cognome, email,
-            dipendenti_ids   AS "dipendentiIds",
-            dipendente_id    AS "dipendenteId",
-            special_features AS "specialFeatures"
-     FROM valutatori WHERE id = $1`,
-    [id]
-  );
+  const { data: updated, error } = await supabase
+    .from("valutatori")
+    .update(updates)
+    .eq("id", id)
+    .select(SELECT_SAFE)
+    .single();
 
-  return NextResponse.json(result.rows[0]);
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(mapValutatore(updated));
 }

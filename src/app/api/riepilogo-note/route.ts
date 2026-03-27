@@ -1,25 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/lib/db";
+import supabase from "@/lib/supabase";
 
 type NoteRecord = { dipendenteId: string; nota: string; memeIdx: number | null };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapNote(row: any): NoteRecord {
+  return { dipendenteId: row.dipendente_id, nota: row.nota ?? "", memeIdx: row.meme_idx ?? null };
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const dipendenteId = searchParams.get("dipendenteId");
 
   if (dipendenteId) {
-    const result = await pool.query(
-      `SELECT dipendente_id AS "dipendenteId", nota, meme_idx AS "memeIdx"
-       FROM riepilogo_note WHERE dipendente_id = $1`,
-      [dipendenteId]
-    );
-    return NextResponse.json(result.rows[0] ?? { dipendenteId, nota: "", memeIdx: null });
+    const { data, error } = await supabase
+      .from("riepilogo_note")
+      .select()
+      .eq("dipendente_id", dipendenteId)
+      .single();
+
+    if (error?.code === "PGRST116") return NextResponse.json({ dipendenteId, nota: "", memeIdx: null });
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(mapNote(data));
   }
 
-  const result = await pool.query(
-    `SELECT dipendente_id AS "dipendenteId", nota, meme_idx AS "memeIdx" FROM riepilogo_note`
-  );
-  return NextResponse.json(result.rows);
+  const { data, error } = await supabase.from("riepilogo_note").select();
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json((data ?? []).map(mapNote));
 }
 
 export async function PUT(req: NextRequest) {
@@ -29,23 +36,24 @@ export async function PUT(req: NextRequest) {
 
   const body: Partial<Pick<NoteRecord, "nota" | "memeIdx">> = await req.json();
 
-  const current = await pool.query(
-    `SELECT nota, meme_idx AS "memeIdx" FROM riepilogo_note WHERE dipendente_id = $1`,
-    [dipendenteId]
-  );
+  const { data: current } = await supabase
+    .from("riepilogo_note")
+    .select()
+    .eq("dipendente_id", dipendenteId)
+    .single();
 
-  const merged: NoteRecord = {
-    dipendenteId,
-    nota:    "nota"    in body ? (body.nota    ?? "")   : (current.rows[0]?.nota    ?? ""),
-    memeIdx: "memeIdx" in body ? (body.memeIdx ?? null) : (current.rows[0]?.memeIdx ?? null),
+  const merged = {
+    dipendente_id: dipendenteId,
+    nota:     "nota"    in body ? (body.nota    ?? "")   : (current?.nota     ?? ""),
+    meme_idx: "memeIdx" in body ? (body.memeIdx ?? null) : (current?.meme_idx ?? null),
   };
 
-  await pool.query(
-    `INSERT INTO riepilogo_note (dipendente_id, nota, meme_idx)
-     VALUES ($1, $2, $3)
-     ON CONFLICT (dipendente_id) DO UPDATE SET nota = $2, meme_idx = $3`,
-    [dipendenteId, merged.nota, merged.memeIdx]
-  );
+  const { data, error } = await supabase
+    .from("riepilogo_note")
+    .upsert(merged, { onConflict: "dipendente_id" })
+    .select()
+    .single();
 
-  return NextResponse.json(merged);
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(mapNote(data));
 }

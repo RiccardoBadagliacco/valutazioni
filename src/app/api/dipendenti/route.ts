@@ -1,13 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
-import pool from "@/lib/db";
+import supabase from "@/lib/supabase";
 import { DipendenteInput } from "@/types/dipendente";
 
 export async function GET() {
-  const result = await pool.query(
-    "SELECT id, nome, cognome, jobprofile, sede FROM dipendenti ORDER BY cognome, nome"
-  );
-  return NextResponse.json(result.rows);
+  const { data, error } = await supabase
+    .from("dipendenti")
+    .select()
+    .order("cognome")
+    .order("nome");
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(data ?? []);
 }
 
 export async function POST(req: NextRequest) {
@@ -17,11 +21,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Tutti i campi sono obbligatori" }, { status: 400 });
   }
 
-  const id = randomUUID();
-  await pool.query(
-    "INSERT INTO dipendenti (id, nome, cognome, jobprofile, sede) VALUES ($1, $2, $3, $4, $5)",
-    [id, body.nome, body.cognome, body.jobprofile, body.sede]
-  );
+  const { data, error } = await supabase
+    .from("dipendenti")
+    .insert({ id: randomUUID(), ...body })
+    .select()
+    .single();
 
-  return NextResponse.json({ id, ...body }, { status: 201 });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(data, { status: 201 });
 }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import pool from "@/lib/db";
+import supabase from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   const { email, password }: { email: string; password: string } = await req.json();
@@ -11,16 +11,16 @@ export async function POST(req: NextRequest) {
 
   const emailNorm = email.trim().toLowerCase();
 
-  const result = await pool.query(
-    "SELECT * FROM valutatori WHERE LOWER(email) = $1",
-    [emailNorm]
-  );
+  const { data: user, error } = await supabase
+    .from("valutatori")
+    .select()
+    .ilike("email", emailNorm)
+    .single();
 
-  if (result.rowCount === 0) {
+  if (error?.code === "PGRST116" || !user) {
     return NextResponse.json({ error: "Account non trovato. Registrati prima." }, { status: 404 });
   }
-
-  const user = result.rows[0];
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
   if (!user.password_hash) {
     return NextResponse.json(
@@ -30,17 +30,15 @@ export async function POST(req: NextRequest) {
   }
 
   const valid = await bcrypt.compare(password, user.password_hash);
-  if (!valid) {
-    return NextResponse.json({ error: "Password errata." }, { status: 401 });
-  }
+  if (!valid) return NextResponse.json({ error: "Password errata." }, { status: 401 });
 
   return NextResponse.json({
     id:              user.id,
     nome:            user.nome,
     cognome:         user.cognome,
     email:           user.email,
-    dipendentiIds:   user.dipendenti_ids,
-    dipendenteId:    user.dipendente_id,
-    specialFeatures: user.special_features,
+    dipendentiIds:   user.dipendenti_ids ?? [],
+    dipendenteId:    user.dipendente_id ?? null,
+    specialFeatures: user.special_features ?? false,
   });
 }

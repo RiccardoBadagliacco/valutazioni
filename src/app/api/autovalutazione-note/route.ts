@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/lib/db";
+import supabase from "@/lib/supabase";
 
 type NoteRecord = { dipendenteId: string; note: Record<string, string> };
 
@@ -8,17 +8,20 @@ export async function GET(req: NextRequest) {
   const dipendenteId = searchParams.get("dipendenteId");
 
   if (dipendenteId) {
-    const result = await pool.query(
-      `SELECT dipendente_id AS "dipendenteId", note FROM autovalutazione_note WHERE dipendente_id = $1`,
-      [dipendenteId]
-    );
-    return NextResponse.json(result.rows[0] ?? { dipendenteId, note: {} });
+    const { data, error } = await supabase
+      .from("autovalutazione_note")
+      .select()
+      .eq("dipendente_id", dipendenteId)
+      .single();
+
+    if (error?.code === "PGRST116") return NextResponse.json({ dipendenteId, note: {} });
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ dipendenteId: data.dipendente_id, note: data.note ?? {} });
   }
 
-  const result = await pool.query(
-    `SELECT dipendente_id AS "dipendenteId", note FROM autovalutazione_note`
-  );
-  return NextResponse.json(result.rows);
+  const { data, error } = await supabase.from("autovalutazione_note").select();
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json((data ?? []).map((r) => ({ dipendenteId: r.dipendente_id, note: r.note ?? {} })));
 }
 
 export async function PUT(req: NextRequest) {
@@ -28,21 +31,22 @@ export async function PUT(req: NextRequest) {
 
   const { key, value }: { key: string; value: string } = await req.json();
 
-  const current = await pool.query(
-    "SELECT note FROM autovalutazione_note WHERE dipendente_id = $1",
-    [dipendenteId]
-  );
-  const note: Record<string, string> = current.rows[0]?.note ?? {};
+  // Fetch current note
+  const { data: current } = await supabase
+    .from("autovalutazione_note")
+    .select("note")
+    .eq("dipendente_id", dipendenteId)
+    .single();
 
+  const note: Record<string, string> = current?.note ?? {};
   if (value) note[key] = value;
   else delete note[key];
 
-  await pool.query(
-    `INSERT INTO autovalutazione_note (dipendente_id, note) VALUES ($1, $2)
-     ON CONFLICT (dipendente_id) DO UPDATE SET note = $2`,
-    [dipendenteId, JSON.stringify(note)]
-  );
+  const { error } = await supabase
+    .from("autovalutazione_note")
+    .upsert({ dipendente_id: dipendenteId, note }, { onConflict: "dipendente_id" });
 
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   const updated: NoteRecord = { dipendenteId, note };
   return NextResponse.json(updated);
 }

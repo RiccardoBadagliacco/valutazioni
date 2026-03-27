@@ -1,37 +1,55 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
-import pool from "@/lib/db";
+import supabase from "@/lib/supabase";
 import { Valutazione } from "@/types/valutazione";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapValutazione(row: any): Valutazione {
+  return {
+    id:           row.id,
+    dipendenteId: row.dipendente_id,
+    formId:       row.form_id,
+    data:         row.data,
+    valutatore:   row.valutatore,
+    societa:      row.societa,
+    risposte:     row.risposte ?? [],
+  };
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const dipendenteId = searchParams.get("dipendenteId");
 
-  const result = dipendenteId
-    ? await pool.query(
-        `SELECT id, dipendente_id AS "dipendenteId", form_id AS "formId",
-                data, valutatore, societa, risposte
-         FROM valutazioni WHERE dipendente_id = $1 ORDER BY data DESC`,
-        [dipendenteId]
-      )
-    : await pool.query(
-        `SELECT id, dipendente_id AS "dipendenteId", form_id AS "formId",
-                data, valutatore, societa, risposte
-         FROM valutazioni ORDER BY data DESC`
-      );
+  let query = supabase
+    .from("valutazioni")
+    .select()
+    .order("data", { ascending: false });
 
-  return NextResponse.json(result.rows);
+  if (dipendenteId) query = query.eq("dipendente_id", dipendenteId);
+
+  const { data, error } = await query;
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json((data ?? []).map(mapValutazione));
 }
 
 export async function POST(req: NextRequest) {
   const body: Omit<Valutazione, "id"> = await req.json();
   const id = randomUUID();
 
-  await pool.query(
-    `INSERT INTO valutazioni (id, dipendente_id, form_id, data, valutatore, societa, risposte)
-     VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-    [id, body.dipendenteId, body.formId, body.data, body.valutatore, body.societa, JSON.stringify(body.risposte)]
-  );
+  const { data, error } = await supabase
+    .from("valutazioni")
+    .insert({
+      id,
+      dipendente_id: body.dipendenteId,
+      form_id:       body.formId,
+      data:          body.data,
+      valutatore:    body.valutatore,
+      societa:       body.societa,
+      risposte:      body.risposte,
+    })
+    .select()
+    .single();
 
-  return NextResponse.json({ id, ...body }, { status: 201 });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(mapValutazione(data), { status: 201 });
 }

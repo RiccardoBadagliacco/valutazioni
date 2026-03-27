@@ -1,59 +1,60 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/lib/db";
+import supabase from "@/lib/supabase";
 import { Autovalutazione } from "@/types/autovalutazione";
 
-const SELECT_ROW = `
-  SELECT dipendente_id          AS "dipendenteId",
-         data_compilazione      AS "dataCompilazione",
-         overview,
-         progetto,
-         nuovo_progetto         AS "nuovoProgetto",
-         attivita_lipari        AS "attivitaLipari",
-         equilibrio,
-         sviluppo_professionale AS "sviluppoProfessionale"
-  FROM autovalutazioni
-`;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapAutovalutazione(row: any): Autovalutazione {
+  return {
+    dipendenteId:          row.dipendente_id,
+    dataCompilazione:      row.data_compilazione,
+    overview:              row.overview,
+    progetto:              row.progetto,
+    nuovoProgetto:         row.nuovo_progetto,
+    attivitaLipari:        row.attivita_lipari,
+    equilibrio:            row.equilibrio,
+    sviluppoProfessionale: row.sviluppo_professionale,
+  };
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const dipendenteId = searchParams.get("dipendenteId");
 
   if (dipendenteId) {
-    const result = await pool.query(`${SELECT_ROW} WHERE dipendente_id = $1`, [dipendenteId]);
-    return NextResponse.json(result.rows[0] ?? null);
+    const { data, error } = await supabase
+      .from("autovalutazioni")
+      .select()
+      .eq("dipendente_id", dipendenteId)
+      .single();
+
+    if (error?.code === "PGRST116") return NextResponse.json(null);
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(mapAutovalutazione(data));
   }
 
-  const result = await pool.query(SELECT_ROW);
-  return NextResponse.json(result.rows);
+  const { data, error } = await supabase.from("autovalutazioni").select();
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json((data ?? []).map(mapAutovalutazione));
 }
 
 export async function POST(req: NextRequest) {
   const body: Autovalutazione = await req.json();
 
-  await pool.query(
-    `INSERT INTO autovalutazioni
-       (dipendente_id, data_compilazione, overview, progetto, nuovo_progetto,
-        attivita_lipari, equilibrio, sviluppo_professionale)
-     VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
-     ON CONFLICT (dipendente_id) DO UPDATE SET
-       data_compilazione      = EXCLUDED.data_compilazione,
-       overview               = EXCLUDED.overview,
-       progetto               = EXCLUDED.progetto,
-       nuovo_progetto         = EXCLUDED.nuovo_progetto,
-       attivita_lipari        = EXCLUDED.attivita_lipari,
-       equilibrio             = EXCLUDED.equilibrio,
-       sviluppo_professionale = EXCLUDED.sviluppo_professionale`,
-    [
-      body.dipendenteId,
-      body.dataCompilazione,
-      JSON.stringify(body.overview),
-      JSON.stringify(body.progetto),
-      JSON.stringify(body.nuovoProgetto),
-      JSON.stringify(body.attivitaLipari),
-      JSON.stringify(body.equilibrio),
-      JSON.stringify(body.sviluppoProfessionale),
-    ]
-  );
+  const { data, error } = await supabase
+    .from("autovalutazioni")
+    .upsert({
+      dipendente_id:          body.dipendenteId,
+      data_compilazione:      body.dataCompilazione,
+      overview:               body.overview,
+      progetto:               body.progetto,
+      nuovo_progetto:         body.nuovoProgetto,
+      attivita_lipari:        body.attivitaLipari,
+      equilibrio:             body.equilibrio,
+      sviluppo_professionale: body.sviluppoProfessionale,
+    }, { onConflict: "dipendente_id" })
+    .select()
+    .single();
 
-  return NextResponse.json(body, { status: 201 });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(mapAutovalutazione(data), { status: 201 });
 }

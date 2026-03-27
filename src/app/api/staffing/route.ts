@@ -1,34 +1,49 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/lib/db";
+import supabase from "@/lib/supabase";
 import { Staffing } from "@/types/staffing";
 
-const SELECT_ROW = `
-  SELECT dipendente_id AS "dipendenteId", periodi, presenze
-  FROM staffing
-`;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapStaffing(row: any): Staffing {
+  return {
+    dipendenteId: row.dipendente_id,
+    periodi:      row.periodi ?? [],
+    presenze:     row.presenze ?? [],
+  };
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const dipendenteId = searchParams.get("dipendenteId");
 
   if (dipendenteId) {
-    const result = await pool.query(`${SELECT_ROW} WHERE dipendente_id = $1`, [dipendenteId]);
-    return NextResponse.json(result.rows[0] ?? null);
+    const { data, error } = await supabase
+      .from("staffing")
+      .select()
+      .eq("dipendente_id", dipendenteId)
+      .single();
+
+    if (error?.code === "PGRST116") return NextResponse.json(null);
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(mapStaffing(data));
   }
 
-  const result = await pool.query(SELECT_ROW);
-  return NextResponse.json(result.rows);
+  const { data, error } = await supabase.from("staffing").select();
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json((data ?? []).map(mapStaffing));
 }
 
 export async function POST(req: NextRequest) {
   const body: Staffing = await req.json();
 
-  await pool.query(
-    `INSERT INTO staffing (dipendente_id, periodi, presenze)
-     VALUES ($1, $2, $3)
-     ON CONFLICT (dipendente_id) DO UPDATE SET periodi = $2, presenze = $3`,
-    [body.dipendenteId, JSON.stringify(body.periodi), JSON.stringify(body.presenze)]
-  );
+  const { data, error } = await supabase
+    .from("staffing")
+    .upsert(
+      { dipendente_id: body.dipendenteId, periodi: body.periodi, presenze: body.presenze },
+      { onConflict: "dipendente_id" }
+    )
+    .select()
+    .single();
 
-  return NextResponse.json(body, { status: 201 });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(mapStaffing(data), { status: 201 });
 }
