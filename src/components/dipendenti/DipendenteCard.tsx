@@ -1,6 +1,6 @@
 "use client";
 
-import { Pencil, Trash2, MapPin, TrendingUp, ClipboardList, ShieldCheck, ListFilter } from "lucide-react";
+import { Pencil, Trash2, MapPin, TrendingUp, ClipboardList, ShieldCheck, ListFilter, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Dipendente } from "@/types/dipendente";
 import { Economics } from "@/types/economics";
@@ -73,6 +73,11 @@ export default function DipendenteCard({ dipendente: d, economics: eco, onEdit, 
           {isValutatore && (
             <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#111] flex items-center justify-center">
               <ShieldCheck className="w-2.5 h-2.5 text-white" />
+            </div>
+          )}
+          {!isValutatore && haScheda && (
+            <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#16A34A] flex items-center justify-center">
+              <Check className="w-2.5 h-2.5 text-white" />
             </div>
           )}
         </div>

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Plus, Search, Users, TrendingUp, Banknote, MapPin, LogOut, Eye, EyeOff, HelpCircle } from "lucide-react";
+import { Plus, Search, Users, TrendingUp, Banknote, LogOut, Eye, EyeOff, HelpCircle, CheckCircle2 } from "lucide-react";
 import { Dipendente } from "@/types/dipendente";
 import { DipendenteFormData } from "@/components/dipendenti/DipendenteForm";
 import { Economics } from "@/types/economics";
@@ -199,7 +199,8 @@ export default function Page() {
   const [economics, setEconomics]     = useState<Economics[]>([]);
   const [valutatori, setValutatori]   = useState<Valutatore[]>([]);
   const [valutatore, setValutatore]   = useState<Valutatore | null>(null);
-  const [schedeIds, setSchedeIds]     = useState<Set<string>>(new Set());
+  const [schedeIds, setSchedeIds]         = useState<Set<string>>(new Set());
+  const [valutazioniIds, setValutazioniIds] = useState<Set<string>>(new Set());
   const [mounted, setMounted]         = useState(false);
 
   const [ricerca, setRicerca]             = useState("");
@@ -213,19 +214,21 @@ export default function Page() {
   const [showOnboarding, setShowOnboarding] = useState(false);
 
   const fetchAll = useCallback(async (signal?: AbortSignal) => {
-    const [rDip, rEco, rVal, rSchede] = await Promise.all([
-      fetch("/api/dipendenti", { signal }),
-      fetch("/api/economics",  { signal }),
-      fetch("/api/valutatori", { signal }),
-      fetch("/api/schede",     { signal }),
+    const [rDip, rEco, rVal, rSchede, rVlt] = await Promise.all([
+      fetch("/api/dipendenti",  { signal }),
+      fetch("/api/economics",   { signal }),
+      fetch("/api/valutatori",  { signal }),
+      fetch("/api/schede",      { signal }),
+      fetch("/api/valutazioni", { signal }),
     ]);
     if (signal?.aborted) return;
-    const [dip, eco, vlt, schede]: [Dipendente[], Economics[], Valutatore[], SchedaRiassuntiva[]] =
-      await Promise.all([rDip.json(), rEco.json(), rVal.json(), rSchede.json()]);
+    const [dip, eco, vlt, schede, vltArr]: [Dipendente[], Economics[], Valutatore[], SchedaRiassuntiva[], { dipendenteId: string }[]] =
+      await Promise.all([rDip.json(), rEco.json(), rVal.json(), rSchede.json(), rVlt.json()]);
     setDipendenti(dip);
     setEconomics(eco);
     setValutatori(vlt);
     setSchedeIds(new Set(schede.map((s) => s.dipendenteId)));
+    setValutazioniIds(new Set(vltArr.map((v) => v.dipendenteId)));
   }, []);
 
   useEffect(() => {
@@ -442,7 +445,9 @@ export default function Page() {
   }
 
   const initials = `${valutatore.nome[0]}${valutatore.cognome[0]}`.toUpperCase();
-  const daValutare = dipendentiScope.filter((d) => !schedeIds.has(d.id)).length;
+  const completate = dipendentiScope.filter((d) => schedeIds.has(d.id) || valutazioniIds.has(d.id)).length;
+  const daValutare = dipendentiScope.length - completate;
+  const completatePct = dipendentiScope.length > 0 ? Math.round((completate / dipendentiScope.length) * 100) : 0;
 
   return (
     <div className="min-h-screen bg-[#f4f5f9]">
@@ -501,19 +506,23 @@ export default function Page() {
       <div className="max-w-6xl mx-auto px-8">
 
         {/* ── Stats row ── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-8">
           <div className="bg-white rounded-2xl border border-[#EFEFEF] px-5 py-4">
-            <div className="flex items-center gap-1.5 mb-3">
-              <Users className="w-3.5 h-3.5 text-[#BDBDBD]" />
-              <p className="text-xs text-[#999]">Dipendenti</p>
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs font-medium text-[#999]">Dipendenti</p>
+              <div className="w-6 h-6 rounded-lg bg-[#F5F5F5] flex items-center justify-center">
+                <Users className="w-3.5 h-3.5 text-[#888]" />
+              </div>
             </div>
             <p className="text-2xl font-bold text-[#111]">{dipendentiScope.length}</p>
           </div>
 
           <div className="bg-white rounded-2xl border border-[#EFEFEF] px-5 py-4">
-            <div className="flex items-center gap-1.5 mb-3">
-              <Banknote className="w-3.5 h-3.5 text-[#BDBDBD]" />
-              <p className="text-xs text-[#999]">RAL media</p>
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs font-medium text-[#999]">RAL media</p>
+              <div className="w-6 h-6 rounded-lg bg-[#F5F5F5] flex items-center justify-center">
+                <Banknote className="w-3.5 h-3.5 text-[#888]" />
+              </div>
             </div>
             <p className="text-2xl font-bold text-[#111]">
               {conEco.length ? formatEur(ralMedia) : "—"}
@@ -521,26 +530,52 @@ export default function Page() {
           </div>
 
           <div className="bg-white rounded-2xl border border-[#EFEFEF] px-5 py-4">
-            <div className="flex items-center gap-1.5 mb-3">
-              <TrendingUp className="w-3.5 h-3.5 text-[#BDBDBD]" />
-              <p className="text-xs text-[#999]">Con aumento RAL</p>
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs font-medium text-[#999]">Con aumento</p>
+              <div className="w-6 h-6 rounded-lg bg-[#F5F5F5] flex items-center justify-center">
+                <TrendingUp className="w-3.5 h-3.5 text-[#888]" />
+              </div>
             </div>
             <p className="text-2xl font-bold text-[#111]">
               {conAumento.length}
-              <span className="text-sm font-normal text-[#999] ml-1">/ {dipendentiScope.length}</span>
+              {conAumento.length > 0 && aumentoMedio > 0 && (
+                <span className="text-sm font-normal text-[#16A34A] ml-2">+{aumentoMedio.toFixed(1)}%</span>
+              )}
             </p>
           </div>
 
           <div className="bg-white rounded-2xl border border-[#EFEFEF] px-5 py-4">
-            <div className="flex items-center gap-1.5 mb-3">
-              <MapPin className="w-3.5 h-3.5 text-[#BDBDBD]" />
-              <p className="text-xs text-[#999]">Aumento medio RAL</p>
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs font-medium text-[#999]">Completate</p>
+              <div className="w-6 h-6 rounded-lg bg-[#F5F5F5] flex items-center justify-center">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#888]" />
+              </div>
             </div>
             <p className="text-2xl font-bold text-[#111]">
-              {conAumento.length ? `+${aumentoMedio.toFixed(1)}%` : "—"}
+              {completate}
+              <span className="text-sm font-normal text-[#999] ml-1">/ {dipendentiScope.length}</span>
             </p>
           </div>
         </div>
+
+        {/* ── Progress bar ── */}
+        {dipendentiScope.length > 0 && (
+          <div className="bg-white rounded-2xl border border-[#EFEFEF] px-5 py-4 mt-3">
+            <div className="flex items-center justify-between mb-2.5">
+              <p className="text-xs font-medium text-[#999]">Avanzamento valutazioni</p>
+              <p className="text-xs font-semibold text-[#111]">{completatePct}%</p>
+            </div>
+            <div className="w-full bg-[#F5F5F5] rounded-full h-1.5 overflow-hidden">
+              <div
+                className="bg-[#111] h-full rounded-full transition-all duration-700"
+                style={{ width: `${completatePct}%` }}
+              />
+            </div>
+            {daValutare > 0 && (
+              <p className="text-xs text-[#BDBDBD] mt-2">{daValutare} {daValutare === 1 ? "dipendente ancora da valutare" : "dipendenti ancora da valutare"}</p>
+            )}
+          </div>
+        )}
 
         {/* ── Filtro sede + contatore ── */}
         <div className="flex items-center justify-between mt-6 mb-4">
@@ -569,16 +604,9 @@ export default function Page() {
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-3">
-            {daValutare > 0 && (
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#FFF7ED] text-orange-700 border border-orange-100">
-                {daValutare} da valutare
-              </span>
-            )}
-            <p className="text-xs text-[#999]">
-              {filtrati.length} {filtrati.length === 1 ? "dipendente" : "dipendenti"}
-            </p>
-          </div>
+          <p className="text-xs text-[#999]">
+            {filtrati.length} {filtrati.length === 1 ? "dipendente" : "dipendenti"}
+          </p>
         </div>
 
         {/* ── Referenti di secondo livello ── */}
@@ -603,7 +631,7 @@ export default function Page() {
                   economics={economics.find((e) => e.dipendenteId === d.id)}
                   onEdit={() => { setSelected(d); setFormOpen(true); }}
                   onDelete={() => { setSelected(d); setDeleteOpen(true); }}
-                  haScheda={schedeIds.has(d.id)}
+                  haScheda={schedeIds.has(d.id) || valutazioniIds.has(d.id)}
                   onCreaValutazione={() => setWizardDip(d)}
                   isValutatore
                   onCardClick={() => setSelectedManagerId(selectedManagerId === d.id ? null : d.id)}
@@ -647,7 +675,7 @@ export default function Page() {
                 economics={economics.find((e) => e.dipendenteId === d.id)}
                 onEdit={() => { setSelected(d); setFormOpen(true); }}
                 onDelete={() => { setSelected(d); setDeleteOpen(true); }}
-                haScheda={schedeIds.has(d.id)}
+                haScheda={schedeIds.has(d.id) || valutazioniIds.has(d.id)}
                 onCreaValutazione={() => setWizardDip(d)}
                 isValutatore={false}
               />
