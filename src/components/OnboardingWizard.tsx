@@ -5,20 +5,29 @@ import {
   Users, UserPlus, ClipboardList, ShieldCheck,
   GitBranch, CheckCircle2, ArrowRight, ArrowLeft, X,
 } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 
-const STEPS = [
+interface Step {
+  icon: LucideIcon;
+  title: string;
+  renderContent: () => React.ReactNode;
+}
+
+const STEPS: Step[] = [
   {
     icon: Users,
     title: "Benvenuto nell'HR Portal",
-    content: (
+    renderContent: () => (
       <div className="space-y-3 text-sm text-[#555] leading-relaxed">
         <p>
-          Questo strumento è pensato per gestire le <strong className="text-[#111]">valutazioni annuali</strong> dei
-          dipendenti Lipari — dai dati anagrafici agli economics, dall&apos;autovalutazione alla proposta di aumento.
+          Questo strumento è pensato per gestire le{" "}
+          <strong className="text-[#111]">valutazioni annuali</strong> dei dipendenti Lipari —
+          dai dati anagrafici agli economics, dall&apos;autovalutazione alla proposta di aumento.
         </p>
         <p>
-          Il flusso è organizzato in <strong className="text-[#111]">schede individuali</strong>: ogni dipendente ha
-          un percorso in 7 step che puoi compilare liberamente nel tempo.
+          Il flusso è organizzato in{" "}
+          <strong className="text-[#111]">schede individuali</strong>: ogni dipendente ha un
+          percorso in 7 step che puoi compilare liberamente nel tempo.
         </p>
       </div>
     ),
@@ -26,11 +35,11 @@ const STEPS = [
   {
     icon: UserPlus,
     title: "Aggiungi i tuoi dipendenti",
-    content: (
+    renderContent: () => (
       <div className="space-y-3 text-sm text-[#555] leading-relaxed">
         <p>
-          Dal pulsante <strong className="text-[#111]">&quot;Nuovo dipendente&quot;</strong> puoi aggiungere ogni
-          membro del team con nome, cognome, sede e job profile.
+          Dal pulsante <strong className="text-[#111]">&quot;Nuovo dipendente&quot;</strong> aggiungi
+          ogni membro del team con nome, cognome, sede e job profile.
         </p>
         <div className="bg-[#F7F7F7] rounded-xl p-4 space-y-2">
           {["Junior", "C1 / C2", "SC1 / SC2 / SC3"].map((jp) => (
@@ -41,7 +50,7 @@ const STEPS = [
           ))}
         </div>
         <p>
-          Ogni dipendente aggiunto viene automaticamente assegnato al tuo team e compare nella dashboard.
+          Ogni dipendente aggiunto viene automaticamente assegnato al tuo team.
         </p>
       </div>
     ),
@@ -49,10 +58,11 @@ const STEPS = [
   {
     icon: ClipboardList,
     title: "La scheda di valutazione",
-    content: (
+    renderContent: () => (
       <div className="space-y-3 text-sm text-[#555] leading-relaxed">
         <p>
-          Cliccando su un dipendente si apre la sua scheda, organizzata in <strong className="text-[#111]">7 step</strong>:
+          Cliccando su un dipendente si apre la sua scheda, organizzata in{" "}
+          <strong className="text-[#111]">7 step</strong>:
         </p>
         <div className="bg-[#F7F7F7] rounded-xl p-4 space-y-2">
           {[
@@ -63,12 +73,12 @@ const STEPS = [
             "Skill matrix — competenze tecniche",
             "Economics — RAL, indennità e proposta aumento",
             "Riepilogo — visione d'insieme",
-          ].map((step, i) => (
+          ].map((label, i) => (
             <div key={i} className="flex items-start gap-2.5">
               <div className="w-5 h-5 rounded-full bg-[#111] text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
                 {i + 1}
               </div>
-              <span className="text-xs text-[#555]">{step}</span>
+              <span className="text-xs text-[#555]">{label}</span>
             </div>
           ))}
         </div>
@@ -78,19 +88,20 @@ const STEPS = [
   {
     icon: ShieldCheck,
     title: "Gli account valutatori",
-    content: (
+    renderContent: () => (
       <div className="space-y-3 text-sm text-[#555] leading-relaxed">
         <p>
-          Ogni account che accede all&apos;HR Portal è un <strong className="text-[#111]">valutatore</strong>.
-          Ogni valutatore vede e modifica solo i dipendenti del proprio team.
+          Ogni account è un <strong className="text-[#111]">valutatore</strong> e vede solo i
+          dipendenti del proprio team.
         </p>
         <p>
-          Puoi <strong className="text-[#111]">collegare un account valutatore a un dipendente</strong>: vai
-          in modifica del dipendente e seleziona l&apos;account dalla lista. Questo serve a costruire la gerarchia.
+          Puoi <strong className="text-[#111]">collegare un account valutatore a un dipendente</strong>:
+          vai in modifica del dipendente e seleziona l&apos;account dalla lista. Questo serve a
+          costruire la gerarchia.
         </p>
         <div className="bg-[#F7F7F7] rounded-xl px-4 py-3 text-xs text-[#666]">
-          Esempio: Marco è nel tuo team ed è anche lui un valutatore con il suo account.
-          Colleghi l&apos;account di Marco al suo profilo dipendente.
+          Esempio: Marco è nel tuo team ed è anche lui un valutatore con il suo account. Colleghi
+          l&apos;account di Marco al suo profilo dipendente.
         </div>
       </div>
     ),
@@ -98,11 +109,11 @@ const STEPS = [
   {
     icon: GitBranch,
     title: "Referenti di secondo livello",
-    content: (
+    renderContent: () => (
       <div className="space-y-3 text-sm text-[#555] leading-relaxed">
         <p>
-          Quando colleghi un account valutatore a un tuo dipendente, quel dipendente diventa un
-          <strong className="text-[#111]"> referente di secondo livello</strong>: vedi anche il suo team.
+          Collegando un valutatore a un tuo dipendente, quel dipendente diventa un{" "}
+          <strong className="text-[#111]">referente di secondo livello</strong>: vedi anche il suo team.
         </p>
         <div className="bg-[#F7F7F7] rounded-xl p-4 space-y-3">
           <div className="flex items-center gap-2">
@@ -111,17 +122,14 @@ const STEPS = [
             <div className="w-7 h-7 rounded-lg bg-[#E4E4E4] text-xs font-bold flex items-center justify-center">M</div>
             <span className="text-xs text-[#999]">Marco (referente)</span>
           </div>
-          <div className="flex items-center gap-2 pl-9">
-            <div className="w-px h-4 bg-[#DCDCDC]" />
-          </div>
-          <div className="flex items-center gap-2 pl-9">
+          <div className="pl-9 flex items-center gap-2">
             <div className="w-5 h-5 rounded-full bg-[#F0F0F0] text-[10px] font-bold flex items-center justify-center">A</div>
             <div className="w-5 h-5 rounded-full bg-[#F0F0F0] text-[10px] font-bold flex items-center justify-center">B</div>
             <span className="text-xs text-[#999]">Team di Marco (visibile a te)</span>
           </div>
         </div>
         <p className="text-xs text-[#999]">
-          La visibilità è a senso unico: tu vedi il team di Marco, ma Marco non vede il tuo.
+          Visibilità a senso unico: tu vedi il team di Marco, Marco non vede il tuo.
         </p>
       </div>
     ),
@@ -129,21 +137,21 @@ const STEPS = [
   {
     icon: CheckCircle2,
     title: "Tutto pronto!",
-    content: (
+    renderContent: () => (
       <div className="space-y-3 text-sm text-[#555] leading-relaxed">
-        <p>Hai tutto ciò che ti serve per iniziare. Ecco i passi consigliati:</p>
+        <p>Hai tutto ciò che ti serve. Ecco i passi consigliati:</p>
         <div className="space-y-2">
           {[
             "Aggiungi i dipendenti del tuo team",
-            "Se hai referenti, creali come account separati e collegali ai rispettivi profili",
-            "Apri le schede dei dipendenti e compila le valutazioni step by step",
+            "Se hai referenti, crea i loro account e collegali ai profili dipendente",
+            "Apri le schede e compila le valutazioni step by step",
             "Inserisci i dati economics e la proposta di aumento",
-          ].map((step, i) => (
+          ].map((label, i) => (
             <div key={i} className="flex items-start gap-2.5">
               <div className="w-5 h-5 rounded-full border-2 border-[#111] flex items-center justify-center shrink-0 mt-0.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#111]" />
               </div>
-              <span className="text-xs text-[#555]">{step}</span>
+              <span className="text-xs text-[#555]">{label}</span>
             </div>
           ))}
         </div>
@@ -159,7 +167,7 @@ interface Props {
 export default function OnboardingWizard({ onClose }: Props) {
   const [step, setStep] = useState(0);
   const isLast = step === STEPS.length - 1;
-  const { icon: Icon, title, content } = STEPS[step];
+  const { icon: Icon, title, renderContent } = STEPS[step];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 px-4">
@@ -182,8 +190,8 @@ export default function OnboardingWizard({ onClose }: Props) {
         </div>
 
         {/* Content */}
-        <div className="px-6 py-5 flex-1 min-h-[220px]">
-          {content}
+        <div className="px-6 py-5 min-h-[220px]">
+          {renderContent()}
         </div>
 
         {/* Footer */}
