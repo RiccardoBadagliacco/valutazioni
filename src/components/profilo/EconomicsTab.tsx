@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Banknote, Gift, ChevronRight, Lock, Check, X, ArrowRight, Pencil } from "lucide-react";
 import { Bonus, Economics, EconomicsAttuale, PropostaAumento } from "@/types/economics";
 import confetti from "canvas-confetti";
+import { toast } from "sonner";
 
 interface Props {
   dipendenteId: string;
@@ -235,6 +236,7 @@ function EditableEconomicsAttuale({
 }) {
   const [editing, setEditing] = useState(forceEdit || !ea);
   const [saving,  setSaving]  = useState(false);
+  const [saved,   setSaved]   = useState(false);
   const [form,    setForm]    = useState<EconomicsAttuale>(ea ? { ...ea } : { ...EMPTY_EA });
 
   function field(key: keyof EconomicsAttuale) { return String(form[key]); }
@@ -253,8 +255,13 @@ function EditableEconomicsAttuale({
       });
       if (res.ok) {
         const updated = await res.json();
-        onSaved(updated.economicsAttuale);
-        setEditing(false);
+        setSaved(true);
+        toast.success("Economics salvati");
+        setTimeout(() => {
+          onSaved(updated.economicsAttuale);
+          setEditing(false);
+          setSaved(false);
+        }, 800);
       }
     } finally {
       setSaving(false);
@@ -303,10 +310,14 @@ function EditableEconomicsAttuale({
       </div>
       <FormField label="Bonus" type="number" prefix="€" value={field("bonusErogato")} onChange={(v) => set("bonusErogato", v)} placeholder="0" hint="Bonus erogato nella precedente valutazione" />
       <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
-        <button onClick={save} disabled={saving}
-          className="flex items-center gap-2 px-6 py-2.5 bg-[#111] text-white text-sm font-semibold rounded-xl hover:bg-[#222] transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+        <button onClick={save} disabled={saving || saved}
+          className={`flex items-center gap-2 px-6 py-2.5 text-sm font-semibold rounded-xl transition-colors disabled:cursor-not-allowed ${
+            saved
+              ? "bg-[#16A34A] text-white"
+              : "bg-[#111] text-white hover:bg-[#222] disabled:opacity-40"
+          }`}>
           <Check className="w-3.5 h-3.5" />
-          {saving ? "Salvataggio…" : "Salva"}
+          {saved ? "Salvato!" : saving ? "Salvataggio…" : "Salva"}
         </button>
         {(ea || onCancelCreate) && (
           <button onClick={() => {
@@ -338,6 +349,7 @@ function EditablePropostaAumento({
 }) {
   const [form,   setForm]   = useState<PropostaAumento>(pa ? { ...pa } : { ...EMPTY_PA });
   const [saving, setSaving] = useState(false);
+  const [saved,  setSaved]  = useState(false);
 
   function setField<K extends keyof PropostaAumento>(key: K, raw: string) {
     const numericKeys = ["nuovaRal", "ralMin", "ralMax", "nuovaIndennita", "parametroIndennita", "bonusImporto", "bonusPercentuale"];
@@ -362,7 +374,12 @@ function EditablePropostaAumento({
       });
       if (res.ok) {
         const updated = await res.json();
-        onSaved(updated.propostaAumento);
+        setSaved(true);
+        toast.success("Proposta salvata");
+        setTimeout(() => {
+          onSaved(updated.propostaAumento);
+          setSaved(false);
+        }, 800);
       }
     } finally {
       setSaving(false);
@@ -384,10 +401,14 @@ function EditablePropostaAumento({
       <FormField label="Nuovo bonus" type="number" prefix="€" value={fieldVal("bonusImporto")} onChange={(v) => setField("bonusImporto", v)} placeholder="0" />
 
       <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
-        <button onClick={save} disabled={saving}
-          className="flex items-center gap-2 px-6 py-2.5 bg-[#111] text-white text-sm font-semibold rounded-xl hover:bg-[#222] transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+        <button onClick={save} disabled={saving || saved}
+          className={`flex items-center gap-2 px-6 py-2.5 text-sm font-semibold rounded-xl transition-colors disabled:cursor-not-allowed ${
+            saved
+              ? "bg-[#16A34A] text-white"
+              : "bg-[#111] text-white hover:bg-[#222] disabled:opacity-40"
+          }`}>
           <Check className="w-3.5 h-3.5" />
-          {saving ? "Salvataggio…" : "Salva proposta"}
+          {saved ? "Salvato!" : saving ? "Salvataggio…" : "Salva proposta"}
         </button>
         {onCancel && (
           <button onClick={onCancel} className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-medium text-[#555] bg-white border border-[#E0E0E0] rounded-xl hover:bg-[#F5F5F5] hover:border-[#BDBDBD] transition-colors">
