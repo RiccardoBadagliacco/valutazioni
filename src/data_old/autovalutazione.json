@@ -1,0 +1,108 @@
+[
+  {
+    "dipendenteId": "emp-001",
+    "dataCompilazione": "2026-03-24",
+    "overview": {
+      "stimolante": 2,
+      "percezione": {
+        "performanceProgettuali": 4,
+        "rapportoLipari": 3,
+        "percorsoCrescita": 5,
+        "relazioneColleghi": 3,
+        "partecipazioneCommunity": 3
+      }
+    },
+    "progetto": {
+      "crescitaSkillMatrix": 5,
+      "crescitaSkillMatrixCommento": "Ho avuto modo di crescere in tutte le competenze descritte nella Skill Matrix, in particolare grazie al ruolo di Lead FE ricoperto sul progetto. Oltre a seguire direttamente lo sviluppo dei miei task, ho maturato esperienza anche nella gestione delle risorse e del relativo lavoro, dall'assegnazione delle attività fino alla code review. Questo mi ha permesso di rafforzare sia le competenze tecniche sia quelle organizzative e di coordinamento.",
+      "raggiungimentoObiettiviProgetto": 5,
+      "soddisfazioneEsperienze": 3,
+      "soddisfazioneEsperienzeCommento": "Le esperienze progettuali dell'ultimo anno sono state per me molto formative e mi hanno permesso di crescere professionalmente, in particolare sugli aspetti di leadership e gestione delle risorse. Sono soddisfatto del percorso fatto ma, allo stesso tempo, l'elevato carico di lavoro ha avuto ripercussioni anche sul piano personale generando un livello di stress importante."
+    },
+    "nuovoProgetto": {
+      "staffato": true,
+      "complessitaAvvio": "La fase di avvio progettuale ha presentato alcuni elementi di complessità, legati soprattutto al fatto che si trattava della mia prima esperienza con un coinvolgimento diretto nella gestione delle risorse e nella pianificazione degli sviluppi. Questo ha richiesto un rapido adattamento a responsabilità nuove, sia sul piano organizzativo sia su quello operativo. Inoltre, le tempistiche fin dall'inizio sono state particolarmente sfidanti, anche per attività di coordinamento, rendendo necessario mantenere costantemente una buona capacità di prioritizzazione.",
+      "supportoRicevuto": "Non ho chiesto supporto nella fase iniziale. Dopo circa tre mesi ho chiesto di confrontarmi con colleghi con maggiore seniority ed esperienza, ai quali ho chiesto supporto e consigli. Il confronto è stato utile soprattutto per individuare modalità più efficaci di organizzazione del lavoro delle risorse, in un contesto caratterizzato da tempistiche molto serrate e da un carico di lavoro elevato.",
+      "strumentiDisponibili": "Nel complesso ho avuto a disposizione strumenti e riferimenti utili, ma il percorso ha richiesto soprattutto una significativa capacità di adattamento personale, in particolare a causa delle richieste progettuali molto sfidanti."
+    },
+    "attivitaLipari": {
+      "importanzaCommunity": 4,
+      "utileCommunity": {
+        "crescitaProfessionale": 4,
+        "comunicazioniOperative": 5,
+        "comunicazioneStrategie": 5,
+        "formazione": 5,
+        "gestioneProblematiche": 0
+      },
+      "ruoloResponsabilita": null,
+      "ruoloResponsabilitaCommento": null,
+      "attivitaPiuMotivante": "Tra le attività Lipari in cui sono stato/a coinvolto/a nell'ultimo anno, quella che mi ha motivato maggiormente e che ho ritenuto più significativa per la mia crescita è stata l'attività di formazione delle risorse, in particolare attraverso i colloqui simulati. La considero un'esperienza di valore sia per le risorse più junior, che possono arrivare più preparate ai colloqui, sia per me, perché mi offre l'opportunità di riprendere e consolidare aspetti più teorici dei linguaggi che utilizzo, oltre ad affinare la mia capacità di comunicare in modo chiaro ed efficace.",
+      "raggiungimentoObiettiviLipari": 3
+    },
+    "equilibrio": {
+      "benessere": "Il lavoro che svolgo correla positivamente sulla mia crescita professionale, ma incide negativamente sul mio benessere",
+      "riferimentiTecnici": "I colleghi Riccardo Badagliacco e Dario Messina, con i quali ho avuto modo di confrontarmi in diversi momenti del percorso. Il loro supporto è stato utile come riferimento nel gestire al meglio le diverse situazioni progettuali.",
+      "riferimentiBenessere": "Anche per quanto riguarda il benessere al lavoro e in azienda, i miei principali punti di riferimento sono stati i colleghi Riccardo Badagliacco e Dario Messina. Mi sono rivolto a loro in particolare per confrontarmi su come gestire in modo più efficiente il lavoro delle altre risorse, in momenti in cui il carico complessivo risultava particolarmente elevato. Il loro supporto è stato utile per individuare modalità organizzative più sostenibili ed efficaci."
+    },
+    "sviluppoProfessionale": {
+      "puntiDiForza": "Sento di aver consolidato soprattutto le mie competenze tecniche, in particolare nell'ambito dei linguaggi e degli strumenti Front End",
+      "automiglioramento": "Ho iniziato un percorso di miglioramento sugli aspetti legati alla gestione delle persone e alle competenze di leadership, ambiti sui quali ritengo di avere ancora ampi margini di crescita. È un percorso che desidero continuare a sviluppare, con l'obiettivo di diventare più efficace sia nel coordinamento delle risorse sia nella gestione delle dinamiche organizzative e relazionali.",
+      "necessitaPotenziale": "Per esprimere al massimo il mio potenziale, credo sarebbe utile un assetto che mi consenta di concentrarmi maggiormente sulle attività di gestione delle risorse e di supervisione tecnica, inclusa la code review, senza dover portare avanti contemporaneamente un carico di sviluppo di nuove feature paragonabile a quello di un ruolo pienamente operativo sullo sviluppo. Questo mi permetterebbe di dedicare maggiore efficacia agli aspetti organizzativi e di coordinamento del progetto.",
+      "consapevolezzaFuturo": "Sì, ho maturato una maggiore consapevolezza rispetto al mio futuro professionale. Mi piacerebbe orientarmi verso un ruolo di Technical Project Manager, maggiormente focalizzato sulla gestione e sulla supervisione progettuale, mantenendo al tempo stesso una solida base tecnica.",
+      "competenzeDaSviluppare": "Vorrei sviluppare competenze di leadership, coordinamento delle risorse e pianificazione progettuale, insieme a un ulteriore consolidamento del mio background tecnico."
+    }
+  },
+  {
+    "dipendenteId": "emp-003",
+    "dataCompilazione": "2026-03-25",
+    "overview": {
+      "stimolante": 4,
+      "percezione": {
+        "performanceProgettuali": 5,
+        "rapportoLipari": 5,
+        "percorsoCrescita": 2,
+        "relazioneColleghi": 4,
+        "partecipazioneCommunity": 5
+      }
+    },
+    "progetto": {
+      "crescitaSkillMatrix": 4,
+      "crescitaSkillMatrixCommento": "Gestione del tempo, Autonomia, Problem Solving",
+      "raggiungimentoObiettiviProgetto": 4,
+      "soddisfazioneEsperienze": 3,
+      "soddisfazioneEsperienzeCommento": "Il progetto è andato avanti egregiamente, occupandomi in piena autonomia dello sviluppo dell'applicativo per il cliente."
+    },
+    "nuovoProgetto": {
+      "staffato": true,
+      "complessitaAvvio": "Nessuno",
+      "supportoRicevuto": "Si, ho ricevuto un adeguato on boarding da un collega già all'interno del progetto",
+      "strumentiDisponibili": "Si"
+    },
+    "attivitaLipari": {
+      "importanzaCommunity": 3,
+      "utileCommunity": {
+        "crescitaProfessionale": 4,
+        "comunicazioniOperative": 4,
+        "comunicazioneStrategie": 4,
+        "formazione": 2,
+        "gestioneProblematiche": 1
+      },
+      "ruoloResponsabilita": 4,
+      "ruoloResponsabilitaCommento": null,
+      "attivitaPiuMotivante": "Lo sviluppo dell'applicativo mobile per la lds",
+      "raggiungimentoObiettiviLipari": 5
+    },
+    "equilibrio": {
+      "benessere": "Il lavoro che svolgo incide positivamente sul mio benessere, ma non correla positivamente sulla mia crescita professionale",
+      "riferimentiTecnici": "Gianvito Parrinello, Riccardo Badagliacco",
+      "riferimentiBenessere": "Santi Silvestro"
+    },
+    "sviluppoProfessionale": {
+      "puntiDiForza": "Problem Solving, Autonomia",
+      "automiglioramento": "Acquisizione di nuove competenze, attraverso lo studio di nuove tecnologie",
+      "necessitaPotenziale": "Una formazione adeguata",
+      "consapevolezzaFuturo": "Si, il desiderio è quello di ricoprire la figura di Team Leader",
+      "competenzeDaSviluppare": "Vorrei sviluppare competenze pratiche nell'uso dell'AI e alla sua applicazione nel contesto lavorativo"
+    }
+  }
+]

@@ -1,44 +1,8 @@
 [
-  {
-    "id": "emp-001",
-    "nome": "Michele",
-    "cognome": "Radici",
-    "jobprofile": "SC1",
-    "sede": "Messina"
-  },
-  {
-    "id": "emp-002",
-    "nome": "Matteo",
-    "cognome": "Mauro",
-    "jobprofile": "SC1",
-    "sede": "Palermo"
-  },
-  {
-    "id": "emp-003",
-    "nome": "Simone",
-    "cognome": "Manenti",
-    "jobprofile": "SC1",
-    "sede": "Messina"
-  },
-  {
-    "id": "emp-004",
-    "nome": "Serafino",
-    "cognome": "Busalacchi",
-    "jobprofile": "C2",
-    "sede": "Palermo"
-  },
-  {
-    "id": "emp-005",
-    "nome": "Giacomo",
-    "cognome": "Mandanici",
-    "jobprofile": "C1",
-    "sede": "Messina"
-  },
-  {
-    "id": "emp-006",
-    "nome": "Aniello",
-    "cognome": "Galluccio",
-    "jobprofile": "C2",
-    "sede": "Milano"
-  }
+  { "id": "emp-001", "nome": "Marco",     "cognome": "Ferretti",   "jobprofile": "SC1", "sede": "Milano"  },
+  { "id": "emp-002", "nome": "Laura",     "cognome": "Bianchi",    "jobprofile": "SC1", "sede": "Roma"    },
+  { "id": "emp-003", "nome": "Giovanni",  "cognome": "Lombardi",   "jobprofile": "SC1", "sede": "Milano"  },
+  { "id": "emp-004", "nome": "Sofia",     "cognome": "Colombo",    "jobprofile": "C2",  "sede": "Torino"  },
+  { "id": "emp-005", "nome": "Alessandro","cognome": "Ricci",      "jobprofile": "C1",  "sede": "Roma"    },
+  { "id": "emp-006", "nome": "Chiara",    "cognome": "Esposito",   "jobprofile": "C2",  "sede": "Milano"  }
 ]

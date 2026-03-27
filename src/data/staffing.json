@@ -6,30 +6,29 @@
       { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-04-01", "dataFine": "2026-01-31", "mesi": 9 }
     ],
     "presenze": [
-      { "mese": 2,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1   },
-      { "mese": 3,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1   },
-      { "mese": 4,  "giorniUfficio": 4, "giorniSmartWorking": 1, "giorniEquivalenti": 4.5 },
-      { "mese": 5,  "giorniUfficio": 7, "giorniSmartWorking": 0, "giorniEquivalenti": 7   },
+      { "mese": 2,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2   },
+      { "mese": 3,  "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3   },
+      { "mese": 4,  "giorniUfficio": 5, "giorniSmartWorking": 1, "giorniEquivalenti": 5.5 },
+      { "mese": 5,  "giorniUfficio": 6, "giorniSmartWorking": 0, "giorniEquivalenti": 6   },
       { "mese": 6,  "giorniUfficio": 4, "giorniSmartWorking": 0, "giorniEquivalenti": 4   },
       { "mese": 7,  "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3   },
-      { "mese": 9,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2   },
-      { "mese": 10, "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1   },
-      { "mese": 11, "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1   }
+      { "mese": 9,  "giorniUfficio": 4, "giorniSmartWorking": 0, "giorniEquivalenti": 4   },
+      { "mese": 10, "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2   },
+      { "mese": 11, "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2   }
     ]
   },
   {
     "dipendenteId": "emp-002",
     "periodi": [
-      { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-01-01", "dataFine": "2025-03-31", "mesi": 3 },
-      { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-04-01", "dataFine": "2025-09-30", "mesi": 6 },
-      { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-10-01", "dataFine": "2025-12-31", "mesi": 3 }
+      { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-01-01", "dataFine": "2025-06-30", "mesi": 6 },
+      { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-07-01", "dataFine": "2025-12-31", "mesi": 6 }
     ],
     "presenze": [
-      { "mese": 4,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 },
-      { "mese": 6,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 },
-      { "mese": 9,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 },
-      { "mese": 10, "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 },
-      { "mese": 11, "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 },
+      { "mese": 3,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 },
+      { "mese": 5,  "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3 },
+      { "mese": 7,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 },
+      { "mese": 9,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 },
+      { "mese": 11, "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3 },
       { "mese": 12, "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 }
     ]
   },
@@ -40,31 +39,26 @@
       { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-04-01", "dataFine": "2025-12-31", "mesi": 9 }
     ],
     "presenze": [
-      { "mese": 3,  "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3 },
-      { "mese": 4,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 },
-      { "mese": 5,  "giorniUfficio": 4, "giorniSmartWorking": 0, "giorniEquivalenti": 4 },
-      { "mese": 7,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 },
-      { "mese": 9,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 },
-      { "mese": 10, "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 },
+      { "mese": 2,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 },
+      { "mese": 4,  "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3 },
+      { "mese": 6,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 },
+      { "mese": 8,  "giorniUfficio": 4, "giorniSmartWorking": 0, "giorniEquivalenti": 4 },
+      { "mese": 10, "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3 },
       { "mese": 12, "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 }
     ]
   },
   {
     "dipendenteId": "emp-004",
     "periodi": [
-      { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-01-01", "dataFine": "2025-03-31", "mesi": 3 },
-      { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-04-01", "dataFine": "2025-12-31", "mesi": 9 }
+      { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-01-01", "dataFine": "2025-05-31", "mesi": 5 },
+      { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-06-01", "dataFine": "2025-12-31", "mesi": 7 }
     ],
     "presenze": [
-      { "mese": 1,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2   },
-      { "mese": 2,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2   },
-      { "mese": 3,  "giorniUfficio": 4, "giorniSmartWorking": 0, "giorniEquivalenti": 4   },
-      { "mese": 4,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2   },
-      { "mese": 5,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1   },
-      { "mese": 6,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1   },
-      { "mese": 7,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1   },
-      { "mese": 9,  "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3   },
-      { "mese": 10, "giorniUfficio": 0, "giorniSmartWorking": 1, "giorniEquivalenti": 0.5 }
+      { "mese": 1,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 },
+      { "mese": 3,  "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3 },
+      { "mese": 6,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 },
+      { "mese": 9,  "giorniUfficio": 4, "giorniSmartWorking": 0, "giorniEquivalenti": 4 },
+      { "mese": 11, "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 }
     ]
   },
   {
@@ -75,9 +69,10 @@
       { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-11-01", "dataFine": "2025-12-31", "mesi": 2 }
     ],
     "presenze": [
-      { "mese": 4,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 },
-      { "mese": 10, "giorniUfficio": 5, "giorniSmartWorking": 0, "giorniEquivalenti": 5 },
-      { "mese": 11, "giorniUfficio": 7, "giorniSmartWorking": 2, "giorniEquivalenti": 8 },
+      { "mese": 2,  "giorniUfficio": 1, "giorniSmartWorking": 0, "giorniEquivalenti": 1 },
+      { "mese": 5,  "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3 },
+      { "mese": 8,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 },
+      { "mese": 10, "giorniUfficio": 4, "giorniSmartWorking": 1, "giorniEquivalenti": 4.5 },
       { "mese": 12, "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 }
     ]
   },
@@ -88,7 +83,12 @@
       { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-04-01", "dataFine": "2025-04-30", "mesi": 1 },
       { "tipoContratto": "Tempo indeterminato", "dataInizio": "2025-05-01", "dataFine": "2099-12-31", "mesi": 8 }
     ],
-    "presenze": []
-  },
-  { "dipendenteId": "emp-007", "periodi": [], "presenze": [] }
+    "presenze": [
+      { "mese": 3,  "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3 },
+      { "mese": 5,  "giorniUfficio": 4, "giorniSmartWorking": 0, "giorniEquivalenti": 4 },
+      { "mese": 7,  "giorniUfficio": 2, "giorniSmartWorking": 0, "giorniEquivalenti": 2 },
+      { "mese": 9,  "giorniUfficio": 5, "giorniSmartWorking": 1, "giorniEquivalenti": 5.5 },
+      { "mese": 11, "giorniUfficio": 3, "giorniSmartWorking": 0, "giorniEquivalenti": 3 }
+    ]
+  }
 ]

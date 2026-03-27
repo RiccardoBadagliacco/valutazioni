@@ -1,0 +1,287 @@
+[
+  {
+    "dipendenteId": "emp-001",
+    "hardSkill": [
+      {
+        "nome": "Competenze Professionali",
+        "score": 4,
+        "commento": "Michele dimostra solide competenze professionali nel contesto progettuale in cui opera. La conoscenza approfondita del progetto e del dominio applicativo gli consente di contribuire con efficacia alle attività del team e di supportare anche altri colleghi nella gestione dei task. Nel corso dell’anno ha dimostrato una buona capacità di gestire attività complesse e di contribuire progressivamente anche alla gestione delle priorità operative. La crescita nel tempo è stata positiva e ha rafforzato il suo ruolo all’interno del team."
+      },
+      {
+        "nome": "Competenze Tecniche",
+        "score": 4.5,
+        "commento": "Le competenze tecniche di Michele risultano molto solide e rappresentano uno dei suoi principali punti di forza. Il feedback cliente evidenzia performance eccellenti e una buona capacità di individuare problematiche e gestire le attività tecniche con autonomia. La conoscenza del contesto progettuale e delle tecnologie utilizzate gli permette di essere un punto di riferimento tecnico per il team e di supportare anche altri colleghi nella risoluzione di problematiche operative."
+      }
+    ],
+    "softSkill": [
+      {
+        "nome": "Gestione dello Stress (skill personali)",
+        "score": 4.5,
+        "commento": "Michele dimostra una buona capacità di gestire situazioni operative complesse mantenendo lucidità e orientamento agli obiettivi. Il feedback ricevuto evidenzia una gestione costruttiva delle situazioni critiche e dei momenti di confronto. Anche in contesti di lavoro intensi ha mantenuto continuità nelle prestazioni e affidabilità nelle consegne."
+      },
+      {
+        "nome": "Comunicazione Chiara (skill relazionali)",
+        "score": 4,
+        "commento": "Michele mantiene generalmente una comunicazione aperta e collaborativa con il team e con i referenti progettuali. In alcuni contesti, tuttavia, è emersa la necessità di fornire comunicazioni più strutturate e precise, soprattutto quando si tratta di rappresentare lo stato delle attività o di fornire informazioni tecniche durante le call. Rafforzare questo aspetto potrà migliorare ulteriormente l’efficacia delle interazioni con il team e con il cliente."
+      },
+      {
+        "nome": "Efficacia Personale (skill organizzative)",
+        "score": 4,
+        "commento": "Michele dimostra una buona capacità di organizzare il proprio lavoro e di portare a termine le attività assegnate con autonomia e responsabilità. È generalmente affidabile nella gestione dei task e nella risoluzione dei problemi tecnici, contribuendo anche al supporto degli altri membri del team. Alcuni casi di revisione delle attività sono stati principalmente legati a momenti di minore attenzione ai dettagli, ma nel complesso il contributo operativo risulta molto positivo."
+      },
+      {
+        "nome": "Ascolto Attivo (skill di leadership)",
+        "score": 4,
+        "commento": "Durante l’anno Michele ha dimostrato una buona capacità di ascolto e collaborazione con il team e con i referenti progettuali. È una figura disponibile al confronto e al dialogo e si dimostra aperto nel condividere problematiche e nel supportare gli altri membri del gruppo quando necessario."
+      },
+      {
+        "nome": "Problem Solving (skill di pensiero)",
+        "score": 4,
+        "commento": "Michele dimostra una buona capacità di analizzare problematiche tecniche e individuare soluzioni efficaci. Grazie alla conoscenza del progetto riesce spesso a chiarire dubbi operativi e a indirizzare correttamente la risoluzione dei problemi tecnici. Questo approccio contribuisce positivamente alla fluidità delle attività del team."
+      }
+    ],
+    "crescitaKnowledge": {
+      "commento": "Nel corso dell’anno Michele ha mantenuto un buon livello di contributo anche nelle attività interne, partecipando con continuità alle iniziative della community nonostante un forte impegno sui progetti cliente. Si è dimostrato disponibile nel supportare attività di formazione e preparazione ai colloqui, contribuendo con precisione e affidabilità. Il suo impegno dimostra un atteggiamento positivo verso la condivisione delle competenze e il supporto alle attività interne."
+    }
+  },
+  {
+    "dipendenteId": "emp-002",
+    "hardSkill": [
+      {
+        "nome": "Competenze Professionali",
+        "score": 3,
+        "commento": "Mauro dimostra competenze professionali complessivamente in linea con il livello di esperienza e con le attività richieste dal progetto. È in grado di svolgere le mansioni tecniche previste dal ruolo con un buon livello di autonomia operativa. Tuttavia, rispetto all’anno precedente, non si evidenzia una crescita significativa nell’ampliamento delle responsabilità o nel consolidamento delle competenze professionali. Per il prossimo periodo sarà utile lavorare su un maggiore sviluppo delle competenze e su un ampliamento del perimetro di contributo all’interno delle attività progettuali."
+      },
+      {
+        "nome": "Competenze tecniche",
+        "score": 3,
+        "commento": "Le competenze tecniche risultano adeguate al contesto progettuale e coerenti con l’esperienza maturata. Mauro è generalmente autonomo nello svolgimento delle attività tecniche, mentre nelle attività che richiedono maggiore interazione con il cliente tende talvolta ad aver bisogno di supporto da parte di altre figure del team. Nel complesso il livello tecnico è solido rispetto alle richieste attuali del progetto, ma potrebbe essere ulteriormente rafforzato per affrontare contesti più complessi o ruoli con maggiore responsabilità."
+      },
+      {
+        "nome": "Aggiornamento continuo",
+        "score": 2.5,
+        "commento": "Nel corso dell’anno non sono emersi segnali particolarmente evidenti di un forte orientamento all’aggiornamento professionale o allo sviluppo di nuove competenze. Il contributo tecnico è rimasto principalmente all’interno del perimetro delle attività consolidate. Per il futuro potrebbe essere utile incentivare un approccio più proattivo nell’esplorazione di nuove tecnologie, metodologie o strumenti che possano arricchire il proprio profilo professionale e ampliare le opportunità di contributo ai progetti."
+      }
+    ],
+    "softSkill": [
+      {
+        "nome": "Resilienza (skill personali)",
+        "score": 3,
+        "commento": "Mauro mantiene generalmente un atteggiamento equilibrato nella gestione delle attività e delle richieste progettuali. Non sono emerse particolari criticità nella gestione dello stress o delle situazioni operative più complesse. Tuttavia, in alcuni contesti operativi potrebbe migliorare nella gestione delle difficoltà legate alle attività assegnate, soprattutto adottando un approccio più tempestivo nel rivedere le priorità o chiedere supporto quando necessario."
+      },
+      {
+        "nome": "Comunicazione Efficace (skill relazionali)",
+        "score": 3,
+        "commento": "Dal punto di vista comunicativo Mauro mantiene una relazione adeguata con il team e con il cliente, coerente con il livello di esperienza. Tuttavia, nelle attività interne è emersa talvolta una tendenza a strutturare eccessivamente la comunicazione dei problemi, introducendo complessità non sempre necessaria nella discussione dei temi tecnici. Un approccio più sintetico e orientato alla chiarezza potrebbe migliorare l’efficacia complessiva della comunicazione."
+      },
+      {
+        "nome": "Orientamento al Risultato (skill organizzative)",
+        "score": 2.5,
+        "commento": "Mauro mostra un impegno costante nello svolgimento delle attività assegnate, ma in alcune occasioni la gestione dei task non è risultata ottimale rispetto ai tempi e agli obiettivi di consegna. Nelle attività interne, in particolare, si sono verificati casi in cui task presi in carico non sono stati completati nei tempi previsti, rallentando gli sviluppi complessivi. Sarà importante lavorare su una gestione più efficace delle priorità e su una maggiore consapevolezza nel valutare quando riassegnare o ridimensionare un’attività."
+      },
+      {
+        "nome": "Gestione del Feedback (skill di leadership)",
+        "score": 3,
+        "commento": "La gestione del feedback risulta generalmente adeguata. Mauro mantiene un atteggiamento collaborativo nei confronti delle indicazioni ricevute e non emergono particolari criticità nel rapporto con il team o con il cliente. Esiste comunque margine di miglioramento nella capacità di trasformare il feedback ricevuto in cambiamenti concreti nel modo di affrontare alcune attività operative."
+      },
+      {
+        "nome": "Visione d'Insieme (skill di pensiero)",
+        "score": 3,
+        "commento": "La capacità di visione complessiva delle attività progettuali può essere ulteriormente sviluppata. In alcune situazioni operative emerge una focalizzazione sul singolo task piuttosto che sull’impatto complessivo delle attività sul team o sul progetto. Rafforzare questa competenza permetterebbe di migliorare la gestione delle priorità, la collaborazione con il team e l’efficacia delle decisioni operative."
+      }
+    ],
+    "crescitaKnowledge": {
+      "commento": "Nel corso dell’anno non sono emersi particolari segnali di sviluppo significativo delle competenze o di ampliamento del perimetro di responsabilità. Il contributo professionale è rimasto principalmente all’interno delle attività già consolidate. Per il futuro sarà importante incentivare un percorso di crescita più strutturato, attraverso formazione, nuove responsabilità progettuali o partecipazione ad attività che possano favorire lo sviluppo di nuove competenze."
+    }
+  },
+  {
+    "dipendenteId": "emp-003",
+    "hardSkill": [
+      {
+        "nome": "Competenze Professionali",
+        "score": 4.5,
+        "commento": "Simone dimostra un livello molto solido di competenze professionali in relazione al ruolo ricoperto. Nel corso dell’anno ha consolidato la propria capacità di affrontare attività progettuali con elevata autonomia e responsabilità, contribuendo in modo significativo alle attività del team. La crescita nel tempo è stata evidente sia nella gestione di task più complessi sia nella capacità di supportare e guidare altri membri del gruppo. Il continuo ampliamento delle competenze e l’esperienza maturata lo rendono una risorsa di riferimento all’interno del contesto operativo."
+      },
+      {
+        "nome": "Competenze tecniche",
+        "score": 4.5,
+        "commento": "Simone possiede competenze tecniche solide, in particolare nell’ambito delle tecnologie frontend e nello sviluppo con Angular. Dimostra padronanza degli strumenti e delle metodologie di sviluppo, riuscendo a gestire le attività con autonomia e precisione. La qualità del contributo tecnico e la capacità di affrontare anche attività complesse rappresentano un valore significativo per il team. Un ulteriore approfondimento su aspetti più avanzati del framework e dell’ecosistema frontend potrebbe rafforzare ulteriormente il suo profilo tecnico."
+      },
+      {
+        "nome": "Aggiornamento continuo",
+        "score": 4,
+        "commento": "Simone dimostra una buona attenzione all’evoluzione delle tecnologie e degli strumenti utilizzati nel contesto di sviluppo. La partecipazione attiva alle attività della community e il contributo alla realizzazione di iniziative interne evidenziano un interesse concreto nel mantenere aggiornate le proprie competenze. Continuare a investire in approfondimenti tecnici e nel confronto con il team potrà supportare ulteriormente il suo percorso di crescita."
+      }
+    ],
+    "softSkill": [
+      {
+        "nome": "Resilienza (skill personali)",
+        "score": 4.5,
+        "commento": "Simone dimostra una forte capacità di affrontare situazioni di pressione o complessità mantenendo un approccio equilibrato e orientato alla soluzione. Nel contesto progettuale e nelle attività interne ha dimostrato affidabilità e continuità nelle prestazioni, contribuendo al raggiungimento degli obiettivi anche in situazioni operative sfidanti."
+      },
+      {
+        "nome": "Comunicazione Efficace (skill relazionali)",
+        "score": 5,
+        "commento": "La comunicazione di Simone è chiara, efficace e orientata alla collaborazione. Riesce a mantenere relazioni professionali positive sia con il team sia con il cliente, facilitando il coordinamento delle attività e la condivisione delle informazioni. All’interno delle attività della community si è distinto anche come punto di riferimento per il confronto tecnico e organizzativo."
+      },
+      {
+        "nome": "Orientamento al Risultato (skill organizzative)",
+        "score": 5,
+        "commento": "Simone dimostra un forte orientamento al risultato, portando avanti le attività con determinazione, precisione e senso di responsabilità. La capacità di rispettare costantemente tempi, qualità e impegni rappresenta uno dei suoi principali punti di forza. Il contributo dato nella realizzazione delle attività interne e nello sviluppo della POC ha avuto un impatto concreto e determinante nel raggiungimento degli obiettivi del team."
+      },
+      {
+        "nome": "Gestione del Feedback (skill di leadership)",
+        "score": 4.5,
+        "commento": "Simone dimostra un approccio molto maturo nella gestione del feedback, mantenendo sempre un atteggiamento aperto, costruttivo e orientato al miglioramento. È in grado di accogliere osservazioni e suggerimenti trasformandoli in azioni concrete di crescita, contribuendo anche a creare un clima di collaborazione positivo all’interno del team."
+      },
+      {
+        "nome": "Visione d'Insieme (skill di pensiero)",
+        "score": 4.5,
+        "commento": "Simone dimostra una buona capacità di comprendere il contesto complessivo delle attività e l’impatto delle proprie decisioni sul lavoro del team. La sua visione tecnica e organizzativa gli permette di contribuire in modo efficace non solo all’esecuzione delle attività ma anche all’indirizzo delle soluzioni e al coordinamento del lavoro all’interno del gruppo."
+      }
+    ],
+    "crescitaKnowledge": {
+      "commento": "Durante l’anno Simone ha dimostrato un forte contributo allo sviluppo delle competenze all’interno della community. Il suo impegno nella realizzazione della POC e nella condivisione delle conoscenze ha rappresentato un valore significativo per il gruppo. Si è distinto per proattività, qualità del contributo tecnico e capacità di supportare gli altri membri del team, diventando un punto di riferimento soprattutto dal punto di vista tecnico."
+    }
+  },
+  {
+    "dipendenteId": "emp-004",
+    "hardSkill": [
+      {
+        "nome": "Competenze Professionali",
+        "score": 3.5,
+        "commento": "Nel corso dell’anno Serafino ha consolidato progressivamente le competenze richieste dal ruolo, soprattutto nel passaggio da attività prevalentemente di QA a task di sviluppo. Il feedback cliente evidenzia un periodo iniziale di riadattamento agli strumenti e alle modalità operative dello sviluppo, seguito da una crescita significativa nel corso della collaborazione. La capacità di accettare nuove attività e di mettersi in gioco ha contribuito al miglioramento della sua efficacia sul progetto. Rimane utile continuare a rafforzare esperienza e metodo nello sviluppo e nel design applicativo."
+      },
+      {
+        "nome": "Competenze Tecniche",
+        "score": 4,
+        "commento": "Serafino ha dimostrato buone capacità di apprendimento tecnico durante l’anno, anche grazie alla partecipazione al percorso formativo AWS e alle attività di sviluppo mobile su React Native. Le competenze tecniche risultano adeguate al ruolo e in progressiva crescita. Alcune difficoltà iniziali su tempi e qualità di sviluppo sono state legate al ritorno ad attività di coding dopo un periodo dedicato principalmente al QA. Con il consolidarsi dell’esperienza operativa è riuscito a contribuire in modo sempre più efficace alle attività progettuali."
+      }
+    ],
+    "softSkill": [
+      {
+        "nome": "Gestione dello Stress (skill personali)",
+        "score": 3,
+        "commento": "Nel corso delle attività progettuali non sono emerse situazioni particolarmente critiche dal punto di vista della gestione dello stress. Serafino ha mostrato disponibilità ad accogliere i feedback ricevuti e ad adattarsi alle richieste del progetto. Alcuni feedback indicano che in determinate situazioni può incontrare qualche difficoltà, ma nel complesso mantiene un atteggiamento collaborativo e orientato al miglioramento."
+      },
+      {
+        "nome": "Comunicazione Chiara (skill relazionali)",
+        "score": 3.5,
+        "commento": "La comunicazione con il team e con il cliente è risultata generalmente adeguata. Serafino ha mantenuto una presenza costante nelle interazioni e negli allineamenti, dimostrando apertura al confronto. Un ulteriore miglioramento potrebbe riguardare l’anticipo nella segnalazione di eventuali blocchi o impedimenti, così da facilitare la gestione delle attività e l’organizzazione del lavoro del team."
+      },
+      {
+        "nome": "Efficacia Personale (skill organizzative)",
+        "score": 3.5,
+        "commento": "Serafino ha dimostrato una buona capacità di mettersi in gioco e di affrontare attività anche nuove rispetto alla sua esperienza recente. Dopo una fase iniziale di riadattamento allo sviluppo, è riuscito a recuperare progressivamente autonomia ed efficacia operativa. L’impegno dimostrato anche nei percorsi di formazione paralleli testimonia una forte motivazione alla crescita professionale."
+      },
+      {
+        "nome": "Ascolto Attivo (skill di leadership)",
+        "score": 4,
+        "commento": "Durante l’anno Serafino ha mostrato un atteggiamento molto ricettivo nei confronti dei feedback e delle indicazioni ricevute sia dal cliente sia all’interno delle attività interne. La partecipazione attiva agli incontri della community e la disponibilità al confronto rappresentano un punto di forza che favorisce la collaborazione e la crescita professionale."
+      },
+      {
+        "nome": "Problem Solving (skill di pensiero)",
+        "score": 3,
+        "commento": "Nella gestione delle attività progettuali Serafino affronta i task assegnati con disponibilità e tende a chiedere supporto quando necessario. Questo approccio gli consente di portare a termine le attività in modo efficace, anche se l’autonomia nel problem solving può essere ulteriormente sviluppata con l’aumentare dell’esperienza nello sviluppo e nella progettazione delle soluzioni."
+      }
+    ],
+    "crescitaKnowledge": {
+      "commento": "Serafino ha dimostrato un forte impegno nello sviluppo delle proprie competenze durante l’anno. Ha portato avanti parallelamente due percorsi formativi: uno legato alle tecnologie AWS, anche in ottica di nuove opportunità di staffing, e uno focalizzato sullo sviluppo mobile con React Native. All’interno delle attività della community si è distinto per proattività, partecipazione e contributo concreto agli sviluppi, proponendo nuove funzionalità e contribuendo in modo significativo al lavoro del team. Questo impegno evidenzia una forte motivazione alla crescita professionale."
+    }
+  },
+  {
+    "dipendenteId": "emp-005",
+    "hardSkill": [
+      {
+        "nome": "Competenze Professionali",
+        "score": 2,
+        "commento": "Durante l’anno Giacomo ha avuto esposizione ad attività anche teoricamente complesse, riuscendo a portarle a termine ma con difficoltà e con una necessità significativa di guida. Le basi professionali risultano ancora in fase di consolidamento e l’autonomia operativa non è ancora stabile. Per il prossimo periodo sarà importante lavorare sul rafforzamento delle competenze metodologiche e sulla capacità di gestire task end-to-end con maggiore ownership"
+      },
+      {
+        "nome": "Competenze Tecniche",
+        "score": 2.5,
+        "commento": "Dal punto di vista tecnico Giacomo ha iniziato ad acquisire conoscenze nello stack React Native e più in generale su JavaScript, mostrando interesse verso il dominio tecnologico della community. Tuttavia il livello di padronanza rimane iniziale e, nel contesto progettuale, è emersa una forte necessità di supporto per affrontare attività complesse. La crescita tecnica è presente ma deve ancora tradursi in maggiore autonomia e solidità nell’esecuzione."
+      }
+    ],
+    "softSkill": [
+      {
+        "nome": "Gestione dello Stress (skill personali)",
+        "score": 2,
+        "commento": "Nel corso dell’esperienza progettuale è emerso che, in situazioni di complessità o sotto pressione, Giacomo può incontrare difficoltà nel riorganizzare autonomamente le attività. In questi contesti tende a richiedere supporto frequente, con un impatto sulla fluidità del lavoro. Sarà utile sviluppare maggiore capacità di scomposizione dei task, pianificazione delle attività e gestione strutturata dei momenti di difficoltà."
+      },
+      {
+        "nome": "Comunicazione Chiara (skill relazionali)",
+        "score": 2,
+        "commento": "La comunicazione all’interno del team risulta talvolta poco proattiva. In alcune situazioni blocchi o necessità di supporto non sono stati esplicitati tempestivamente, rendendo necessario un accompagnamento più ravvicinato da parte del team. Un miglioramento nella frequenza degli aggiornamenti, nella chiarezza dello stato delle attività e nella condivisione dei rischi permetterebbe di aumentare l’efficacia collaborativa."
+      },
+      {
+        "nome": "Efficacia Personale (skill organizzative)",
+        "score": 2,
+        "commento": "Giacomo ha dimostrato impegno nello svolgere le attività assegnate, ma la gestione autonoma delle priorità e delle attività complesse è ancora in fase di sviluppo. La necessità di guida frequente indica che l’efficacia nell’organizzazione del lavoro e nella gestione delle responsabilità può essere ulteriormente rafforzata. Un percorso di crescita orientato all’autonomia e alla gestione progressiva di micro-task end-to-end potrà supportarne lo sviluppo."
+      },
+      {
+        "nome": "Ascolto Attivo (skill di leadership)",
+        "score": 2.5,
+        "commento": "Nel contesto di team Giacomo si dimostra disponibile al confronto e ricettivo rispetto ai momenti di allineamento e alle indicazioni ricevute. Durante le attività interne della community ha partecipato con interesse alle call e ai momenti di condivisione tecnica. Questo atteggiamento rappresenta una buona base su cui costruire una maggiore proattività nella comunicazione e nel confronto operativo."
+      },
+      {
+        "nome": "Problem Solving (skill di pensiero)",
+        "score": 2,
+        "commento": "Di fronte a problematiche tecniche o attività con un certo livello di complessità, Giacomo tende a richiedere supporto frequente per individuare la soluzione più adeguata. L’approccio al problem solving risulta ancora guidato e non completamente autonomo. Sarà importante sviluppare progressivamente maggiore capacità di analisi del problema, identificazione delle possibili soluzioni e proposta proattiva di alternative."
+      }
+    ],
+    "crescitaKnowledge": {
+      "commento": "Nel corso dell’anno Giacomo ha partecipato alle attività della community React Native, mostrando entusiasmo iniziale e contribuendo allo sviluppo di un POC interno. Durante il periodo di destaffing si è dimostrato tra i più attivi nelle iniziative della community e ha acquisito conoscenze di base su React Native e JavaScript. Successivamente la partecipazione si è ridotta a causa delle attività di staffing, pur mantenendo la presenza nei momenti di allineamento. Il percorso di apprendimento è quindi presente ma ancora nelle fasi iniziali e potrà essere ulteriormente sviluppato."
+    }
+  },
+  {
+    "dipendenteId": "emp-007",
+    "hardSkill": [
+      {
+        "nome": "Competenze Professionali",
+        "score": 5,
+        "commento": "Giulia dimostra competenze professionali di altissimo livello, ampiamente superiori alle aspettative legate al suo profilo. Ha guidato con successo attività complesse in autonomia, diventando un punto di riferimento sia per il team interno che per il cliente. La sua capacità di comprendere il contesto di business e di tradurlo in soluzioni tecniche concrete la distingue nettamente dai colleghi di pari livello."
+      },
+      {
+        "nome": "Competenze Tecniche",
+        "score": 5,
+        "commento": "Le competenze tecniche di Giulia sono eccellenti e in continua evoluzione. Ha ottenuto la certificazione AWS Solutions Architect nel corso dell’anno e ha introdotto nel progetto pratiche di infrastructure-as-code che hanno migliorato significativamente la stabilità degli ambienti. È considerata la principale esperta tecnica del team."
+      },
+      {
+        "nome": "Aggiornamento continuo",
+        "score": 4.5,
+        "commento": "Giulia ha un forte orientamento alla crescita personale. Partecipa attivamente a conferenze di settore, segue corsi di aggiornamento in autonomia e condivide regolarmente con il team le novità tecnologiche rilevanti. Il suo approccio proattivo all’apprendimento rappresenta un valore aggiunto per l’intero gruppo."
+      }
+    ],
+    "softSkill": [
+      {
+        "nome": "Gestione dello Stress (skill personali)",
+        "score": 5,
+        "commento": "Giulia affronta situazioni di alta pressione con straordinaria compostezza. Anche nei momenti critici mantiene lucidità, prende decisioni ponderate e trasmette serenità al team. Il suo equilibrio emotivo è una delle caratteristiche più apprezzate dai colleghi e dal cliente."
+      },
+      {
+        "nome": "Comunicazione Efficace (skill relazionali)",
+        "score": 5,
+        "commento": "La comunicazione di Giulia è esemplare: chiara, puntuale e adattata all’interlocutore. Riesce a spiegare concetti tecnici complessi in modo comprensibile anche ai referenti di business, facilitando la collaborazione tra team eterogenei. Le sue presentazioni sono sempre ben strutturate e apprezzate."
+      },
+      {
+        "nome": "Orientamento al Risultato (skill organizzative)",
+        "score": 4.5,
+        "commento": "Giulia è molto orientata al risultato e gestisce il proprio lavoro con grande efficienza. Pianifica le attività con anticipo, identifica i rischi tempestivamente e adotta misure correttive proattive. Il suo contributo è determinante per il rispetto delle milestone di progetto."
+      },
+      {
+        "nome": "Leadership e Mentoring (skill di leadership)",
+        "score": 4.5,
+        "commento": "Nel corso dell’anno Giulia ha assunto un ruolo informale di mentore per i colleghi più junior, dedicando tempo al loro sviluppo professionale con generosità e pazienza. La sua capacità di trascinare il team verso gli obiettivi, mantenendo un clima positivo, è molto valorizzata dalla direzione."
+      },
+      {
+        "nome": "Problem Solving (skill di pensiero)",
+        "score": 5,
+        "commento": "Giulia è un’eccellente problem solver. Di fronte a blocchi tecnici o organizzativi, analizza rapidamente le cause radice e propone soluzioni creative e pragmatiche. Ha risolto in autonomia alcune criticità di sistema che avrebbero potuto causare interruzioni significative del servizio."
+      }
+    ],
+    "crescitaKnowledge": {
+      "commento": "Giulia ha avuto un anno di crescita straordinaria. Ha conseguito la certificazione AWS, ha guidato internamente un workshop su architetture cloud per il team della community e ha contribuito alla stesura di linee guida tecniche adottate da altri progetti. Il suo investimento nella crescita personale e nella condivisione delle conoscenze la rende un asset fondamentale per l’azienda."
+    }
+  }
+]

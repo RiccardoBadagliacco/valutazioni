@@ -1,28 +1,8 @@
 [
-  {
-    "dipendenteId": "emp-001",
-    "note": {
-      "Q5": "asda"
-    }
-  },
-  {
-    "dipendenteId": "emp-002",
-    "note": {}
-  },
-  {
-    "dipendenteId": "emp-003",
-    "note": {}
-  },
-  {
-    "dipendenteId": "emp-004",
-    "note": {}
-  },
-  {
-    "dipendenteId": "emp-005",
-    "note": {}
-  },
-  {
-    "dipendenteId": "emp-006",
-    "note": {}
-  }
+  { "dipendenteId": "emp-001", "note": {} },
+  { "dipendenteId": "emp-002", "note": {} },
+  { "dipendenteId": "emp-003", "note": {} },
+  { "dipendenteId": "emp-004", "note": {} },
+  { "dipendenteId": "emp-005", "note": {} },
+  { "dipendenteId": "emp-006", "note": {} }
 ]
