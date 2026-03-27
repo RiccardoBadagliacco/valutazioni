@@ -1,8 +1,65 @@
 [
-  { "id": "emp-001", "nome": "Marco",     "cognome": "Ferretti",   "jobprofile": "SC1", "sede": "Milano"  },
-  { "id": "emp-002", "nome": "Laura",     "cognome": "Bianchi",    "jobprofile": "SC1", "sede": "Roma"    },
-  { "id": "emp-003", "nome": "Giovanni",  "cognome": "Lombardi",   "jobprofile": "SC1", "sede": "Milano"  },
-  { "id": "emp-004", "nome": "Sofia",     "cognome": "Colombo",    "jobprofile": "C2",  "sede": "Torino"  },
-  { "id": "emp-005", "nome": "Alessandro","cognome": "Ricci",      "jobprofile": "C1",  "sede": "Roma"    },
-  { "id": "emp-006", "nome": "Chiara",    "cognome": "Esposito",   "jobprofile": "C2",  "sede": "Milano"  }
+  {
+    "id": "emp-001",
+    "nome": "Marco",
+    "cognome": "Ferretti",
+    "jobprofile": "SC1",
+    "sede": "Milano"
+  },
+  {
+    "id": "emp-002",
+    "nome": "Laura",
+    "cognome": "Bianchi",
+    "jobprofile": "SC1",
+    "sede": "Roma"
+  },
+  {
+    "id": "emp-003",
+    "nome": "Giovanni",
+    "cognome": "Lombardi",
+    "jobprofile": "SC1",
+    "sede": "Milano"
+  },
+  {
+    "id": "emp-004",
+    "nome": "Sofia",
+    "cognome": "Colombo",
+    "jobprofile": "C2",
+    "sede": "Torino"
+  },
+  {
+    "id": "emp-005",
+    "nome": "Alessandro",
+    "cognome": "Ricci",
+    "jobprofile": "C1",
+    "sede": "Roma"
+  },
+  {
+    "id": "emp-006",
+    "nome": "Chiara",
+    "cognome": "Esposito",
+    "jobprofile": "C2",
+    "sede": "Milano"
+  },
+  {
+    "id": "020715ce-97bb-4486-8e4e-d0d8c986c2c5",
+    "nome": "Dario",
+    "cognome": "Hubner",
+    "jobprofile": "C1",
+    "sede": "Palermo"
+  },
+  {
+    "id": "d567bd9c-b407-4615-a7cc-c1490176150a",
+    "nome": "Mario",
+    "cognome": "Rossi2",
+    "jobprofile": "SC2",
+    "sede": "Palermo"
+  },
+  {
+    "id": "b9872fce-0861-4c6e-b481-ffdc60755835",
+    "nome": "Mario",
+    "cognome": "Burba",
+    "jobprofile": "C1",
+    "sede": "Palermo"
+  }
 ]

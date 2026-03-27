@@ -1,107 +1,442 @@
 [
   {
-    "id": "val-001", "dipendenteId": "emp-001", "formId": 1,
-    "data": "2026-02-10", "valutatore": "Andrea Conti", "societa": "Nexus Reply",
+    "id": "val-001",
+    "dipendenteId": "emp-001",
+    "formId": 1,
+    "data": "2026-02-10",
+    "valutatore": "Andrea Conti",
+    "societa": "Nexus Reply",
     "risposte": [
-      { "domanda": "Competenze tecniche",           "risposta": "Eccellenti",               "commento": "Ottima padronanza delle tecnologie del progetto." },
-      { "domanda": "Autonomia",                     "risposta": "Prevalentemente autonomo", "commento": "Gestisce le attività con buona indipendenza." },
-      { "domanda": "Affidabilità",                  "risposta": "Sempre",                   "commento": "Nessuna consegna in ritardo nell'anno." },
-      { "domanda": "Comunicazione e relazione",     "risposta": "Molto efficace",           "commento": "Ottimo rapporto con team e cliente." },
-      { "domanda": "Gestione feedback e stress",    "risposta": "In modo molto costruttivo","commento": "Reagisce positivamente alle pressioni." },
-      { "domanda": "Crescita delle competenze",     "risposta": "Significativa",            "commento": "Visibile miglioramento durante l'anno." },
-      { "domanda": "Gestione attività complesse",   "risposta": "Elevata",                  "commento": "Ha gestito task complessi con autonomia." },
-      { "domanda": "Valore apportato",              "risposta": "Superiore",                "commento": "Contributo superiore alle aspettative." },
-      { "domanda": "Potenziale ruolo più rilevante","risposta": "Probabilmente sì",         "commento": "Pronto per ruolo con maggiore responsabilità." }
+      {
+        "domanda": "Competenze tecniche",
+        "risposta": "Eccellenti",
+        "commento": "Ottima padronanza delle tecnologie del progetto."
+      },
+      {
+        "domanda": "Autonomia",
+        "risposta": "Prevalentemente autonomo",
+        "commento": "Gestisce le attività con buona indipendenza."
+      },
+      {
+        "domanda": "Affidabilità",
+        "risposta": "Sempre",
+        "commento": "Nessuna consegna in ritardo nell'anno."
+      },
+      {
+        "domanda": "Comunicazione e relazione",
+        "risposta": "Molto efficace",
+        "commento": "Ottimo rapporto con team e cliente."
+      },
+      {
+        "domanda": "Gestione feedback e stress",
+        "risposta": "In modo molto costruttivo",
+        "commento": "Reagisce positivamente alle pressioni."
+      },
+      {
+        "domanda": "Crescita delle competenze",
+        "risposta": "Significativa",
+        "commento": "Visibile miglioramento durante l'anno."
+      },
+      {
+        "domanda": "Gestione attività complesse",
+        "risposta": "Elevata",
+        "commento": "Ha gestito task complessi con autonomia."
+      },
+      {
+        "domanda": "Valore apportato",
+        "risposta": "Superiore",
+        "commento": "Contributo superiore alle aspettative."
+      },
+      {
+        "domanda": "Potenziale ruolo più rilevante",
+        "risposta": "Probabilmente sì",
+        "commento": "Pronto per ruolo con maggiore responsabilità."
+      }
     ]
   },
   {
-    "id": "val-002", "dipendenteId": "emp-001", "formId": 2,
-    "data": "2026-02-14", "valutatore": "Francesca Mori", "societa": "Nexus Reply",
+    "id": "val-002",
+    "dipendenteId": "emp-001",
+    "formId": 2,
+    "data": "2026-02-14",
+    "valutatore": "Francesca Mori",
+    "societa": "Nexus Reply",
     "risposte": [
-      { "domanda": "Competenze tecniche",           "risposta": "Buone",                    "commento": "Competenze solide sul contesto applicativo." },
-      { "domanda": "Autonomia",                     "risposta": "Prevalentemente autonomo", "commento": "Autonomo nella quasi totalità delle attività." },
-      { "domanda": "Affidabilità",                  "risposta": "Sempre",                   "commento": "Puntuale nelle consegne." },
-      { "domanda": "Comunicazione e relazione",     "risposta": "Efficace",                 "commento": "Buona comunicazione con il team." },
-      { "domanda": "Gestione feedback e stress",    "risposta": "In modo molto costruttivo","commento": "Gestisce bene le situazioni di pressione." },
-      { "domanda": "Crescita delle competenze",     "risposta": "Significativa",            "commento": "Crescita evidente nell'arco dell'anno." },
-      { "domanda": "Gestione attività complesse",   "risposta": "Elevata",                  "commento": "Affronta task complessi con competenza." },
-      { "domanda": "Valore apportato",              "risposta": "In linea",                 "commento": "Valore in linea con le aspettative." },
-      { "domanda": "Potenziale ruolo più rilevante","risposta": "Probabilmente sì",         "commento": "Buon potenziale di crescita." }
+      {
+        "domanda": "Competenze tecniche",
+        "risposta": "Buone",
+        "commento": "Competenze solide sul contesto applicativo."
+      },
+      {
+        "domanda": "Autonomia",
+        "risposta": "Prevalentemente autonomo",
+        "commento": "Autonomo nella quasi totalità delle attività."
+      },
+      {
+        "domanda": "Affidabilità",
+        "risposta": "Sempre",
+        "commento": "Puntuale nelle consegne."
+      },
+      {
+        "domanda": "Comunicazione e relazione",
+        "risposta": "Efficace",
+        "commento": "Buona comunicazione con il team."
+      },
+      {
+        "domanda": "Gestione feedback e stress",
+        "risposta": "In modo molto costruttivo",
+        "commento": "Gestisce bene le situazioni di pressione."
+      },
+      {
+        "domanda": "Crescita delle competenze",
+        "risposta": "Significativa",
+        "commento": "Crescita evidente nell'arco dell'anno."
+      },
+      {
+        "domanda": "Gestione attività complesse",
+        "risposta": "Elevata",
+        "commento": "Affronta task complessi con competenza."
+      },
+      {
+        "domanda": "Valore apportato",
+        "risposta": "In linea",
+        "commento": "Valore in linea con le aspettative."
+      },
+      {
+        "domanda": "Potenziale ruolo più rilevante",
+        "risposta": "Probabilmente sì",
+        "commento": "Buon potenziale di crescita."
+      }
     ]
   },
   {
-    "id": "val-003", "dipendenteId": "emp-002", "formId": 3,
-    "data": "2026-02-18", "valutatore": "Luca Ferrara", "societa": "Omega Tech",
+    "id": "val-003",
+    "dipendenteId": "emp-002",
+    "formId": 3,
+    "data": "2026-02-18",
+    "valutatore": "Luca Ferrara",
+    "societa": "Omega Tech",
     "risposte": [
-      { "domanda": "Competenze tecniche",           "risposta": "Buone",                    "commento": "Competenze adeguate al progetto." },
-      { "domanda": "Autonomia",                     "risposta": "Prevalentemente autonomo", "commento": "Lavora in modo abbastanza indipendente." },
-      { "domanda": "Affidabilità",                  "risposta": "Quasi sempre",             "commento": "Qualche ritardo minore." },
-      { "domanda": "Comunicazione e relazione",     "risposta": "Adeguata",                 "commento": "Comunicazione nella norma." },
-      { "domanda": "Gestione feedback e stress",    "risposta": "In modo adeguato",         "commento": "Gestisce discretamente le situazioni di stress." },
-      { "domanda": "Crescita delle competenze",     "risposta": "Moderata",                 "commento": "Crescita costante ma graduale." },
-      { "domanda": "Gestione attività complesse",   "risposta": "Adeguata",                 "commento": "Gestisce con sufficiente autonomia." },
-      { "domanda": "Valore apportato",              "risposta": "In linea",                 "commento": "Contributo in linea con il ruolo." },
-      { "domanda": "Potenziale ruolo più rilevante","risposta": "Non chiaro",               "commento": "Da valutare nel prossimo periodo." }
+      {
+        "domanda": "Competenze tecniche",
+        "risposta": "Buone",
+        "commento": "Competenze adeguate al progetto."
+      },
+      {
+        "domanda": "Autonomia",
+        "risposta": "Prevalentemente autonomo",
+        "commento": "Lavora in modo abbastanza indipendente."
+      },
+      {
+        "domanda": "Affidabilità",
+        "risposta": "Quasi sempre",
+        "commento": "Qualche ritardo minore."
+      },
+      {
+        "domanda": "Comunicazione e relazione",
+        "risposta": "Adeguata",
+        "commento": "Comunicazione nella norma."
+      },
+      {
+        "domanda": "Gestione feedback e stress",
+        "risposta": "In modo adeguato",
+        "commento": "Gestisce discretamente le situazioni di stress."
+      },
+      {
+        "domanda": "Crescita delle competenze",
+        "risposta": "Moderata",
+        "commento": "Crescita costante ma graduale."
+      },
+      {
+        "domanda": "Gestione attività complesse",
+        "risposta": "Adeguata",
+        "commento": "Gestisce con sufficiente autonomia."
+      },
+      {
+        "domanda": "Valore apportato",
+        "risposta": "In linea",
+        "commento": "Contributo in linea con il ruolo."
+      },
+      {
+        "domanda": "Potenziale ruolo più rilevante",
+        "risposta": "Non chiaro",
+        "commento": "Da valutare nel prossimo periodo."
+      }
     ]
   },
   {
-    "id": "val-004", "dipendenteId": "emp-003", "formId": 4,
-    "data": "2026-02-20", "valutatore": "Valentina Serra", "societa": "BrightLab",
+    "id": "val-004",
+    "dipendenteId": "emp-003",
+    "formId": 4,
+    "data": "2026-02-20",
+    "valutatore": "Valentina Serra",
+    "societa": "BrightLab",
     "risposte": [
-      { "domanda": "Competenze tecniche",           "risposta": "Eccellenti",               "commento": "Riferimento tecnico del team." },
-      { "domanda": "Autonomia",                     "risposta": "Completamente autonomo",   "commento": "Opera in totale autonomia." },
-      { "domanda": "Affidabilità",                  "risposta": "Sempre",                   "commento": "Sempre puntuale e preciso." },
-      { "domanda": "Comunicazione e relazione",     "risposta": "Molto efficace",           "commento": "Ottima relazione con cliente e team." },
-      { "domanda": "Gestione feedback e stress",    "risposta": "In modo molto costruttivo","commento": "Grande maturità nella gestione delle pressioni." },
-      { "domanda": "Crescita delle competenze",     "risposta": "Molto significativa",      "commento": "Crescita eccellente durante l'anno." },
-      { "domanda": "Gestione attività complesse",   "risposta": "Molto elevata",            "commento": "Eccellente nella gestione di attività complesse." },
-      { "domanda": "Valore apportato",              "risposta": "Superiore",                "commento": "Valore superiore alle aspettative." },
-      { "domanda": "Potenziale ruolo più rilevante","risposta": "Decisamente sì",           "commento": "Pronto per responsabilità senior." }
+      {
+        "domanda": "Competenze tecniche",
+        "risposta": "Eccellenti",
+        "commento": "Riferimento tecnico del team."
+      },
+      {
+        "domanda": "Autonomia",
+        "risposta": "Completamente autonomo",
+        "commento": "Opera in totale autonomia."
+      },
+      {
+        "domanda": "Affidabilità",
+        "risposta": "Sempre",
+        "commento": "Sempre puntuale e preciso."
+      },
+      {
+        "domanda": "Comunicazione e relazione",
+        "risposta": "Molto efficace",
+        "commento": "Ottima relazione con cliente e team."
+      },
+      {
+        "domanda": "Gestione feedback e stress",
+        "risposta": "In modo molto costruttivo",
+        "commento": "Grande maturità nella gestione delle pressioni."
+      },
+      {
+        "domanda": "Crescita delle competenze",
+        "risposta": "Molto significativa",
+        "commento": "Crescita eccellente durante l'anno."
+      },
+      {
+        "domanda": "Gestione attività complesse",
+        "risposta": "Molto elevata",
+        "commento": "Eccellente nella gestione di attività complesse."
+      },
+      {
+        "domanda": "Valore apportato",
+        "risposta": "Superiore",
+        "commento": "Valore superiore alle aspettative."
+      },
+      {
+        "domanda": "Potenziale ruolo più rilevante",
+        "risposta": "Decisamente sì",
+        "commento": "Pronto per responsabilità senior."
+      }
     ]
   },
   {
-    "id": "val-005", "dipendenteId": "emp-004", "formId": 5,
-    "data": "2026-02-22", "valutatore": "Matteo Galli", "societa": "DataStream",
+    "id": "val-005",
+    "dipendenteId": "emp-004",
+    "formId": 5,
+    "data": "2026-02-22",
+    "valutatore": "Matteo Galli",
+    "societa": "DataStream",
     "risposte": [
-      { "domanda": "Competenze tecniche",           "risposta": "Buone",                    "commento": "Competenze solide per il livello attuale." },
-      { "domanda": "Autonomia",                     "risposta": "Autonomia parziale",       "commento": "Necessita supporto su task complessi." },
-      { "domanda": "Affidabilità",                  "risposta": "Quasi sempre",             "commento": "Generalmente affidabile." },
-      { "domanda": "Comunicazione e relazione",     "risposta": "Adeguata",                 "commento": "Comunicazione nella media." },
-      { "domanda": "Gestione feedback e stress",    "risposta": "In modo adeguato",         "commento": "Gestisce discretamente lo stress." },
-      { "domanda": "Crescita delle competenze",     "risposta": "Moderata",                 "commento": "Buon percorso di crescita avviato." },
-      { "domanda": "Gestione attività complesse",   "risposta": "Adeguata",                 "commento": "Gestisce con supervisione." },
-      { "domanda": "Valore apportato",              "risposta": "In linea",                 "commento": "Contributo coerente con il profilo." },
-      { "domanda": "Potenziale ruolo più rilevante","risposta": "Probabilmente sì",         "commento": "Potenziale da sviluppare." }
+      {
+        "domanda": "Competenze tecniche",
+        "risposta": "Buone",
+        "commento": "Competenze solide per il livello attuale."
+      },
+      {
+        "domanda": "Autonomia",
+        "risposta": "Autonomia parziale",
+        "commento": "Necessita supporto su task complessi."
+      },
+      {
+        "domanda": "Affidabilità",
+        "risposta": "Quasi sempre",
+        "commento": "Generalmente affidabile."
+      },
+      {
+        "domanda": "Comunicazione e relazione",
+        "risposta": "Adeguata",
+        "commento": "Comunicazione nella media."
+      },
+      {
+        "domanda": "Gestione feedback e stress",
+        "risposta": "In modo adeguato",
+        "commento": "Gestisce discretamente lo stress."
+      },
+      {
+        "domanda": "Crescita delle competenze",
+        "risposta": "Moderata",
+        "commento": "Buon percorso di crescita avviato."
+      },
+      {
+        "domanda": "Gestione attività complesse",
+        "risposta": "Adeguata",
+        "commento": "Gestisce con supervisione."
+      },
+      {
+        "domanda": "Valore apportato",
+        "risposta": "In linea",
+        "commento": "Contributo coerente con il profilo."
+      },
+      {
+        "domanda": "Potenziale ruolo più rilevante",
+        "risposta": "Probabilmente sì",
+        "commento": "Potenziale da sviluppare."
+      }
     ]
   },
   {
-    "id": "val-006", "dipendenteId": "emp-005", "formId": 6,
-    "data": "2026-02-25", "valutatore": "Elena Russo", "societa": "CloudBase",
+    "id": "val-006",
+    "dipendenteId": "emp-005",
+    "formId": 6,
+    "data": "2026-02-25",
+    "valutatore": "Elena Russo",
+    "societa": "CloudBase",
     "risposte": [
-      { "domanda": "Competenze tecniche",           "risposta": "Buone",                    "commento": "Competenze in linea con il ruolo." },
-      { "domanda": "Autonomia",                     "risposta": "Prevalentemente autonomo", "commento": "Buona autonomia operativa." },
-      { "domanda": "Affidabilità",                  "risposta": "Sempre",                   "commento": "Sempre puntuale." },
-      { "domanda": "Comunicazione e relazione",     "risposta": "Efficace",                 "commento": "Buona relazione con il team." },
-      { "domanda": "Gestione feedback e stress",    "risposta": "In modo molto costruttivo","commento": "Eccellente gestione dei feedback." },
-      { "domanda": "Crescita delle competenze",     "risposta": "Significativa",            "commento": "Crescita visibile nel corso dell'anno." },
-      { "domanda": "Gestione attività complesse",   "risposta": "Elevata",                  "commento": "Gestisce bene le attività sfidanti." },
-      { "domanda": "Valore apportato",              "risposta": "Superiore",                "commento": "Contributo superiore al livello atteso." },
-      { "domanda": "Potenziale ruolo più rilevante","risposta": "Probabilmente sì",         "commento": "Buon potenziale di avanzamento." }
+      {
+        "domanda": "Competenze tecniche",
+        "risposta": "Buone",
+        "commento": "Competenze in linea con il ruolo."
+      },
+      {
+        "domanda": "Autonomia",
+        "risposta": "Prevalentemente autonomo",
+        "commento": "Buona autonomia operativa."
+      },
+      {
+        "domanda": "Affidabilità",
+        "risposta": "Sempre",
+        "commento": "Sempre puntuale."
+      },
+      {
+        "domanda": "Comunicazione e relazione",
+        "risposta": "Efficace",
+        "commento": "Buona relazione con il team."
+      },
+      {
+        "domanda": "Gestione feedback e stress",
+        "risposta": "In modo molto costruttivo",
+        "commento": "Eccellente gestione dei feedback."
+      },
+      {
+        "domanda": "Crescita delle competenze",
+        "risposta": "Significativa",
+        "commento": "Crescita visibile nel corso dell'anno."
+      },
+      {
+        "domanda": "Gestione attività complesse",
+        "risposta": "Elevata",
+        "commento": "Gestisce bene le attività sfidanti."
+      },
+      {
+        "domanda": "Valore apportato",
+        "risposta": "Superiore",
+        "commento": "Contributo superiore al livello atteso."
+      },
+      {
+        "domanda": "Potenziale ruolo più rilevante",
+        "risposta": "Probabilmente sì",
+        "commento": "Buon potenziale di avanzamento."
+      }
     ]
   },
   {
-    "id": "val-007", "dipendenteId": "emp-006", "formId": 7,
-    "data": "2026-02-28", "valutatore": "Roberto Vitale", "societa": "InnovateTech",
+    "id": "val-007",
+    "dipendenteId": "emp-006",
+    "formId": 7,
+    "data": "2026-02-28",
+    "valutatore": "Roberto Vitale",
+    "societa": "InnovateTech",
     "risposte": [
-      { "domanda": "Competenze tecniche",           "risposta": "Eccellenti",               "commento": "Competenze tecniche di alto livello." },
-      { "domanda": "Autonomia",                     "risposta": "Completamente autonomo",   "commento": "Gestisce tutto in completa autonomia." },
-      { "domanda": "Affidabilità",                  "risposta": "Sempre",                   "commento": "Massima affidabilità." },
-      { "domanda": "Comunicazione e relazione",     "risposta": "Molto efficace",           "commento": "Eccellente comunicatore." },
-      { "domanda": "Gestione feedback e stress",    "risposta": "In modo molto costruttivo","commento": "Gestisce le pressioni in modo esemplare." },
-      { "domanda": "Crescita delle competenze",     "risposta": "Molto significativa",      "commento": "Crescita notevole durante l'anno." },
-      { "domanda": "Gestione attività complesse",   "risposta": "Molto elevata",            "commento": "Eccellente su task ad alta complessità." },
-      { "domanda": "Valore apportato",              "risposta": "Superiore",                "commento": "Valore molto superiore alle attese." },
-      { "domanda": "Potenziale ruolo più rilevante","risposta": "Decisamente sì",           "commento": "Candidato ideale per ruoli senior." }
+      {
+        "domanda": "Competenze tecniche",
+        "risposta": "Eccellenti",
+        "commento": "Competenze tecniche di alto livello."
+      },
+      {
+        "domanda": "Autonomia",
+        "risposta": "Completamente autonomo",
+        "commento": "Gestisce tutto in completa autonomia."
+      },
+      {
+        "domanda": "Affidabilità",
+        "risposta": "Sempre",
+        "commento": "Massima affidabilità."
+      },
+      {
+        "domanda": "Comunicazione e relazione",
+        "risposta": "Molto efficace",
+        "commento": "Eccellente comunicatore."
+      },
+      {
+        "domanda": "Gestione feedback e stress",
+        "risposta": "In modo molto costruttivo",
+        "commento": "Gestisce le pressioni in modo esemplare."
+      },
+      {
+        "domanda": "Crescita delle competenze",
+        "risposta": "Molto significativa",
+        "commento": "Crescita notevole durante l'anno."
+      },
+      {
+        "domanda": "Gestione attività complesse",
+        "risposta": "Molto elevata",
+        "commento": "Eccellente su task ad alta complessità."
+      },
+      {
+        "domanda": "Valore apportato",
+        "risposta": "Superiore",
+        "commento": "Valore molto superiore alle attese."
+      },
+      {
+        "domanda": "Potenziale ruolo più rilevante",
+        "risposta": "Decisamente sì",
+        "commento": "Candidato ideale per ruoli senior."
+      }
+    ]
+  },
+  {
+    "id": "20fee81f-841d-416c-88a7-19d1e07639bb",
+    "dipendenteId": "b9872fce-0861-4c6e-b481-ffdc60755835",
+    "formId": 1774608113865,
+    "data": "2026-03-27",
+    "valutatore": "asdsad",
+    "societa": "Ciao",
+    "risposte": [
+      {
+        "domanda": "Competenze tecniche",
+        "risposta": "Adeguate",
+        "commento": ""
+      },
+      {
+        "domanda": "Autonomia",
+        "risposta": "Autonomia parziale",
+        "commento": ""
+      },
+      {
+        "domanda": "Affidabilità",
+        "risposta": "Quasi sempre",
+        "commento": ""
+      },
+      {
+        "domanda": "Comunicazione e relazione",
+        "risposta": "Efficace",
+        "commento": ""
+      },
+      {
+        "domanda": "Gestione feedback e stress",
+        "risposta": "In modo poco efficace",
+        "commento": ""
+      },
+      {
+        "domanda": "Crescita delle competenze",
+        "risposta": "Significativa",
+        "commento": ""
+      },
+      {
+        "domanda": "Gestione attività complesse",
+        "risposta": "Elevata",
+        "commento": ""
+      },
+      {
+        "domanda": "Valore apportato",
+        "risposta": "Superiore",
+        "commento": ""
+      },
+      {
+        "domanda": "Potenziale ruolo più rilevante",
+        "risposta": "Non chiaro",
+        "commento": ""
+      }
     ]
   }
 ]

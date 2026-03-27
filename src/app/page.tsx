@@ -198,11 +198,21 @@ export default function Page() {
         });
         toast.success("Dipendente aggiornato");
       } else {
-        await fetch("/api/dipendenti", {
+        const res = await fetch("/api/dipendenti", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
+        const nuovo = await res.json();
+        // Add new employee to current valutatore's list
+        if (valutatore) {
+          await fetch(`/api/valutatori/${valutatore.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ addDipendenteId: nuovo.id }),
+          });
+          setValutatore({ ...valutatore, dipendentiIds: [...valutatore.dipendentiIds, nuovo.id] });
+        }
         toast.success("Dipendente aggiunto");
       }
       await fetchAll(undefined);
@@ -229,15 +239,10 @@ export default function Page() {
     }
   };
 
-  const handleSaveScheda = async (scheda: SchedaRiassuntiva) => {
-    await fetch("/api/schede", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(scheda),
-    });
+  const handleSaved = async () => {
     await fetchAll(undefined);
     setWizardDip(null);
-    toast.success("Scheda salvata");
+    toast.success("Valutazione salvata");
   };
 
   // ── Loading / selector ─────────────────────────────────────────────────────
@@ -443,7 +448,7 @@ export default function Page() {
         <SchedaWizard
           dipendente={wizardDip}
           onClose={() => setWizardDip(null)}
-          onSave={handleSaveScheda}
+          onSaved={handleSaved}
         />
       )}
     </div>

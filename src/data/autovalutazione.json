@@ -4,7 +4,13 @@
     "dataCompilazione": "2026-03-20",
     "overview": {
       "stimolante": 4,
-      "percezione": { "performanceProgettuali": 4, "rapportoLipari": 4, "percorsoCrescita": 4, "relazioneColleghi": 5, "partecipazioneCommunity": 3 }
+      "percezione": {
+        "performanceProgettuali": 4,
+        "rapportoLipari": 4,
+        "percorsoCrescita": 4,
+        "relazioneColleghi": 5,
+        "partecipazioneCommunity": 3
+      }
     },
     "progetto": {
       "crescitaSkillMatrix": 4,
@@ -21,8 +27,15 @@
     },
     "attivitaLipari": {
       "importanzaCommunity": 4,
-      "utileCommunity": { "crescitaProfessionale": 4, "comunicazioniOperative": 4, "comunicazioneStrategie": 4, "formazione": 3, "gestioneProblematiche": 3 },
-      "ruoloResponsabilita": null, "ruoloResponsabilitaCommento": null,
+      "utileCommunity": {
+        "crescitaProfessionale": 4,
+        "comunicazioniOperative": 4,
+        "comunicazioneStrategie": 4,
+        "formazione": 3,
+        "gestioneProblematiche": 3
+      },
+      "ruoloResponsabilita": null,
+      "ruoloResponsabilitaCommento": null,
       "attivitaPiuMotivante": "La partecipazione ai colloqui simulati per le nuove risorse è stata l'attività più motivante, utile sia per loro che per me.",
       "raggiungimentoObiettiviLipari": 4
     },
@@ -44,7 +57,13 @@
     "dataCompilazione": "2026-03-21",
     "overview": {
       "stimolante": 3,
-      "percezione": { "performanceProgettuali": 3, "rapportoLipari": 4, "percorsoCrescita": 3, "relazioneColleghi": 4, "partecipazioneCommunity": 3 }
+      "percezione": {
+        "performanceProgettuali": 3,
+        "rapportoLipari": 4,
+        "percorsoCrescita": 3,
+        "relazioneColleghi": 4,
+        "partecipazioneCommunity": 3
+      }
     },
     "progetto": {
       "crescitaSkillMatrix": 3,
@@ -61,8 +80,15 @@
     },
     "attivitaLipari": {
       "importanzaCommunity": 3,
-      "utileCommunity": { "crescitaProfessionale": 3, "comunicazioniOperative": 4, "comunicazioneStrategie": 3, "formazione": 3, "gestioneProblematiche": 3 },
-      "ruoloResponsabilita": null, "ruoloResponsabilitaCommento": null,
+      "utileCommunity": {
+        "crescitaProfessionale": 3,
+        "comunicazioniOperative": 4,
+        "comunicazioneStrategie": 3,
+        "formazione": 3,
+        "gestioneProblematiche": 3
+      },
+      "ruoloResponsabilita": null,
+      "ruoloResponsabilitaCommento": null,
       "attivitaPiuMotivante": "La formazione interna e i workshop tecnici organizzati dalla community.",
       "raggiungimentoObiettiviLipari": 3
     },
@@ -84,7 +110,13 @@
     "dataCompilazione": "2026-03-22",
     "overview": {
       "stimolante": 5,
-      "percezione": { "performanceProgettuali": 5, "rapportoLipari": 5, "percorsoCrescita": 4, "relazioneColleghi": 5, "partecipazioneCommunity": 4 }
+      "percezione": {
+        "performanceProgettuali": 5,
+        "rapportoLipari": 5,
+        "percorsoCrescita": 4,
+        "relazioneColleghi": 5,
+        "partecipazioneCommunity": 4
+      }
     },
     "progetto": {
       "crescitaSkillMatrix": 5,
@@ -101,8 +133,15 @@
     },
     "attivitaLipari": {
       "importanzaCommunity": 5,
-      "utileCommunity": { "crescitaProfessionale": 5, "comunicazioniOperative": 4, "comunicazioneStrategie": 4, "formazione": 5, "gestioneProblematiche": 4 },
-      "ruoloResponsabilita": 5, "ruoloResponsabilitaCommento": "Ho coordinato alcune attività interne con ottimi risultati.",
+      "utileCommunity": {
+        "crescitaProfessionale": 5,
+        "comunicazioniOperative": 4,
+        "comunicazioneStrategie": 4,
+        "formazione": 5,
+        "gestioneProblematiche": 4
+      },
+      "ruoloResponsabilita": 5,
+      "ruoloResponsabilitaCommento": "Ho coordinato alcune attività interne con ottimi risultati.",
       "attivitaPiuMotivante": "La gestione del progetto formativo interno è stata l'esperienza più gratificante dell'anno.",
       "raggiungimentoObiettiviLipari": 5
     },
@@ -124,7 +163,13 @@
     "dataCompilazione": "2026-03-23",
     "overview": {
       "stimolante": 3,
-      "percezione": { "performanceProgettuali": 3, "rapportoLipari": 4, "percorsoCrescita": 3, "relazioneColleghi": 4, "partecipazioneCommunity": 2 }
+      "percezione": {
+        "performanceProgettuali": 3,
+        "rapportoLipari": 4,
+        "percorsoCrescita": 3,
+        "relazioneColleghi": 4,
+        "partecipazioneCommunity": 2
+      }
     },
     "progetto": {
       "crescitaSkillMatrix": 3,
@@ -141,8 +186,15 @@
     },
     "attivitaLipari": {
       "importanzaCommunity": 3,
-      "utileCommunity": { "crescitaProfessionale": 3, "comunicazioniOperative": 3, "comunicazioneStrategie": 3, "formazione": 2, "gestioneProblematiche": 2 },
-      "ruoloResponsabilita": null, "ruoloResponsabilitaCommento": null,
+      "utileCommunity": {
+        "crescitaProfessionale": 3,
+        "comunicazioniOperative": 3,
+        "comunicazioneStrategie": 3,
+        "formazione": 2,
+        "gestioneProblematiche": 2
+      },
+      "ruoloResponsabilita": null,
+      "ruoloResponsabilitaCommento": null,
       "attivitaPiuMotivante": "I momenti di condivisione in ufficio con i colleghi e le sessioni di aggiornamento tecnico.",
       "raggiungimentoObiettiviLipari": 3
     },
@@ -164,7 +216,13 @@
     "dataCompilazione": "2026-03-24",
     "overview": {
       "stimolante": 4,
-      "percezione": { "performanceProgettuali": 4, "rapportoLipari": 4, "percorsoCrescita": 4, "relazioneColleghi": 5, "partecipazioneCommunity": 4 }
+      "percezione": {
+        "performanceProgettuali": 4,
+        "rapportoLipari": 4,
+        "percorsoCrescita": 4,
+        "relazioneColleghi": 5,
+        "partecipazioneCommunity": 4
+      }
     },
     "progetto": {
       "crescitaSkillMatrix": 4,
@@ -181,8 +239,15 @@
     },
     "attivitaLipari": {
       "importanzaCommunity": 4,
-      "utileCommunity": { "crescitaProfessionale": 4, "comunicazioniOperative": 4, "comunicazioneStrategie": 4, "formazione": 4, "gestioneProblematiche": 3 },
-      "ruoloResponsabilita": 4, "ruoloResponsabilitaCommento": "Ho contribuito all'organizzazione di alcune sessioni formative interne.",
+      "utileCommunity": {
+        "crescitaProfessionale": 4,
+        "comunicazioniOperative": 4,
+        "comunicazioneStrategie": 4,
+        "formazione": 4,
+        "gestioneProblematiche": 3
+      },
+      "ruoloResponsabilita": 4,
+      "ruoloResponsabilitaCommento": "Ho contribuito all'organizzazione di alcune sessioni formative interne.",
       "attivitaPiuMotivante": "Le sessioni di formazione tecnica interna e i momenti di confronto con i colleghi.",
       "raggiungimentoObiettiviLipari": 4
     },
@@ -204,7 +269,13 @@
     "dataCompilazione": "2026-03-25",
     "overview": {
       "stimolante": 5,
-      "percezione": { "performanceProgettuali": 5, "rapportoLipari": 5, "percorsoCrescita": 5, "relazioneColleghi": 5, "partecipazioneCommunity": 5 }
+      "percezione": {
+        "performanceProgettuali": 5,
+        "rapportoLipari": 5,
+        "percorsoCrescita": 5,
+        "relazioneColleghi": 5,
+        "partecipazioneCommunity": 5
+      }
     },
     "progetto": {
       "crescitaSkillMatrix": 5,
@@ -221,8 +292,15 @@
     },
     "attivitaLipari": {
       "importanzaCommunity": 5,
-      "utileCommunity": { "crescitaProfessionale": 5, "comunicazioniOperative": 5, "comunicazioneStrategie": 5, "formazione": 5, "gestioneProblematiche": 4 },
-      "ruoloResponsabilita": 5, "ruoloResponsabilitaCommento": "Ho coordinato il team tecnico con ottimi risultati su tutti i fronti.",
+      "utileCommunity": {
+        "crescitaProfessionale": 5,
+        "comunicazioniOperative": 5,
+        "comunicazioneStrategie": 5,
+        "formazione": 5,
+        "gestioneProblematiche": 4
+      },
+      "ruoloResponsabilita": 5,
+      "ruoloResponsabilitaCommento": "Ho coordinato il team tecnico con ottimi risultati su tutti i fronti.",
       "attivitaPiuMotivante": "La guida tecnica del team e la progettazione dell'architettura del sistema sono state le esperienze più gratificanti.",
       "raggiungimentoObiettiviLipari": 5
     },
@@ -237,6 +315,59 @@
       "necessitaPotenziale": "Responsabilità di progetto end-to-end e maggiore coinvolgimento nelle decisioni strategiche.",
       "consapevolezzaFuturo": "Sì, il mio obiettivo è diventare CTO o Head of Engineering nei prossimi anni.",
       "competenzeDaSviluppare": "Management, strategia tecnologica e gestione di organizzazioni tecniche complesse."
+    }
+  },
+  {
+    "dipendenteId": "b9872fce-0861-4c6e-b481-ffdc60755835",
+    "dataCompilazione": "2026-03-27",
+    "overview": {
+      "stimolante": 3,
+      "percezione": {
+        "performanceProgettuali": 2,
+        "rapportoLipari": 0,
+        "percorsoCrescita": 2,
+        "relazioneColleghi": 2,
+        "partecipazioneCommunity": 0
+      }
+    },
+    "progetto": {
+      "crescitaSkillMatrix": 3,
+      "crescitaSkillMatrixCommento": "",
+      "raggiungimentoObiettiviProgetto": 3,
+      "soddisfazioneEsperienze": 3,
+      "soddisfazioneEsperienzeCommento": ""
+    },
+    "nuovoProgetto": {
+      "staffato": false,
+      "complessitaAvvio": null,
+      "supportoRicevuto": null,
+      "strumentiDisponibili": null
+    },
+    "attivitaLipari": {
+      "importanzaCommunity": 3,
+      "utileCommunity": {
+        "crescitaProfessionale": 0,
+        "comunicazioniOperative": 0,
+        "comunicazioneStrategie": 0,
+        "formazione": 0,
+        "gestioneProblematiche": 0
+      },
+      "ruoloResponsabilita": null,
+      "ruoloResponsabilitaCommento": null,
+      "attivitaPiuMotivante": "",
+      "raggiungimentoObiettiviLipari": 3
+    },
+    "equilibrio": {
+      "benessere": "",
+      "riferimentiTecnici": "",
+      "riferimentiBenessere": ""
+    },
+    "sviluppoProfessionale": {
+      "puntiDiForza": "",
+      "automiglioramento": "",
+      "necessitaPotenziale": "",
+      "consapevolezzaFuturo": "",
+      "competenzeDaSviluppare": ""
     }
   }
 ]

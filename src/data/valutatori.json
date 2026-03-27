@@ -1,4 +1,23 @@
 [
-  { "id": "vlt-001", "nome": "Luca", "cognome": "Marchetti", "dipendentiIds": ["emp-001", "emp-002", "emp-003"] },
-  { "id": "vlt-002", "nome": "Sara", "cognome": "Venturi",   "dipendentiIds": ["emp-004", "emp-005", "emp-006"] }
+  {
+    "id": "vlt-001",
+    "nome": "Luca",
+    "cognome": "Marchetti",
+    "dipendentiIds": [
+      "emp-001",
+      "emp-002",
+      "emp-003",
+      "b9872fce-0861-4c6e-b481-ffdc60755835"
+    ]
+  },
+  {
+    "id": "vlt-002",
+    "nome": "Sara",
+    "cognome": "Venturi",
+    "dipendentiIds": [
+      "emp-004",
+      "emp-005",
+      "emp-006"
+    ]
+  }
 ]

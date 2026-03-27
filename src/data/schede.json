@@ -283,5 +283,23 @@
     "crescitaKnowledge": {
       "commento": "Chiara ha avuto un anno di crescita straordinaria. Ha conseguito certificazioni professionali, ha guidato internamente workshop tecnici per il team e ha contribuito alla stesura di linee guida adottate da altri progetti. Il suo investimento nella crescita personale e nella condivisione delle conoscenze la rende un asset fondamentale."
     }
+  },
+  {
+    "dipendenteId": "b9872fce-0861-4c6e-b481-ffdc60755835",
+    "hardSkill": [
+      {
+        "nome": "asd",
+        "score": 3,
+        "commento": ""
+      }
+    ],
+    "softSkill": [
+      {
+        "nome": "asd",
+        "score": 3,
+        "commento": ""
+      }
+    ],
+    "crescitaKnowledge": null
   }
 ]

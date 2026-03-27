@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import path from "path";
 import { Staffing } from "@/types/staffing";
 
@@ -16,4 +16,13 @@ export async function GET(req: NextRequest) {
     : data;
 
   return NextResponse.json(result);
+}
+
+export async function POST(req: NextRequest) {
+  const body: Staffing = await req.json();
+  const data: Staffing[] = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
+  const idx = data.findIndex((s) => s.dipendenteId === body.dipendenteId);
+  if (idx >= 0) { data[idx] = body; } else { data.push(body); }
+  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
+  return NextResponse.json(body, { status: 201 });
 }

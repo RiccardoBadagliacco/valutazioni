@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
+import { randomUUID } from "crypto";
 import path from "path";
 import { Valutazione } from "@/types/valutazione";
 
@@ -16,4 +17,13 @@ export async function GET(req: NextRequest) {
     : data;
 
   return NextResponse.json(result);
+}
+
+export async function POST(req: NextRequest) {
+  const body: Omit<Valutazione, "id"> = await req.json();
+  const data: Valutazione[] = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
+  const nuova: Valutazione = { id: randomUUID(), ...body };
+  data.push(nuova);
+  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
+  return NextResponse.json(nuova, { status: 201 });
 }
