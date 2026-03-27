@@ -6,4 +6,5 @@ export interface Valutatore {
   dipendentiIds: string[];
   dipendenteId?: string | null; // linked employee profile (this evaluator IS this employee)
   passwordHash?: string;
+  specialFeatures?: boolean;
 }

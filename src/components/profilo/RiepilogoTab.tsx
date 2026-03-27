@@ -119,7 +119,7 @@ function MemeSection({ dipendenteId }: { dipendenteId: string }) {
   );
 }
 
-interface Props { dipendenteId: string }
+interface Props { dipendenteId: string; specialFeatures?: boolean }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -306,7 +306,7 @@ function SectionCard({
 
 // ─── Main ────────────────────────────────────────────────────────────────────
 
-export default function RiepilogoTab({ dipendenteId }: Props) {
+export default function RiepilogoTab({ dipendenteId, specialFeatures }: Props) {
   const [vals,    setVals]    = useState<Valutazione[]>([]);
   const [scheda,  setScheda]  = useState<SchedaRiassuntiva | null>(null);
   const [eco,     setEco]     = useState<Economics | null>(null);
@@ -610,7 +610,7 @@ export default function RiepilogoTab({ dipendenteId }: Props) {
       )}
 
       {/* ── Meme + note ── */}
-      <MemeSection dipendenteId={dipendenteId} />
+      {specialFeatures && <MemeSection dipendenteId={dipendenteId} />}
 
     </div>
   );

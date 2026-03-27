@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "v-riccardo",
+    "nome": "Riccardo",
+    "cognome": "Badagliacco",
+    "email": "riccardo.badagliacco@liparipeople.com",
+    "dipendentiIds": [],
+    "dipendenteId": null,
+    "passwordHash": "$2b$10$I0jLGLYwR1m.oNRt4MUIoOlVsYql4uKn285Q0FlaoyoOZQZZY2XkW",
+    "specialFeatures": true
+  }
+]

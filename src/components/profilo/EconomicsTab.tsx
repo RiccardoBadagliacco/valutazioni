@@ -8,6 +8,7 @@ import confetti from "canvas-confetti";
 interface Props {
   dipendenteId: string;
   isEditing?: boolean;
+  specialFeatures?: boolean;
 }
 
 // ─── Formatters ───────────────────────────────────────────────────────────────
@@ -473,7 +474,7 @@ function celebrate(withAirhorn = false) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function EconomicsTab({ dipendenteId, isEditing }: Props) {
+export default function EconomicsTab({ dipendenteId, isEditing, specialFeatures }: Props) {
   const [data, setData]                       = useState<Economics | null>(null);
   const [loading, setLoading]                 = useState(true);
   const [propostaOpen, setPropostaOpen]       = useState(false);
@@ -504,7 +505,7 @@ export default function EconomicsTab({ dipendenteId, isEditing }: Props) {
     const ralUp     = paVal.nuovaRal !== null && paVal.nuovaRal > eaVal.ral;
     const bonusPost = bo?.bonusErogato ?? paVal.bonusImporto;
     const bonusUp   = bonusPost !== null && bonusPost > eaVal.bonusErogato;
-    if (ralUp || bonusUp) {
+    if ((ralUp || bonusUp) && specialFeatures) {
       celebratedRef.current = true;
       celebrate(ralUp && bonusUp);
     }

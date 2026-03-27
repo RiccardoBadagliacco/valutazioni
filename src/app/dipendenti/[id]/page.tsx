@@ -45,9 +45,11 @@ export default function ProfiloDipendente() {
   const isEditing = searchParams.get("mode") === "edit";
   const [dipendente, setDipendente]       = useState<Dipendente | null>(null);
   const [linkedValutatore, setLinkedValutatore] = useState<Valutatore | null>(null);
+  const [specialFeatures, setSpecialFeatures]   = useState(false);
   const [activeStep, setActiveStep]       = useState<StepKey>("sommario");
 
   useEffect(() => {
+    const loggedId = typeof window !== "undefined" ? localStorage.getItem("valutatoreId") : null;
     Promise.all([
       fetch("/api/dipendenti").then((r) => r.json()),
       fetch("/api/valutatori").then((r) => r.json()),
@@ -56,6 +58,10 @@ export default function ProfiloDipendente() {
       if (found) setDipendente(found);
       const linked = valutatori.find((v) => v.dipendenteId === id);
       setLinkedValutatore(linked ?? null);
+      if (loggedId) {
+        const loggedIn = valutatori.find((v) => v.id === loggedId);
+        setSpecialFeatures(loggedIn?.specialFeatures === true);
+      }
     });
   }, [id]);
 
@@ -201,9 +207,9 @@ export default function ProfiloDipendente() {
         ) : activeStep === "skill-matrics" ? (
           <SkillMatrixTab dipendenteId={dipendente.id} />
         ) : activeStep === "economics" ? (
-          <EconomicsTab dipendenteId={dipendente.id} isEditing={isEditing} />
+          <EconomicsTab dipendenteId={dipendente.id} isEditing={isEditing} specialFeatures={specialFeatures} />
         ) : activeStep === "riepilogo" ? (
-          <RiepilogoTab dipendenteId={dipendente.id} />
+          <RiepilogoTab dipendenteId={dipendente.id} specialFeatures={specialFeatures} />
         ) : (
           <div className="bg-white rounded-2xl border border-[#EFEFEF] p-8 min-h-52 flex flex-col items-center justify-center text-center">
             <p className="text-sm font-semibold text-[#1A1A1A]">
