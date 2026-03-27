@@ -17,10 +17,12 @@ export async function POST(req: NextRequest) {
     .ilike("email", emailNorm)
     .single();
 
-  if (error?.code === "PGRST116" || !user) {
+  if (error && error.code !== "PGRST116") {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+  if (!user) {
     return NextResponse.json({ error: "Account non trovato. Registrati prima." }, { status: 404 });
   }
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
   if (!user.password_hash) {
     return NextResponse.json(
