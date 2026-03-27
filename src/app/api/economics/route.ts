@@ -31,7 +31,14 @@ export async function PUT(req: NextRequest) {
   const data: Economics[] = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
 
   const idx = data.findIndex((e) => e.dipendenteId === dipendenteId);
-  if (idx === -1) return NextResponse.json(null, { status: 404 });
+  if (idx === -1) {
+    // Crea nuovo record (upsert)
+    const { writeFileSync: wfs } = await import("fs");
+    const nuovo = { dipendenteId, economicsAttuale: null, propostaAumento: null, bonus: null, ...body };
+    data.push(nuovo);
+    wfs(DATA_PATH, JSON.stringify(data, null, 2), "utf-8");
+    return NextResponse.json(nuovo, { status: 201 });
+  }
 
   data[idx] = { ...data[idx], ...body, dipendenteId };
 

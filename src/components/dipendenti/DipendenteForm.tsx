@@ -3,18 +3,25 @@
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Dipendente, DipendenteInput, JOB_PROFILES, SEDI } from "@/types/dipendente";
+import { Valutatore } from "@/types/valutatore";
+import { ShieldCheck } from "lucide-react";
+
+export type DipendenteFormData = DipendenteInput & { valutatoreId?: string | null };
 
 interface Props {
   dipendente?: Dipendente;
-  onSubmit: (data: DipendenteInput) => Promise<void>;
+  onSubmit: (data: DipendenteFormData) => Promise<void>;
   onCancel: () => void;
   loading: boolean;
+  valutatori?: Valutatore[];
+  linkedValutatoreId?: string | null;
 }
 
-export default function DipendenteForm({ dipendente, onSubmit, onCancel, loading }: Props) {
+export default function DipendenteForm({ dipendente, onSubmit, onCancel, loading, valutatori = [], linkedValutatoreId }: Props) {
   const [form, setForm] = useState<DipendenteInput>({
     nome: "", cognome: "", jobprofile: "", sede: "",
   });
+  const [valutatoreId, setValutatoreId] = useState<string | null>(linkedValutatoreId ?? null);
 
   useEffect(() => {
     if (dipendente) {
@@ -27,9 +34,13 @@ export default function DipendenteForm({ dipendente, onSubmit, onCancel, loading
     }
   }, [dipendente]);
 
+  useEffect(() => {
+    setValutatoreId(linkedValutatoreId ?? null);
+  }, [linkedValutatoreId]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await onSubmit(form);
+    await onSubmit({ ...form, valutatoreId });
   };
 
   return (
@@ -99,6 +110,32 @@ export default function DipendenteForm({ dipendente, onSubmit, onCancel, loading
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Collega account valutatore */}
+      <div className="space-y-2 pt-1 border-t border-[#F5F5F5]">
+        <div className="flex items-center gap-1.5">
+          <ShieldCheck className="w-3.5 h-3.5 text-[#999]" />
+          <label className="text-xs font-medium text-[#666]">Account valutatore collegato</label>
+        </div>
+        <select
+          value={valutatoreId ?? ""}
+          onChange={(e) => setValutatoreId(e.target.value || null)}
+          disabled={valutatori.length === 0}
+          className="w-full text-sm text-[#111] bg-[#FAFAFA] border border-[#E8E8E8] rounded-xl px-3 py-2.5 focus:outline-none focus:border-[#111] transition-colors disabled:text-[#BDBDBD] disabled:cursor-not-allowed"
+        >
+          <option value="">— Nessuno —</option>
+          {valutatori.map((v) => (
+            <option key={v.id} value={v.id}>
+              {v.nome} {v.cognome}{v.email ? ` · ${v.email}` : ""}
+            </option>
+          ))}
+        </select>
+        {valutatori.length === 0 && (
+          <p className="text-xs text-[#BDBDBD]">
+            Nessun altro account valutatore disponibile.
+          </p>
+        )}
       </div>
 
       {/* Actions */}

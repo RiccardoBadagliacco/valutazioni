@@ -1,18 +1,21 @@
 "use client";
 
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import DipendenteForm from "./DipendenteForm";
-import { Dipendente, DipendenteInput } from "@/types/dipendente";
+import DipendenteForm, { DipendenteFormData } from "./DipendenteForm";
+import { Dipendente } from "@/types/dipendente";
+import { Valutatore } from "@/types/valutatore";
 
 interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   dipendente?: Dipendente;
-  onSubmit: (data: DipendenteInput) => Promise<void>;
+  onSubmit: (data: DipendenteFormData) => Promise<void>;
   loading: boolean;
+  valutatori?: Valutatore[];
+  linkedValutatoreId?: string | null;
 }
 
-export default function DipendenteDialog({ open, onOpenChange, dipendente, onSubmit, loading }: Props) {
+export default function DipendenteDialog({ open, onOpenChange, dipendente, onSubmit, loading, valutatori, linkedValutatoreId }: Props) {
   const isEdit = !!dipendente;
 
   return (
@@ -32,13 +35,16 @@ export default function DipendenteDialog({ open, onOpenChange, dipendente, onSub
           </p>
         </div>
 
-        {/* Form */}
+        {/* Form — key forces remount when switching between different dipendenti */}
         <div className="bg-white px-6 py-5">
           <DipendenteForm
+            key={dipendente?.id ?? "new"}
             dipendente={dipendente}
             onSubmit={onSubmit}
             onCancel={() => onOpenChange(false)}
             loading={loading}
+            valutatori={valutatori}
+            linkedValutatoreId={linkedValutatoreId}
           />
         </div>
 

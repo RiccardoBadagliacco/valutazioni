@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, MapPin, Check, ChevronRight } from "lucide-react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { ArrowLeft, MapPin, Check, ChevronRight, ShieldCheck } from "lucide-react";
 import { Dipendente } from "@/types/dipendente";
+import { Valutatore } from "@/types/valutatore";
 import ValutazioneClienteTab from "@/components/profilo/ValutazioneClienteTab";
 import SchedaRiassuntivaTab from "@/components/profilo/SchedaRiassuntivaTab";
 import SkillMatrixTab from "@/components/profilo/SkillMatrixTab";
@@ -40,16 +41,22 @@ function getInitials(nome: string, cognome: string) {
 export default function ProfiloDipendente() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
-  const [dipendente, setDipendente] = useState<Dipendente | null>(null);
-  const [activeStep, setActiveStep] = useState<StepKey>("sommario");
+  const searchParams = useSearchParams();
+  const isEditing = searchParams.get("mode") === "edit";
+  const [dipendente, setDipendente]       = useState<Dipendente | null>(null);
+  const [linkedValutatore, setLinkedValutatore] = useState<Valutatore | null>(null);
+  const [activeStep, setActiveStep]       = useState<StepKey>("sommario");
 
   useEffect(() => {
-    fetch("/api/dipendenti")
-      .then((r) => r.json())
-      .then((list: Dipendente[]) => {
-        const found = list.find((d) => d.id === id);
-        if (found) setDipendente(found);
-      });
+    Promise.all([
+      fetch("/api/dipendenti").then((r) => r.json()),
+      fetch("/api/valutatori").then((r) => r.json()),
+    ]).then(([dipendenti, valutatori]: [Dipendente[], Valutatore[]]) => {
+      const found = dipendenti.find((d) => d.id === id);
+      if (found) setDipendente(found);
+      const linked = valutatori.find((v) => v.dipendenteId === id);
+      setLinkedValutatore(linked ?? null);
+    });
   }, [id]);
 
   if (!dipendente) {
@@ -101,6 +108,12 @@ export default function ProfiloDipendente() {
                 <MapPin className="w-3.5 h-3.5" />
                 {dipendente.sede}
               </div>
+              {linkedValutatore && (
+                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#111] text-white text-xs font-medium">
+                  <ShieldCheck className="w-3 h-3" />
+                  Manager · {linkedValutatore.dipendentiIds.length} {linkedValutatore.dipendentiIds.length === 1 ? "dipendente" : "dipendenti"}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -166,18 +179,29 @@ export default function ProfiloDipendente() {
 
       {/* Step content */}
       <main className="max-w-4xl mx-auto px-8 py-8 space-y-4">
+        {isEditing && (
+          <div className="flex items-center justify-between bg-[#111] text-white rounded-2xl px-5 py-3">
+            <p className="text-sm font-semibold">Modalità compilazione — inserisci i dati per questa valutazione</p>
+            <button
+              onClick={() => router.replace(`/dipendenti/${id}`)}
+              className="text-xs text-white/60 hover:text-white transition-colors"
+            >
+              Esci
+            </button>
+          </div>
+        )}
         {activeStep === "sommario" ? (
-          <SommarioTab dipendenteId={dipendente.id} />
+          <SommarioTab dipendenteId={dipendente.id} isEditing={isEditing} />
         ) : activeStep === "autovalutazione" ? (
-          <AutovalutazioneTab dipendenteId={dipendente.id} />
+          <AutovalutazioneTab dipendenteId={dipendente.id} isEditing={isEditing} />
         ) : activeStep === "valutazione-cliente" ? (
-          <ValutazioneClienteTab dipendenteId={dipendente.id} />
+          <ValutazioneClienteTab dipendenteId={dipendente.id} isEditing={isEditing} />
         ) : activeStep === "scheda-riassuntiva" ? (
-          <SchedaRiassuntivaTab dipendenteId={dipendente.id} />
+          <SchedaRiassuntivaTab dipendenteId={dipendente.id} isEditing={isEditing} />
         ) : activeStep === "skill-matrics" ? (
           <SkillMatrixTab dipendenteId={dipendente.id} />
         ) : activeStep === "economics" ? (
-          <EconomicsTab dipendenteId={dipendente.id} />
+          <EconomicsTab dipendenteId={dipendente.id} isEditing={isEditing} />
         ) : activeStep === "riepilogo" ? (
           <RiepilogoTab dipendenteId={dipendente.id} />
         ) : (

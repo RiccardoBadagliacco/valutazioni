@@ -40,8 +40,8 @@ function buildAxes(scheda: SchedaRiassuntiva) {
     "skill di pensiero":   [],
   };
   for (const d of scheda.softSkill) {
-    const cat = extractCategory(d.nome);
-    if (cat) groups[cat].push(d.score);
+    const cat = (d.categoria as CategoryKey | undefined) ?? extractCategory(d.nome);
+    if (cat && cat in groups) groups[cat].push(d.score);
   }
   return [
     { label: "Hard Skill",           value: average(scheda.hardSkill.map((d) => d.score)) },

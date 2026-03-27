@@ -6,6 +6,7 @@ export interface EconomicsAttuale {
   indennita: number;
   dataPrimoStaffing: string;
   bonusErogato: number;
+  jobProfile?: string | null;
 }
 
 export interface PropostaAumento {
