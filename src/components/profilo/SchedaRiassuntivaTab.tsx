@@ -474,10 +474,15 @@ function CreateSchedaForm({
           <div className="w-8 h-8 rounded-lg bg-[#F5F5F5] flex items-center justify-center text-[#666]">
             <LayoutTemplate className="w-4 h-4" />
           </div>
-          <div>
-            <p className="font-semibold text-[#1A1A1A] text-sm">Carica template</p>
+          <div className="flex-1 min-w-0">
+            <p className="font-semibold text-[#1A1A1A] text-sm">Template di riferimento</p>
             <p className="text-xs text-[#999] mt-0.5">Pre-popola i driver in base al profilo</p>
           </div>
+          {!activeTemplate && (
+            <span className="text-[10px] font-semibold text-[#E55] bg-[#FFF0F0] border border-[#FECACA] px-2 py-0.5 rounded-full shrink-0">
+              Obbligatorio
+            </span>
+          )}
         </div>
         <div className="px-5 py-4 flex flex-wrap gap-2">
           {SCHEDA_TEMPLATES.map((tpl) => (
@@ -556,7 +561,8 @@ function CreateSchedaForm({
       <div className="flex items-center gap-3 pt-4 mt-2 border-t border-[#F0F0F0]">
         <button
           onClick={save}
-          disabled={saving}
+          disabled={saving || !activeTemplate}
+          title={!activeTemplate ? "Seleziona prima un template di riferimento" : undefined}
           className="flex items-center gap-2 px-6 py-2.5 bg-[#111] text-white text-sm font-semibold rounded-xl hover:bg-[#222] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           <Check className="w-3.5 h-3.5" />
