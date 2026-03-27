@@ -1,6 +1,6 @@
 "use client";
 
-import { Pencil, Trash2, MapPin, TrendingUp } from "lucide-react";
+import { Pencil, Trash2, MapPin, TrendingUp, ClipboardList } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Dipendente } from "@/types/dipendente";
 import { Economics } from "@/types/economics";
@@ -10,6 +10,8 @@ interface Props {
   economics?: Economics;
   onEdit: () => void;
   onDelete: () => void;
+  haScheda?: boolean;
+  onCreaValutazione?: () => void;
 }
 
 function getInitials(nome: string, cognome: string) {
@@ -37,7 +39,7 @@ function formatEur(n: number) {
   return n.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
 }
 
-export default function DipendenteCard({ dipendente: d, economics: eco, onEdit, onDelete }: Props) {
+export default function DipendenteCard({ dipendente: d, economics: eco, onEdit, onDelete, haScheda, onCreaValutazione }: Props) {
   const router     = useRouter();
   const initials   = getInitials(d.nome, d.cognome);
   const avatarBg   = AVATAR_BG[getAvatarIndex(d.nome + d.cognome)];
@@ -104,6 +106,17 @@ export default function DipendenteCard({ dipendente: d, economics: eco, onEdit, 
           </span>
         </div>
       </div>
+
+      {/* Crea valutazione CTA — only when evaluator mode and no scheda */}
+      {onCreaValutazione !== undefined && !haScheda && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onCreaValutazione(); }}
+          className="w-full flex items-center justify-center gap-1.5 mt-1 py-2 text-xs font-semibold text-[#111] bg-[#F5F5F5] hover:bg-[#EBEBEB] rounded-xl transition-colors border border-[#E5E5E5]"
+        >
+          <ClipboardList className="w-3.5 h-3.5" />
+          Crea valutazione
+        </button>
+      )}
     </div>
   );
 }

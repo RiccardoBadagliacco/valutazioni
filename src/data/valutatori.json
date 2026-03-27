@@ -1,0 +1,4 @@
+[
+  { "id": "vlt-001", "nome": "Luca", "cognome": "Marchetti", "dipendentiIds": ["emp-001", "emp-002", "emp-003"] },
+  { "id": "vlt-002", "nome": "Sara", "cognome": "Venturi",   "dipendentiIds": ["emp-004", "emp-005", "emp-006"] }
+]

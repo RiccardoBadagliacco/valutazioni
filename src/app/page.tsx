@@ -3,46 +3,151 @@
 import { useCallback, useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Plus, Search, Users, TrendingUp, Banknote, MapPin } from "lucide-react";
+import { Plus, Search, Users, TrendingUp, Banknote, MapPin, LogOut } from "lucide-react";
 import { Dipendente, DipendenteInput } from "@/types/dipendente";
 import { Economics } from "@/types/economics";
+import { Valutatore } from "@/types/valutatore";
+import { SchedaRiassuntiva } from "@/types/scheda";
 import DipendenteDialog from "@/components/dipendenti/DipendenteDialog";
 import ConfermaEliminazione from "@/components/dipendenti/ConfermaEliminazione";
 import DipendenteCard from "@/components/dipendenti/DipendenteCard";
+import SchedaWizard from "@/components/valutazione/SchedaWizard";
 
 function formatEur(n: number) {
   return n.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
 }
 
+// ── Profile Selector ────────────────────────────────────────────────────────
+
+function ValutatoreSelector({
+  valutatori,
+  onSelect,
+}: {
+  valutatori: Valutatore[];
+  onSelect: (v: Valutatore) => void;
+}) {
+  return (
+    <div className="min-h-screen bg-[#F4F5F9] flex flex-col items-center justify-center px-4">
+      <div className="w-full max-w-md">
+        {/* Logo */}
+        <div className="flex items-center gap-3 mb-10 justify-center">
+          <div className="w-9 h-9 bg-[#111] rounded-xl flex items-center justify-center">
+            <Users className="w-4.5 h-4.5 text-white" />
+          </div>
+          <div>
+            <p className="font-bold text-[#111] text-sm leading-none">HR Portal</p>
+            <p className="text-xs text-[#999] mt-0.5">Valutazione 2025</p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl border border-[#EFEFEF] p-7">
+          <h1 className="text-lg font-bold text-[#111] mb-1">Chi sei?</h1>
+          <p className="text-sm text-[#999] mb-6">
+            Seleziona il tuo profilo per accedere ai tuoi dipendenti.
+          </p>
+
+          <div className="space-y-3">
+            {valutatori.map((v) => {
+              const initials = `${v.nome[0]}${v.cognome[0]}`.toUpperCase();
+              return (
+                <button
+                  key={v.id}
+                  onClick={() => onSelect(v)}
+                  className="w-full flex items-center gap-4 p-4 rounded-xl border border-[#EFEFEF] hover:border-[#BDBDBD] hover:bg-[#FAFAFA] transition-all text-left group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-sm font-bold text-white shrink-0">
+                    {initials}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-[#111]">
+                      {v.nome} {v.cognome}
+                    </p>
+                    <p className="text-xs text-[#999] mt-0.5">
+                      {v.dipendentiIds.length}{" "}
+                      {v.dipendentiIds.length === 1 ? "dipendente" : "dipendenti"}
+                    </p>
+                  </div>
+                  <div className="w-5 h-5 rounded-full border-2 border-[#E0E0E0] group-hover:border-[#111] transition-colors shrink-0" />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <p className="text-center text-xs text-[#BDBDBD] mt-6">
+          Valutatore · Lipari
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ── Main Page ───────────────────────────────────────────────────────────────
+
 export default function Page() {
-  const [dipendenti, setDipendenti] = useState<Dipendente[]>([]);
-  const [economics, setEconomics]   = useState<Economics[]>([]);
-  const [ricerca, setRicerca]       = useState("");
-  const [sedeFiltro, setSedeFiltro] = useState<string | null>(null);
-  const [loading, setLoading]       = useState(false);
-  const [formOpen, setFormOpen]     = useState(false);
-  const [deleteOpen, setDeleteOpen] = useState(false);
-  const [selected, setSelected]     = useState<Dipendente | undefined>();
+  const [dipendenti, setDipendenti]   = useState<Dipendente[]>([]);
+  const [economics, setEconomics]     = useState<Economics[]>([]);
+  const [valutatori, setValutatori]   = useState<Valutatore[]>([]);
+  const [valutatore, setValutatore]   = useState<Valutatore | null>(null);
+  const [schedeIds, setSchedeIds]     = useState<Set<string>>(new Set());
+  const [mounted, setMounted]         = useState(false);
+
+  const [ricerca, setRicerca]         = useState("");
+  const [sedeFiltro, setSedeFiltro]   = useState<string | null>(null);
+  const [loading, setLoading]         = useState(false);
+  const [formOpen, setFormOpen]       = useState(false);
+  const [deleteOpen, setDeleteOpen]   = useState(false);
+  const [selected, setSelected]       = useState<Dipendente | undefined>();
+  const [wizardDip, setWizardDip]     = useState<Dipendente | null>(null);
 
   const fetchAll = useCallback(async (signal?: AbortSignal) => {
-    const [rDip, rEco] = await Promise.all([
+    const [rDip, rEco, rVal, rSchede] = await Promise.all([
       fetch("/api/dipendenti", { signal }),
       fetch("/api/economics",  { signal }),
+      fetch("/api/valutatori", { signal }),
+      fetch("/api/schede",     { signal }),
     ]);
     if (signal?.aborted) return;
-    setDipendenti(await rDip.json());
-    setEconomics(await rEco.json());
+    const [dip, eco, vlt, schede]: [Dipendente[], Economics[], Valutatore[], SchedaRiassuntiva[]] =
+      await Promise.all([rDip.json(), rEco.json(), rVal.json(), rSchede.json()]);
+    setDipendenti(dip);
+    setEconomics(eco);
+    setValutatori(vlt);
+    setSchedeIds(new Set(schede.map((s) => s.dipendenteId)));
   }, []);
 
   useEffect(() => {
     const ctrl = new AbortController();
-    fetchAll(ctrl.signal);
+    fetchAll(ctrl.signal).then(() => setMounted(true));
     return () => ctrl.abort();
   }, [fetchAll]);
 
+  // Restore valutatore from localStorage after data loads
+  useEffect(() => {
+    if (!mounted || valutatori.length === 0) return;
+    const saved = localStorage.getItem("valutatoreId");
+    if (saved) {
+      const found = valutatori.find((v) => v.id === saved);
+      if (found) setValutatore(found);
+    }
+  }, [mounted, valutatori]);
+
+  function selectValutatore(v: Valutatore) {
+    localStorage.setItem("valutatoreId", v.id);
+    setValutatore(v);
+  }
+
+  function changeValutatore() {
+    localStorage.removeItem("valutatoreId");
+    setValutatore(null);
+  }
+
   // ── Stats ──────────────────────────────────────────────────────────────────
-  // Solo economics di dipendenti esistenti, deduplicati
-  const dipendentiIds = new Set(dipendenti.map((d) => d.id));
+  const dipendentiScope = valutatore
+    ? dipendenti.filter((d) => valutatore.dipendentiIds.includes(d.id))
+    : dipendenti;
+
+  const dipendentiIds = new Set(dipendentiScope.map((d) => d.id));
   const uniqueEconomics = economics.filter(
     (e, i, arr) =>
       dipendentiIds.has(e.dipendenteId) &&
@@ -67,10 +172,10 @@ export default function Page() {
     : 0;
 
   // ── Sedi uniche ────────────────────────────────────────────────────────────
-  const sedi = Array.from(new Set(dipendenti.map((d) => d.sede))).sort();
+  const sedi = Array.from(new Set(dipendentiScope.map((d) => d.sede))).sort();
 
   // ── Filtri ─────────────────────────────────────────────────────────────────
-  const filtrati = dipendenti.filter((d) => {
+  const filtrati = dipendentiScope.filter((d) => {
     const q = ricerca.toLowerCase();
     const matchSearch =
       d.nome.toLowerCase().includes(q) ||
@@ -124,6 +229,38 @@ export default function Page() {
     }
   };
 
+  const handleSaveScheda = async (scheda: SchedaRiassuntiva) => {
+    await fetch("/api/schede", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(scheda),
+    });
+    await fetchAll(undefined);
+    setWizardDip(null);
+    toast.success("Scheda salvata");
+  };
+
+  // ── Loading / selector ─────────────────────────────────────────────────────
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-[#F4F5F9] flex items-center justify-center">
+        <div className="w-5 h-5 border-2 border-[#E0E0E0] border-t-[#111] rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (!valutatore) {
+    return (
+      <>
+        <Toaster richColors position="top-right" />
+        <ValutatoreSelector valutatori={valutatori} onSelect={selectValutatore} />
+      </>
+    );
+  }
+
+  const initials = `${valutatore.nome[0]}${valutatore.cognome[0]}`.toUpperCase();
+  const daValutare = dipendentiScope.filter((d) => !schedeIds.has(d.id)).length;
+
   return (
     <div className="min-h-screen bg-[#f4f5f9]">
       <Toaster richColors position="top-right" />
@@ -139,6 +276,7 @@ export default function Page() {
             <p className="text-xs text-[#999] mt-0.5">Valutazione 2025</p>
           </div>
         </div>
+
         <div className="flex items-center gap-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#BDBDBD]" />
@@ -149,6 +287,24 @@ export default function Page() {
               className="pl-9 pr-4 py-2 text-sm bg-[#F7F7F7] border border-[#EBEBEB] rounded-xl w-56 focus:outline-none focus:border-[#999] placeholder:text-[#BDBDBD] transition-colors"
             />
           </div>
+
+          {/* Valutatore chip */}
+          <div className="flex items-center gap-2 pl-3 border-l border-[#EBEBEB]">
+            <div className="w-7 h-7 rounded-lg bg-[#111] flex items-center justify-center text-xs font-bold text-white">
+              {initials}
+            </div>
+            <span className="text-sm font-medium text-[#111]">
+              {valutatore.nome} {valutatore.cognome}
+            </span>
+            <button
+              onClick={changeValutatore}
+              title="Cambia profilo"
+              className="w-7 h-7 rounded-lg hover:bg-[#F5F5F5] flex items-center justify-center text-[#999] hover:text-[#111] transition-colors"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
           <button
             onClick={() => { setSelected(undefined); setFormOpen(true); }}
             className="flex items-center gap-2 bg-[#111] hover:bg-[#333] text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
@@ -163,16 +319,14 @@ export default function Page() {
 
         {/* ── Stats row ── */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-          {/* Dipendenti */}
           <div className="bg-white rounded-2xl border border-[#EFEFEF] px-5 py-4">
             <div className="flex items-center gap-1.5 mb-3">
               <Users className="w-3.5 h-3.5 text-[#BDBDBD]" />
               <p className="text-xs text-[#999]">Dipendenti</p>
             </div>
-            <p className="text-2xl font-bold text-[#111]">{dipendenti.length}</p>
+            <p className="text-2xl font-bold text-[#111]">{dipendentiScope.length}</p>
           </div>
 
-          {/* RAL media */}
           <div className="bg-white rounded-2xl border border-[#EFEFEF] px-5 py-4">
             <div className="flex items-center gap-1.5 mb-3">
               <Banknote className="w-3.5 h-3.5 text-[#BDBDBD]" />
@@ -183,7 +337,6 @@ export default function Page() {
             </p>
           </div>
 
-          {/* Con aumento */}
           <div className="bg-white rounded-2xl border border-[#EFEFEF] px-5 py-4">
             <div className="flex items-center gap-1.5 mb-3">
               <TrendingUp className="w-3.5 h-3.5 text-[#BDBDBD]" />
@@ -191,11 +344,10 @@ export default function Page() {
             </div>
             <p className="text-2xl font-bold text-[#111]">
               {conAumento.length}
-              <span className="text-sm font-normal text-[#999] ml-1">/ {dipendenti.length}</span>
+              <span className="text-sm font-normal text-[#999] ml-1">/ {dipendentiScope.length}</span>
             </p>
           </div>
 
-          {/* Aumento medio */}
           <div className="bg-white rounded-2xl border border-[#EFEFEF] px-5 py-4">
             <div className="flex items-center gap-1.5 mb-3">
               <MapPin className="w-3.5 h-3.5 text-[#BDBDBD]" />
@@ -234,9 +386,16 @@ export default function Page() {
               </button>
             ))}
           </div>
-          <p className="text-xs text-[#999]">
-            {filtrati.length} {filtrati.length === 1 ? "dipendente" : "dipendenti"}
-          </p>
+          <div className="flex items-center gap-3">
+            {daValutare > 0 && (
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#FFF7ED] text-orange-700 border border-orange-100">
+                {daValutare} da valutare
+              </span>
+            )}
+            <p className="text-xs text-[#999]">
+              {filtrati.length} {filtrati.length === 1 ? "dipendente" : "dipendenti"}
+            </p>
+          </div>
         </div>
 
         {/* ── Grid ── */}
@@ -257,6 +416,8 @@ export default function Page() {
                 economics={economics.find((e) => e.dipendenteId === d.id)}
                 onEdit={() => { setSelected(d); setFormOpen(true); }}
                 onDelete={() => { setSelected(d); setDeleteOpen(true); }}
+                haScheda={schedeIds.has(d.id)}
+                onCreaValutazione={() => setWizardDip(d)}
               />
             ))}
           </div>
@@ -277,6 +438,14 @@ export default function Page() {
         onConfirm={handleDelete}
         loading={loading}
       />
+
+      {wizardDip && (
+        <SchedaWizard
+          dipendente={wizardDip}
+          onClose={() => setWizardDip(null)}
+          onSave={handleSaveScheda}
+        />
+      )}
     </div>
   );
 }
